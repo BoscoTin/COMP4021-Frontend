@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import MuiLink from '@material-ui/core/Link';
 import Link from '../src/components/Link';
-import Layout from '../src/components/Layout/Layout'
+import PublicLayout from '../src/components/Layout/PublicLayout'
 
 function Copyright() {
   return (
@@ -19,9 +19,9 @@ function Copyright() {
 
 export default function Index() {
   return (
-    <Layout title="Index Page">
+    <PublicLayout title="Index Page">
       <Link href="/">abc</Link>
       <Copyright />
-    </Layout>
+    </PublicLayout>
   );
 }
