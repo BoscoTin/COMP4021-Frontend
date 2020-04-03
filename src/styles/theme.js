@@ -17,6 +17,15 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
+  typography: {
+    h1: {
+      fontFamily: 'Helvetica',
+    },
+    button: {
+      fontFamily: 'Avenir',
+      textTransform: 'none'
+    }
+  }
 });
 
 export default theme;
