@@ -10,6 +10,12 @@ const theme = createMuiTheme({
     secondary: {
       main: "#F063B8",
     },
+    third: {
+      main: "#68C9BA"
+    },
+    fourth: {
+      main: "#2D9CDB"
+    },
     error: {
       main: red.A400,
     },
@@ -18,6 +24,7 @@ const theme = createMuiTheme({
     },
     text: {
       primary: "#212353",
+      secondary: "#FFFFFF"
     }
   },
   typography: {
@@ -29,7 +36,14 @@ const theme = createMuiTheme({
       fontFamily: "Helvetica",
       fontWeight: "bold",
     },
+    h5: {
+      fontFamily: "Helvetica",
+      fontWeight: "bold",
+    },
     body1: {
+      fontFamily: "Avenir",
+    },
+    body2: {
       fontFamily: "Avenir",
     },
     button: {
