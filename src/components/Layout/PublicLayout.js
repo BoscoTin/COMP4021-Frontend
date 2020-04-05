@@ -1,7 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Head from "next/head";
 
+import { Divider } from "@material-ui/core"
+
 import AppBar from "./Appbar";
+import Footer from "./Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(3),
   },
 
+  divider: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+  },
+
   appbar: {
     position: "absolute",
     background: "transparent",
@@ -23,6 +31,20 @@ const useStyles = makeStyles((theme) => ({
   },
   space: {
     flexGrow: 1,
+  },
+  
+  footer: {
+    flexGrow: 1,
+    marginBottom: theme.spacing(2),
+    display: "flex",
+    flexDirection: "horizontal",
+  },
+  footInfo: {
+    width: "40%",
+  },
+  footOther: {
+    width: "20%",
+    alignContent: "center",
   },
 }));
 
@@ -41,6 +63,9 @@ export default function (props) {
         <div className={classes.toolbar} />
         {children}
       </main>
+
+      <Divider className={classes.divider}/>
+      <Footer classes={classes}/>
     </section>
   );
 }

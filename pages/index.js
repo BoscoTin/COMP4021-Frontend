@@ -4,13 +4,13 @@ import PublicLayout from "../src/components/Layout/PublicLayout";
 import Link from "../src/components/Link";
 import Trapezoid from "../src/components/Trapezoid";
 import LatestCard from "../src/components/PeopleCard";
+
 import {
   Grid,
   Typography,
   Button,
   GridList,
   GridListTile,
-  Card,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
@@ -313,9 +313,6 @@ function LatestPosts(props) {
   );
 }
 
-function Footer() {
-  return <div />;
-}
 
 export default function Index() {
   const classes = useStyles();
@@ -330,7 +327,6 @@ export default function Index() {
       <AIBlock classes={classes} />
       <Features classes={classes} />
       <LatestPosts classes={classes} />
-      <Footer />
     </PublicLayout>
   );
 }
