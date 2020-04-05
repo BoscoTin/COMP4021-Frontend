@@ -33,7 +33,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gitem: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(5),
+  },
+  startButton: {
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: '50px',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
   },
 
   aiblock: {
@@ -65,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     left: "30%",
     width: "70%",
+    flexGrow: 1,
   },
   feaDescription: {
     position: "absolute",
@@ -75,7 +83,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       width: "40%",
     },
-    padding: theme.spacing(2), // please match feaItem margin below
   },
   feaItem: {
     padding: theme.spacing(2),
@@ -112,13 +119,18 @@ function TopLayer(props) {
           Build your dream team now.
         </Typography>
         <br />
-        <Typography variant="body1">
+        <Typography variant="body1" align="justify">
           We are here for you to find your partner to build the team you need
           for your startup.
         </Typography>
         <br />
-        <Button href="/" component={Link} variant="contained">
-          Start now
+        <Button 
+          className={classes.startButton} 
+          href="/signup" 
+          component={Link} 
+          variant="contained"
+        >
+          <Typography variant="button" color="textSecondary">Start now</Typography>
         </Button>
       </Grid>
 
@@ -143,7 +155,7 @@ function AIBlock(props) {
           Let our AI help you finding your potential partner.
         </Typography>
         <br />
-        <Typography variant="body1">
+        <Typography variant="body1" align="justify">
           The team is the key to make your fresh company strong and stable, use
           our platform to start finding your talents and buid your best team
         </Typography>
@@ -162,8 +174,8 @@ function Onefeature(props) {
         <Grid item xs={5}>
           <img className={classes.image} src={e.image} />
         </Grid>
-        <Grid item xs={7}>
-          <Typography variant="h5" color="textPrimary" align="center">
+        <Grid item xs={7} className={classes.gitem}>
+          <Typography variant="h6" color="textPrimary">
             {e.title["en_us"]}
           </Typography>
           <br />
@@ -229,7 +241,7 @@ function Features(props) {
   return (
     <Grid container className={classes.block}>
       <Grid item xs={12}>
-        <Typography variant="h4" color="textPrimary" align="center">
+        <Typography variant="h4" color="textPrimary">
           Features
         </Typography>
         <br />

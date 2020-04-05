@@ -45,8 +45,13 @@ export default function (props) {
 
         <div className={classes.space} />
 
-        <Button variant="contained" endIcon={<ArrowForward />}>
-          Sign Up
+        <Button className={classes.loginButton}
+          component={Link}
+          href="login"
+          variant="contained"
+          endIcon={<ArrowForward className={classes.loginArrow}/>}
+        >
+          Sign In
         </Button>
       </Toolbar>
     </AppBar>
