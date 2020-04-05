@@ -3,7 +3,15 @@ import PublicLayout from "../src/components/Layout/PublicLayout";
 
 import Link from "../src/components/Link";
 import Trapezoid from "../src/components/Trapezoid";
-import { Grid, Typography, Button, GridList, GridListTile, Card } from "@material-ui/core";
+import LatestCard from "../src/components/PeopleCard";
+import {
+  Grid,
+  Typography,
+  Button,
+  GridList,
+  GridListTile,
+  Card,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
@@ -74,16 +82,23 @@ const useStyles = makeStyles((theme) => ({
   },
   /* feature part ends */
 
-  latestRoot:{
+  latestRoot: {
     borderRadius: theme.spacing(3),
     backgroundColor: theme.palette.primary.main,
     padding: theme.spacing(5),
-    overflow: 'hidden'
   },
   gridList: {
-    flexWrap: 'nowrap',
+    display: "flex",
+    flexWrap: "nowrap",
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
+    transform: "translateZ(0)",
+  },
+  profileCard: {
+    height: "100%",
+    width: "100%",
+  },
+  profileContent: {
+    padding: theme.spacing(2),
   },
 }));
 
@@ -238,23 +253,59 @@ function LatestPosts(props) {
   const { classes } = props;
 
   const list = [
-    {key: 'id1', content: 'content1'},
-    {key: 'id2', content: 'content1'},
-    {key: 'id3', content: 'content1'},
-  ]
+    {
+      id: "id1",
+      owner: {
+        avatar: "avatar/avatar_1.jpeg",
+        displayname: "John Fang",
+        from: "wordfaang.com",
+      },
+      content: {
+        message:
+          "Suspendisse ultrices at diam lectus nullam. Nisl, sagittis viverra enim erat tortor ultricies massa turpis. Arcu pulvinar aenean nam laoreet nulla. If I have more words? Will the row be extended?",
+      },
+    },
+    {
+      id: "id2",
+      owner: {
+        avatar: "avatar/avatar_2.jpeg",
+        displayname: "Jeny Doe",
+        from: "UX Engineer",
+      },
+      content: {
+        message:
+          "Suspendisse ultrices at diam lectus nullam. Nisl, sagittis viverra enim erat tortor",
+      },
+    },
+    {
+      id: "id3",
+      owner: {
+        avatar: "avatar/avatar_3.jpeg",
+        displayname: "William",
+        from: "Web Designer",
+      },
+      content: {
+        message:
+          "Suspendisse ultrices at diam lectus nullam. Nisl, sagittis viverra enim erat tortor",
+      },
+    },
+  ];
 
   return (
     <div className={classes.latestRoot}>
       <Typography variant="h4" color="textSecondary">
         Latest Post
       </Typography>
-
-      <GridList className={classes.gridList} cols={1}>
-        {list.map(post => (
-          <GridListTile key={post.key}>
-            <Card>
-              {post.content}
-            </Card>
+      <br />
+      <GridList
+        className={classes.gridList}
+        spacing={20}
+        cols={1.75}
+        cellHeight="auto"
+      >
+        {list.map((post) => (
+          <GridListTile key={post.id}>
+            <LatestCard classes={classes} data={post} />
           </GridListTile>
         ))}
       </GridList>

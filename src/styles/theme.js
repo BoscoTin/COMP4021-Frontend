@@ -40,6 +40,10 @@ const theme = createMuiTheme({
       fontFamily: "Helvetica",
       fontWeight: "bold",
     },
+    h6: {
+      fontFamily: "Helvetica",
+      fontWeight: "bold",
+    },
     body1: {
       fontFamily: "Avenir",
     },
