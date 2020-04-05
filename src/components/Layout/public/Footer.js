@@ -3,7 +3,7 @@ import React from "react";
 import { Grid, Typography, IconButton } from "@material-ui/core";
 import { Facebook, Twitter, Instagram } from "@material-ui/icons";
 
-import Link from "../Link";
+import Link from "../../Link";
 
 const socialInfos = [
   { key: "fb", url: "https://www.facebook.com", icon: <Facebook/>},

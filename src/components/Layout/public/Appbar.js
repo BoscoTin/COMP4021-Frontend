@@ -1,4 +1,4 @@
-import Link from "../Link";
+import Link from "../../Link";
 import { useRouter } from "next/router";
 
 import {
@@ -9,6 +9,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 
+/* For these icons, go https://material-ui.com/components/material-icons/ and search*/
 import { ArrowForward, Autorenew } from "@material-ui/icons";
 
 const barButtons = [

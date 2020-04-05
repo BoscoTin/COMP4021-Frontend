@@ -1,5 +1,5 @@
 import React from "react";
-import PublicLayout from "../src/components/Layout/PublicLayout";
+import PublicLayout from "../src/components/Layout/public/PublicLayout";
 
 import Link from "../src/components/Link";
 import Trapezoid from "../src/components/Trapezoid";
