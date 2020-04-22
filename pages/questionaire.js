@@ -21,8 +21,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
   use vscode with extension intellisense would greatly help
 */
 const useStyles = makeStyles((theme) => ({
+    root:{
+
+    },
   Background:{
-      backgroundColor: theme.palette.text.primary,
+      backgroundColor: "#8199EE",
       border: "1px solid #979797",
       position: "relative",
       width: "1600px",
@@ -57,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
         height: "36px",
         left: "938px",
         top: "560px",
-        background:theme.palette.primary.main
+        background: "#6984E2"
   }, rightLayerButtonBoxContainer:{
         position: "absolute",
         width: "552px",
@@ -88,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     width: "377px",
     height: "714px",
     borderRadius:"12px 0px 0px 12px",
-    background: theme.palette.primary.main
+    background: "#6984E2"
   }, leftLayerContext1:{
     position: "absolute",
     width:"256px",
