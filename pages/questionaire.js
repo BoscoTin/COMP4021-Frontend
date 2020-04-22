@@ -21,47 +21,43 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
   use vscode with extension intellisense would greatly help
 */
 const useStyles = makeStyles((theme) => ({
-    root:{
-
+    Root:{
+        backgroundColor: "#8199EE",
+        border: "1px solid #979797",
+        position: "relative",
+        width: "1600px",
+        height: "1024px"
     },
-  Background:{
-      backgroundColor: "#8199EE",
-      border: "1px solid #979797",
-      position: "relative",
-      width: "1600px",
-      height: "1024px"
-  },
-
-  rightLayer:{
+    rightLayer:{
       position: "absolute",
       left: "11.38%",
       right: "11.44%",
       top: "15.14%",
       bottom: "15.14%",
+      width:"77.2%",
       background: theme.palette.text.secondary,
       borderRadius:"12px",
-      width:"1235px"
-  }, rightLayerContent1:{
+    }, rightLayerContent1:{
         position: "absolute",
         width: "587px",
         height: "100px",
         left: "480px",
         top: "120px"
-  }, rightLayerButton1:{
+    }, rightLayerButton1:{
         position: "absolute",
         width: "62px",
         height: "16px",
         left: "856px",
         top: "570px",
         background:theme.palette.text.secondary
-  }, rightLayerButton2:{
+    }, rightLayerButton2:{
         position: "absolute",
         width: "94px",
         height: "36px",
         left: "938px",
         top: "560px",
         background: "#6984E2"
-  }, rightLayerButtonBoxContainer:{
+    }, rightLayerButtonBoxContainer:{
         position: "absolute",
         width: "552px",
         height: "288px",
@@ -70,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
         background:"#FFFFFF",
         boxShadow: "0px 2px 4px rgba(96, 97, 112, 0.16), 0px 0px 1px rgba(40, 41, 61, 0.04)",
         borderRadius: "6px"
-  },rightLayerButtonTitleContainer:{
+    },rightLayerButtonTitleContainer:{
           width: "300px",
           height: "248px",
           left: "3px"
@@ -80,39 +76,39 @@ const useStyles = makeStyles((theme) => ({
           marginTop:"13px",
           marginLeft:"16px",
           marginBottom:"11px"
-  }, rightLayerButton:{
+    }, rightLayerButton:{
           top:"6.25%",
           left:"93.75%",
           icon:"#0099FF"
-  },
+    },
 
-  leftLayer:{
-    position: "absolute",
-    width: "377px",
-    height: "714px",
-    borderRadius:"12px 0px 0px 12px",
-    background: "#6984E2"
-  }, leftLayerContext1:{
+    leftLayer:{
+      width: "30.5%",
+      height: "100%",
+      borderRadius:"12px 0px 0px 12px",
+      background: "#6984E2",
+      position: "absolute"
+    }, leftLayerContext1:{
     position: "absolute",
     width:"256px",
     height:"141px",
     left:"56px",
     top:"184px",
-  }, leftLayerContext2:{
+    }, leftLayerContext2:{
     position: "absolute",
     width:"257px",
     height:"78px",
     left:"55px",
     top:"354px",
-  },
+    },
 
-  ButtonRoot: {
+    ButtonRoot: {
       marginTop:"14px",
       left:"219px",
       '&:hover': {
           backgroundColor: 'transparent',
       },
-  }, Icon: {
+    }, Icon: {
         borderRadius: '50%',
         width: 14,
         height: 14,
@@ -149,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
 function BackGround(props){
   const {classes} = props;
   return (
-      <Grid container className={classes.Background}>
+      <Grid container className={classes.Root}>
         <RightLayer classes = {classes} />
       </Grid>
   );
@@ -250,9 +246,27 @@ function StyledRadio(props) {
     );
 }
 
+
 function CheckBox(props){
   const {classes} = props;
   const [value, setValue] = React.useState("female");
+  const buttonNames = [
+      {id:1,content:"option1"},
+      {id:2,content:"option2"},
+      {id:3,content:"option3"},
+      {id:4,content:"option4"},
+      {id:5,content:"option5"},
+      {id:6,content:"option6"},
+  ];
+
+  const button=[
+      {id:"option1",value:"option1"},
+      {id:"option2",value:"option2"},
+      {id:"option3",value:"option3"},
+      {id:"option4",value:"option4"},
+      {id:"option5",value:"option5"},
+      {id:"option6",value:"option6"},
+  ]
 
   function handleClick(event) {
       if (event.target.value === value) {
@@ -279,58 +293,18 @@ function CheckBox(props){
   return(
       <Grid container className={classes.rightLayerButtonBoxContainer} >
           <Box className={classes.rightLayerButtonTitleContainer} display={"flex"} flexDirection={"column"}>
-              <RightLayerButtonTitleBox>
-                  Helsinki
-              </RightLayerButtonTitleBox>
-
-              <RightLayerButtonTitleBox>
-                  Helsinki
-              </RightLayerButtonTitleBox>
-
-              <RightLayerButtonTitleBox>
-                  Helsinki
-              </RightLayerButtonTitleBox>
-
-              <RightLayerButtonTitleBox>
-                  Helsinki
-              </RightLayerButtonTitleBox>
-
-              <RightLayerButtonTitleBox>
-                  Helsinki
-              </RightLayerButtonTitleBox>
-
-              <RightLayerButtonTitleBox>
-                  Helsinki
-              </RightLayerButtonTitleBox>
+              {buttonNames.map((e) => <RightLayerButtonTitleBox key={e.id} children={e.content} />) }
           </Box>
           <FormControl component="fieldset" className={classes.formControl}>
               <RadioGroup
                   className={classes.group}
                   value={value}>
-                  <FormControlLabel
-                      value="female"
+                  {button.map((e) => <FormControlLabel
+                      id={e.id}
+                      value={e.value}
                       control={<StyledRadio onClick={handleClick} />}
-                  />
-                  <FormControlLabel
-                      value="male"
-                      control={<StyledRadio onClick={handleClick} />}
-                  />
-                  <FormControlLabel
-                      value="other"
-                      control={<StyledRadio onClick={handleClick} />}
-                  />
-                  <FormControlLabel
-                      value="1"
-                      control={<StyledRadio onClick={handleClick} />}
-                  />
-                  <FormControlLabel
-                      value="2"
-                      control={<StyledRadio onClick={handleClick} />}
-                  />
-                  <FormControlLabel
-                      value="3"
-                      control={<StyledRadio onClick={handleClick} />}
-                  />
+                  />)}
+
               </RadioGroup>
           </FormControl>
       </Grid>
