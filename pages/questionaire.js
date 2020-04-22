@@ -39,47 +39,42 @@ const useStyles = makeStyles((theme) => ({
       borderRadius:"12px",
     }, rightLayerContent1:{
         position: "absolute",
-        width: "587px",
-        height: "100px",
-        left: "480px",
-        top: "120px"
+        width: "47.5%",
+        height: "14%",
+        left: "38.9%",
+        top: "16.8%"
     }, rightLayerButton1:{
         position: "absolute",
-        width: "62px",
-        height: "16px",
-        left: "856px",
-        top: "570px",
+        width: "5%",
+        height: "2.2%",
+        left: "69.3%",
+        top: "79.8%",
         background:theme.palette.text.secondary
     }, rightLayerButton2:{
         position: "absolute",
-        width: "94px",
-        height: "36px",
-        left: "938px",
-        top: "560px",
+        width: "7.6%",
+        height: "5%",
+        left: "76%",
+        top: "78.4%",
         background: "#6984E2"
     }, rightLayerButtonBoxContainer:{
         position: "absolute",
-        width: "552px",
-        height: "288px",
-        left: "480px",
-        top: "230px",
+        width: "44.7%",
+        height: "40.3%",
+        left: "38.9%",
+        top: "32.2%",
         background:"#FFFFFF",
         boxShadow: "0px 2px 4px rgba(96, 97, 112, 0.16), 0px 0px 1px rgba(40, 41, 61, 0.04)",
         borderRadius: "6px"
     },rightLayerButtonTitleContainer:{
-          width: "300px",
-          height: "248px",
-          left: "3px"
+        width: "93%",
+        height: "34.7%",
     },rightLayerButtonTitle:{
-          width: "140.55px",
-          height: "24px",
-          marginTop:"13px",
-          marginLeft:"16px",
-          marginBottom:"11px"
-    }, rightLayerButton:{
-          top:"6.25%",
-          left:"93.75%",
-          icon:"#0099FF"
+        width: "140.55px",
+        height: "24px",
+        marginTop:"13px",
+        marginLeft:"16px",
+        marginBottom:"11px"
     },
 
     leftLayer:{
@@ -90,24 +85,23 @@ const useStyles = makeStyles((theme) => ({
       position: "absolute"
     }, leftLayerContext1:{
     position: "absolute",
-    width:"256px",
-    height:"141px",
-    left:"56px",
-    top:"184px",
+    width:"67.9%",
+    height:"19.7%",
+    left:"14.9%",
+    top:"25.8%",
     }, leftLayerContext2:{
     position: "absolute",
-    width:"257px",
-    height:"78px",
-    left:"55px",
-    top:"354px",
+    width:"67.9%",
+    height:"10.9%",
+    left:"14.9%",
+    top:"49.6%",
     },
 
     ButtonRoot: {
-      marginTop:"14px",
-      left:"219px",
-      '&:hover': {
+        marginTop:"45%",
+        '&:hover': {
           backgroundColor: 'transparent',
-      },
+        },
     }, Icon: {
         borderRadius: '50%',
         width: 14,
@@ -295,7 +289,7 @@ function CheckBox(props){
           <Box className={classes.rightLayerButtonTitleContainer} display={"flex"} flexDirection={"column"}>
               {buttonNames.map((e) => <RightLayerButtonTitleBox key={e.id} children={e.content} />) }
           </Box>
-          <FormControl component="fieldset" className={classes.formControl}>
+          <FormControl component="fieldset" >
               <RadioGroup
                   className={classes.group}
                   value={value}>
@@ -304,7 +298,6 @@ function CheckBox(props){
                       value={e.value}
                       control={<StyledRadio onClick={handleClick} />}
                   />)}
-
               </RadioGroup>
           </FormControl>
       </Grid>
