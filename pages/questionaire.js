@@ -276,7 +276,7 @@ function CheckBox(props){
           <Box
               className={classes.rightLayerButtonTitle}
               fontFamily= "Roboto"
-              font-style={"normal"}
+              fontStyle={"normal"}
               fontWeight={"normal"}
               fontSize= "14px"
               lineHeight= "24px"
