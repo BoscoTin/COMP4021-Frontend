@@ -5,14 +5,14 @@ import clsx from 'clsx';
 import {
     Grid,
     Typography,
-    Button
+    Button,
+    Box,
+    Radio,
+    FormControl,
+    RadioGroup,
+    FormControlLabel
 } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
 import Link from "../src/components/Link";
-import Radio from "@material-ui/core/Radio";
-import FormControl from "@material-ui/core/FormControl";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 
 
