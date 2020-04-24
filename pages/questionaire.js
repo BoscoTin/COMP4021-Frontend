@@ -14,8 +14,6 @@ import {
 } from "@material-ui/core";
 import Link from "../src/components/Link";
 
-
-
 /* 
   please define css style here, using camel style name 
   use vscode with extension intellisense would greatly help
