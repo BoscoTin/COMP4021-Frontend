@@ -133,8 +133,6 @@ function LoginLayout(props){
     const [values, setValues] = React.useState({
         id: '',
         password: '',
-        weight: '',
-        weightRange: '',
         showPassword: false,
     });
 
