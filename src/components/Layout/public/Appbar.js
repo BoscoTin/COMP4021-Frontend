@@ -12,11 +12,13 @@ import {
 /* For these icons, go https://material-ui.com/components/material-icons/ and search*/
 import { ArrowForward, Autorenew } from "@material-ui/icons";
 
+import AppLogo from "../../SVGs/app_logo";
+
 const barButtons = [
-  { url: "about", show: { en_us: "About" } },
-  { url: "events", show: { en_us: "Events" } },
-  { url: "explore", show: { en_us: "Explore" } },
-  { url: "contact", show: { en_us: "Contact us" } },
+  { url: "/", show: { en_us: "Main" } },
+  { url: "#events", show: { en_us: "Events" } },
+  { url: "#explore", show: { en_us: "Explore" } },
+  { url: "about", show: { en_us: "About us" } },
 ];
 
 export default function (props) {
@@ -28,8 +30,14 @@ export default function (props) {
     <AppBar className={classes.appbar}>
       <Toolbar>
         <IconButton component={Link} href="/">
-          <Autorenew />
+          <AppLogo fontSize="large"/>
         </IconButton>
+
+        <Typography variant="h3" color="textPrimary">
+          Bigas
+        </Typography>
+
+        <div className={classes.space} />
 
         {/* here loop the buttons with the array */}
         {barButtons.map((e, index) => (
@@ -43,8 +51,6 @@ export default function (props) {
             </Typography>
           </Button>
         ))}
-
-        <div className={classes.space} />
 
         <Button className={classes.loginButton}
           component={Link}

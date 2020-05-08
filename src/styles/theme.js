@@ -5,10 +5,10 @@ import { red } from "@material-ui/core/colors";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#9C69E2",
+      main: "#6984E2",
     },
     secondary: {
-      main: "#F063B8",
+      main: "#C7F001",
     },
     third: {
       main: "#68C9BA"
@@ -30,19 +30,15 @@ const theme = createMuiTheme({
   typography: {
     h3: {
       fontFamily: "Helvetica",
-      fontWeight: "bold",
     },
     h4: {
       fontFamily: "Helvetica",
-      fontWeight: "bold",
     },
     h5: {
       fontFamily: "Helvetica",
-      fontWeight: "bold",
     },
     h6: {
       fontFamily: "Helvetica",
-      fontWeight: "bold",
     },
     body1: {
       fontFamily: "Avenir",

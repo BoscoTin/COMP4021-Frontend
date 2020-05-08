@@ -10,8 +10,21 @@ import {
 
 import { AccountCircleSharp } from "@material-ui/icons";
 
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  profileCard: {
+    height: "100%",
+    width: "100%",
+  },
+  profileContent: {
+    padding: theme.spacing(2),
+  },
+}));
+
 export default function (props) {
-  const { classes, data } = props;
+  const { data } = props;
+  const classes = useStyles();
 
   return (
     <Card className={classes.profileCard}>
