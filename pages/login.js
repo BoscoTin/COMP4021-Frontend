@@ -1,17 +1,19 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {Grid, Box, Typography, Button} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
 import Link from "../src/components/Link";
-import {Visibility, VisibilityOff} from "@material-ui/icons";
+import {CheckBox, Visibility, VisibilityOff} from "@material-ui/icons";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import FingerprintIcon from '@material-ui/icons/Fingerprint';
 
 const useStyles = makeStyles((theme) => ({
     Root: {
         flexGrow: 1,
-        background:"linear-gradient(#F063B8 30%, #2D9CDB 90%)",
     },
     LoginLayout: {
         marginTop:"7%",
@@ -31,7 +33,14 @@ const useStyles = makeStyles((theme) => ({
         marginLeft:"10%",
         marginRight:"10%",
         marginBottom:"5%",
-        background:"#EEEEEE"
+        borderRadius:"1px"
+    },LoginLayoutCheckBox:{
+        marginLeft:"10%",
+        marginRight:"10%",
+        marginBottom:"5%",
+        background: theme.palette.text.secondary
+    },LoginLayoutBoxText:{
+        marginLeft:"5%"
     },
 
     LoginLayoutButton:{
@@ -39,73 +48,40 @@ const useStyles = makeStyles((theme) => ({
         marginRight:"10%",
         marginBottom:"15%",
         height:"8%",
-        background: theme.palette.secondary.main
-    },
-
-    LoginLayoutOption:{
-        marginTop:"10%",
-        marginBottom:"5%",
-        textAlign:"center",
-    }, LoginLayoutOptionBox:{
-        marginLeft:"10%",
-        marginRight:"10%",
-        marginBottom:"15%",
-    },LoginLayoutOption1:{
-        width:"45%",
-        background: theme.palette.text.secondary
-    },LoginLayoutOption2:{
-        width:"45%",
-        background: theme.palette.text.secondary,
-        marginLeft:"10%"
+        background: "#006EFF"
     },
 
     LoginLayoutSignUpBox:{
         marginBottom:"5%",
-    }, LoginLayoutSignUpText:{
-        marginTop:"1.2%",
-        marginLeft:"22%",
-        TextAlign:"center"
+        textAlign:"center"
     },
 
     LoginLayoutForgotPassword:{
         marginTop:"5%",
-        textAlign:"center",
+        textAlign:"center"
     }
 }));
 
-
-
-function OtherLoginOption(props){
-    const {classes} = props;
+function ForgotPasswordAndSignUpTextBox(props){
     return(
-        <Box className={classes.LoginLayoutOptionBox} display={"flex"} flexDirection={"row"}>
-            <Button className={classes.LoginLayoutOption1}
-                    href="/signup"
-                    component={Link}
-                    variant="contained">
-                <Typography variant="button">Option 1</Typography>
-            </Button>
-
-            <Button className={classes.LoginLayoutOption2}
-                    href="/signup"
-                    component={Link}
-                    variant="contained">
-                <Typography variant="button">Option 2</Typography>
-            </Button>
-        </Box>
+        <Box
+            fontFamily= "Roboto"
+            fontStyle={"normal"}
+            fontWeight={"normal"}
+            fontSize= "16px"
+            lineHeight= "28px"
+            color={"#3F3B3B"}
+            {...props}/>
     );
 }
 
 function ForgotPassword(props){
     const {classes} = props;
     return(
-        <Box className={classes.LoginLayoutForgotPassword} display={"flex"} flexDirection={"row"}>
-            <Typography className={classes.LoginLayoutSignUpText}>
-                Forgot Password?
-            </Typography>
+        <Box className={classes.LoginLayoutForgotPassword} >
             <Button href="/signup"
-                    component={Link}>
-                <Typography >Click here</Typography>
+                    component={Link} >
+                <ForgotPasswordAndSignUpTextBox >Forgot Password?</ForgotPasswordAndSignUpTextBox>
             </Button>
         </Box>
     );
@@ -114,13 +90,10 @@ function ForgotPassword(props){
 function SignUp(props){
     const {classes} = props;
     return(
-        <Box className={classes.LoginLayoutSignUpBox} display={"flex"} flexDirection={"row"}>
-            <Typography className={classes.LoginLayoutSignUpText}>
-                Not a member?
-            </Typography>
+        <Box className={classes.LoginLayoutSignUpBox}>
             <Button href="/signup"
                     component={Link}>
-                <Typography >Sign up now</Typography>
+                <ForgotPasswordAndSignUpTextBox >Don't have a account yet?</ForgotPasswordAndSignUpTextBox>
             </Button>
         </Box>
     );
@@ -133,11 +106,17 @@ function LoginLayout(props){
     const [values, setValues] = React.useState({
         id: '',
         password: '',
+        checked: false,
         showPassword: false,
     });
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
+    };
+
+
+    const handleCheckBoxChange = () =>{
+        setValues({ ...values, checked: !values.checked });
     };
 
     const handleClickShowPassword = () => {
@@ -148,23 +127,55 @@ function LoginLayout(props){
         event.preventDefault();
     };
 
+    function StyleBox(props){
+        const classes = useStyles();
+        return(
+            <Box
+                className={classes.LoginLayoutBoxText}
+                fontFamily= "Roboto"
+                fontStyle={"normal"}
+                fontWeight={"normal"}
+                fontSize= "14px"
+                lineHeight= "24px"
+                color={"#959393"}
+                {...props}/>
+        );
+    }
 
     return (
         <Box className={classes.LoginLayout} display={"flex"} flexDirection={"column"}>
-            <Typography className={classes.LoginLayoutTitle} variant={"h3"}>
-                Login
-            </Typography>
+            <Box className={classes.LoginLayoutTitle}
+                 fontFamily= "Roboto"
+                 fontStyle={"normal"}
+                 fontWeight={"500"}
+                 fontSize= "60px"
+                 lineHeight= "70px">
+                Sign in
+            </Box>
 
             <OutlinedInput id={"userName"}
                            className={classes.LoginLayoutBox}
                            value={values.id}
-                           onChange={handleChange('id')}/>
+                           onChange={handleChange('id')}
+                           startAdornment={
+                               <InputAdornment position={"start"}>
+                                   <MailOutlineIcon/>
+                                   <StyleBox>email</StyleBox>
+                               </InputAdornment>
+                           }
+            />
 
             <OutlinedInput id="standard-adornment-password"
                            className={classes.LoginLayoutBox}
                            type={values.showPassword ? 'text' : 'password'}
                            value={values.password}
                            onChange={handleChange('password')}
+                           startAdornment={
+                               <InputAdornment position={"start"}>
+                                   <FingerprintIcon/>
+                                   <StyleBox>password</StyleBox>
+                               </InputAdornment>
+                           }
                            endAdornment={
                                <InputAdornment position="end">
                                    <IconButton
@@ -174,7 +185,17 @@ function LoginLayout(props){
                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
                                    </IconButton>
                                </InputAdornment>
-                           }/>
+                           }
+            />
+
+            <FormControl>
+                <FormControlLabel className={classes.LoginLayoutCheckBox}
+                                  control={<CheckBox />}
+                                  label={"Remember me"}
+                                  checked={values.checked}
+                                  onChange={handleCheckBoxChange}
+                />
+            </FormControl>
 
             <Button className={classes.LoginLayoutButton}
                 href="/signup"
@@ -183,11 +204,7 @@ function LoginLayout(props){
                 <Typography variant="button">LOGIN</Typography>
             </Button>
 
-            <Typography className={classes.LoginLayoutOption}>
-                or login with
-            </Typography>
 
-            <OtherLoginOption classes={classes}/>
             <ForgotPassword classes={classes}/>
             <SignUp classes={classes}/>
         </Box>
