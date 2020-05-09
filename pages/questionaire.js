@@ -9,7 +9,6 @@ import {
   RadioGroup,
   FormControlLabel,
 } from "@material-ui/core";
-
 import StyledRadio from "../src/components/StyledRadio";
 import Questions from "../src/components/demo/questions";
 
