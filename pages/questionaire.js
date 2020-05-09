@@ -6,13 +6,11 @@ import {
   Grid,
   Typography,
   Button,
-  Box,
-  Radio,
-  FormControl,
   RadioGroup,
   FormControlLabel,
 } from "@material-ui/core";
 
+import StyledRadio from "../src/components/StyledRadio";
 import Questions from "../src/components/demo/questions";
 
 /* 
@@ -51,58 +49,35 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
-  Icon: {
-    borderRadius: "50%",
-    width: 14,
-    height: 14,
-    boxShadow:
-      "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
-    backgroundColor: "#f5f8fa",
-    backgroundImage:
-      "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
-    "$root.Mui-focusVisible &": {
-      outline: "2px auto rgba(19,124,189,.6)",
-      outlineOffset: 2,
-    },
-    "input:hover ~ &": {
-      backgroundColor: "#FFFFFF",
-    },
-    "input:disabled ~ &": {
-      boxShadow: "none",
-      background: "rgba(206,217,224,.5)",
-    },
-  },
-  CheckedIcon: {
-    backgroundColor: "#FFFFFF",
-    backgroundImage:
-      "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
-    "&:before": {
-      display: "block",
-      width: 14,
-      height: 14,
-      backgroundImage: "radial-gradient(#0099FF,#0099FF 28%,transparent 32%)",
-      content: '""',
-    },
-    "input:hover ~ &": {
-      backgroundColor: "#106ba3",
-    },
+  PaginatorRoot: {
+    justifyContent: "flex-end",
   },
 }));
 
-function StyledRadio(props) {
-  const classes = props.css;
+function Paginator({ classes, page, setPage }) {
   return (
-    <Radio
-      disableRipple
-      color="default"
-      checkedIcon={<span className={clsx(classes.Icon, classes.CheckedIcon)} />}
-      icon={<span className={classes.Icon} />}
-      {...props}
-    />
+    <div className={clsx(classes.expand_w, classes.PaginatorRoot)}>
+      {page !== 1 && (
+        <Button
+          color="inherit"
+          variant="contained"
+          onClick={() => setPage(page - 1)}
+        >
+          prev
+        </Button>
+      )}
+      {page !== Questions.length && (
+        <Button
+          color="inherit"
+          variant="contained"
+          onClick={() => setPage(page + 1)}
+        >
+          next
+        </Button>
+      )}
+    </div>
   );
 }
-
-function Paginator({ classes, page, setPage }) {}
 
 function LeftLayer({ classes }) {
   return (
@@ -125,49 +100,58 @@ function LeftLayer({ classes }) {
 }
 
 class RightLayer extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      page : 1,
-      choices : Array.from(Questions, () => -1)
-    }
+      page: 1,
+      choices: Array.from(Questions, () => -1),
+    };
   }
 
+  setPage = (page) => {
+    if (page > 0 && page <= Questions.length) {
+      this.setState({
+        page: page,
+      });
+    }
+  };
 
   makeChoice = (q_no, choice) => {
     var array = this.state.choices;
     array[q_no] = parseInt(choice);
     this.setState({
-      choices: array
+      choices: array,
     });
-  }
+  };
 
   onListTileClick = (ev) => {
-    const { page, choices } = this.state
+    const { page, choices } = this.state;
     if (ev.target.value === choices[page - 1]) {
       this.makeChoice(page - 1, -1);
     } else {
       this.makeChoice(page - 1, ev.target.value);
     }
-  }
+  };
 
-  render(){
-    const { classes } = this.props
-    const { page, choices } = this.state
-    const q_data = Questions[page - 1].answers
+  render() {
+    const { classes } = this.props;
+    const { page, choices } = this.state;
+    const q_data = Questions[page - 1].answers;
     return (
       <div
         className={clsx(classes.RightLayer, classes.expand_h, classes.expand_w)}
       >
         <Typography variant="body1" color="textPrimary">
-          <span className={clsx(classes.font_roboto)}>{page} of 6</span>
+          <span className={clsx(classes.font_roboto)}>
+            Question {page} of 6
+          </span>
         </Typography>
         <Typography variant="h4" color="textPrimary">
           <span className={clsx(classes.lineh_130, classes.font_roboto)}>
             <strong>{Questions[page - 1].question}</strong>
           </span>
         </Typography>
-  
+
         <RadioGroup value={choices[page - 1]} onChange={this.onListTileClick}>
           {q_data.map((anss, index) => {
             return (
@@ -189,8 +173,8 @@ class RightLayer extends React.Component {
             );
           })}
         </RadioGroup>
-  
-        {/*<Paginator page={page} setPage={setPage} /> */}
+
+        <Paginator classes={classes} page={page} setPage={this.setPage} />
       </div>
     );
   }
