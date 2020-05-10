@@ -151,11 +151,11 @@ function StyledCheckbox(props) {
         />
     );
 }
+
 function RememberMeCheckBox(props){
     const {classes} = props;
 
     const [checked, setChecked] = React.useState(true);
-
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
