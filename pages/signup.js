@@ -3,16 +3,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import {Grid, Box,Typography} from "@material-ui/core";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+
+import FormDetails from "../src/components/demo/register_form";
 
 const useStyles = makeStyles((theme) => ({
     root:{
         flexGrow:1,
         background:"#F4F2F2"
+    },
+    expand_w: {
+        width: "100%",
+    },
+    padding: {
+        padding: theme.spacing(10),
     },
 
     TitleLayer:{
@@ -40,33 +44,21 @@ const useStyles = makeStyles((theme) => ({
     },InputFieldTitle:{
         marginTop:"3.48%",
         marginLeft:"6.86%"
-    },InputFieldBox:{
-        marginTop:"3.48%",
-        marginLeft:"6.86%",
-    },InputFieldBoxStyle1:{
-        marginRight:"3%",
-        width:"30%"
-    },InputFieldBoxStyle2:{
-        marginRight:"3%",
-        width:"20%"
-    },InputFieldBoxStyle3:{
-        marginRight:"3%",
-        width:"60%"
-    }
+    },
 
 }));
 
 function Background2(props){
     const {classes} = props;
     const [states, setStates] = React.useState({
-        firstName: 'First Name',
-        lastName: 'Last Name',
-        phoneNumber:'Phone Number',
-        email:'Email',
-        website:'Website',
-        address:'Address',
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        email: "",
+        website: "",
+        address: "",
         gender:'0',
-        birthday:'Birthday'
+        birthday: ""
     });
 
     const handleChange = (prop) => (event) => {
@@ -74,100 +66,52 @@ function Background2(props){
     };
 
     return(
-        <Box className={classes.InputTextLayer} display={"flex"} flexDirection={"column"}>
-            <Box className={classes.InputFieldTitle}
-                 fontFamily="Roboto"
-                 fontStyle= "normal"
-                 fontWeight="normal"
-                 fontSize="64px"
-                 lineHeight="75px"
-                 color="#6984E2">
-                Basic
-            </Box>
+        <Grid container className={classes.InputTextLayer}>
+            <Grid item xs={12}>
+                <Box
+                    className={classes.InputFieldTitle}
+                    fontFamily="Roboto"
+                    fontStyle="normal"
+                    fontWeight="normal"
+                    fontSize="64px"
+                    lineHeight="75px"
+                    color="#6984E2"
+                >
+                    Basic
+                </Box>
+            </Grid>
 
-            <Box className={classes.InputFieldBox} display={"flex"} flexDirection="row" >
-                <FormControl className={classes.InputFieldBoxStyle1}>
-                    <InputLabel>First Name</InputLabel>
-                    <Input
-                        id="First Name"
-                        value={states.firstName}
-                        onChange={handleChange('firstName')}
-                    />
-                </FormControl>
-                <FormControl className={classes.InputFieldBoxStyle1}>
-                    <InputLabel>Last Name</InputLabel>
-                    <Input
-                        id="Last Name"
-                        value={states.lastName}
-                        onChange={handleChange('lastName')}
-                    />
-                </FormControl>
-            </Box>
-
-            <Box className={classes.InputFieldBox} display={"flex"} flexDirection={"row"}>
-                <FormControl className={classes.InputFieldBoxStyle2}>
-                    <InputLabel>Phone Number</InputLabel>
-                    <Input
-                        id="Phone Number"
-                        value={states.phoneNumber}
-                        onChange={handleChange('phoneNumber')}
-                    />
-                </FormControl>
-                <FormControl className={classes.InputFieldBoxStyle2}>
-                    <InputLabel>Email</InputLabel>
-                    <Input
-                        id="Email"
-                        value={states.email}
-                        onChange={handleChange('email')}
-                    />
-                </FormControl>
-                <FormControl className={classes.InputFieldBoxStyle2}>
-                    <InputLabel>Website</InputLabel>
-                    <Input
-                        id="Website"
-                        value={states.website}
-                        onChange={handleChange('website')}
-                    />
-                </FormControl>
-            </Box>
-
-            <Box className={classes.InputFieldBox}>
-                <FormControl className={classes.InputFieldBoxStyle3}>
-                    <InputLabel>Address</InputLabel>
-                    <Input
-                        id="Address"
-                        value={states.address}
-                        onChange={handleChange('address')}
-                    />
-                </FormControl>
-            </Box>
-
-            <Box className={classes.InputFieldBox}>
-                <FormControl className={classes.InputFieldBoxStyle1}>
-                    <InputLabel id="demo-simple-select-label">Gender</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={states.gender}
-                            onChange={handleChange('gender')}>
-
-                            <MenuItem value={0}>Male</MenuItem>
-                            <MenuItem value={1}>Female</MenuItem>
-                            <MenuItem value={2}>Intersex</MenuItem>
-                            <MenuItem value={3}>Shemale</MenuItem>
-                            
-                        </Select>
-                </FormControl>
-                <FormControl className={classes.InputFieldBoxStyle2}>
-                    <InputLabel>Birthday</InputLabel>
-                    <Input
-                        id="Birthday"
-                        value={states.birthday}
-                        onChange={handleChange('birthday')}
-                    />
-                </FormControl>
-            </Box>
-        </Box>
+            {FormDetails.map((inputs) => (
+                <Grid
+                    item
+                    key={inputs.id}
+                    xs={inputs.columns}
+                    className={classes.padding}
+                >
+                    {inputs.type === "text" && (
+                        <TextField
+                            fullWidth
+                            label={inputs.label}
+                            onChange={handleChange(inputs.id)}
+                            value={states[inputs.id]}
+                        />
+                    )}
+                    {inputs.type === "select" && (
+                        <TextField
+                            select
+                            fullWidth
+                            label={inputs.label}
+                            onChange={handleChange(inputs.id)}
+                            value={states[inputs.id]}
+                        >
+                            {inputs.select.map((val, index) => (
+                                <MenuItem key={val + index} value={index} children={val} />
+                            ))}
+                        </TextField>
+                    )}
+                </Grid>
+            ))}
+        </Grid>
     );
 }
 
@@ -181,7 +125,7 @@ function Background1(props){
                 fontFamily="Roboto"
                 fontStyle="normal"
                 fontWeight= "normal"
-                fontSize="48px"
+                fontSize="45px"
                 lineHeight="56px"
                 color={"#FFFFFF"}
                 {...props}/>
@@ -204,7 +148,7 @@ function Background1(props){
                     Bit
                 </Box>
                 <StyledBox>
-                    more info to help us bild your
+                    more info to help us build your
                 </StyledBox>
                 <Box display={"inline"}
                      fontFamily="Roboto"
