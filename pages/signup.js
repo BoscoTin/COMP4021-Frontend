@@ -70,7 +70,9 @@ function FormInterestsPart(props){
                 {InterestInputs.type === "text" && (
                     <TextField
                         fullWidth
-                        label={InterestInputs.label}
+                        floatingLabelText={InterestInputs.label}
+                        floatingLabelFixed={true}
+                        placeholder={InterestInputs.label}
                         onChange={handleChange(InterestInputs.id)}
                         value={states[InterestInputs.id]}
                     />
@@ -115,7 +117,9 @@ function FormExperiencePart(props){
                 {ExperienceInputs.type === "text" && (
                     <TextField
                         fullWidth
-                        label={ExperienceInputs.label}
+                        floatingLabelText={ExperienceInputs.label}
+                        floatingLabelFixed={true}
+                        placeholder={ExperienceInputs.label}
                         onChange={handleChange(ExperienceInputs.id)}
                         value={states[ExperienceInputs.id]}
                     />
@@ -160,7 +164,9 @@ function FormEducationPart(props){
                 {EducationInputs.type === "text" && (
                     <TextField
                         fullWidth
-                        label={EducationInputs.label}
+                        floatingLabelText={EducationInputs.label}
+                        floatingLabelFixed={true}
+                        placeholder={EducationInputs.label}
                         onChange={handleChange(EducationInputs.id)}
                         value={states[EducationInputs.id]}
                     />
@@ -211,7 +217,8 @@ function FormBasicPart(props){
                     {BasicInputs.type === "text" && (
                         <TextField
                             fullWidth
-                            label={BasicInputs.label}
+                            floatingLabelText={BasicInputs.label}
+                            floatingLabelFixed={true}
                             placeholder={BasicInputs.placeholder}
                             onChange={handleChange(BasicInputs.id)}
                             value={states[BasicInputs.id]}

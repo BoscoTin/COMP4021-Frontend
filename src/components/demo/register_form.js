@@ -72,6 +72,7 @@ const Basic = [
 const Education = [
     {
         "label": "First Name",
+        "placeholder":"First Name",
         "id": "firstName",
         "columns": 6,
         "type": "text",
@@ -79,6 +80,7 @@ const Education = [
     },
     {
         "label": "Last Name",
+        "placeholder":"Last Name",
         "id": "lastName",
         "columns": 6,
         "type": "text",
@@ -89,6 +91,7 @@ const Education = [
 const Experience = [
     {
         "label": "First Name",
+        "placeholder":"First Name",
         "id": "firstName",
         "columns": 6,
         "type": "text",
@@ -96,6 +99,7 @@ const Experience = [
     },
     {
         "label": "Last Name",
+        "placeholder":"Last Name",
         "id": "lastName",
         "columns": 6,
         "type": "text",
@@ -106,6 +110,7 @@ const Experience = [
 const Interests = [
     {
         "label": "First Name",
+        "placeholder":"First Name",
         "id": "firstName",
         "columns": 6,
         "type": "text",
@@ -113,6 +118,7 @@ const Interests = [
     },
     {
         "label": "Last Name",
+        "placeholder":"Last Name",
         "id": "lastName",
         "columns": 6,
         "type": "text",
