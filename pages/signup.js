@@ -5,7 +5,7 @@ import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 
-import FormDetails from "../src/components/demo/register_form";
+import {Basic, Education, Experience, Interests} from "../src/components/demo/register_form";
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -48,7 +48,142 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Background2(props){
+
+function FormInterestsPart(props){
+    const {classes} = props;
+    const [states, setStates] = React.useState({
+        firstName: "",
+        lastName: "",
+    });
+
+    const handleChange = (prop) => (event) => {
+        setStates({ ...states, [prop]: event.target.value });
+    };
+    return(
+        Interests.map((InterestInputs) => (
+            <Grid
+                item
+                key={InterestInputs.id}
+                xs={InterestInputs.columns}
+                className={classes.padding}
+            >
+                {InterestInputs.type === "text" && (
+                    <TextField
+                        fullWidth
+                        label={InterestInputs.label}
+                        onChange={handleChange(InterestInputs.id)}
+                        value={states[InterestInputs.id]}
+                    />
+                )}
+                {InterestInputs.type === "select" && (
+                    <TextField
+                        select
+                        fullWidth
+                        label={InterestInputs.label}
+                        onChange={handleChange(InterestInputs.id)}
+                        value={states[InterestInputs.id]}
+                    >
+                        {InterestInputs.select.map((val, index) => (
+                            <MenuItem key={val + index} value={index} children={val} />
+                        ))}
+                    </TextField>
+                )}
+            </Grid>
+        ))
+    );
+}
+
+function FormExperiencePart(props){
+    const {classes} = props;
+    const [states, setStates] = React.useState({
+        firstName: "",
+        lastName: "",
+    });
+
+    const handleChange = (prop) => (event) => {
+        setStates({ ...states, [prop]: event.target.value });
+    };
+
+    return(
+        Experience.map((ExperienceInputs) => (
+            <Grid
+                item
+                key={ExperienceInputs.id}
+                xs={ExperienceInputs.columns}
+                className={classes.padding}
+            >
+                {ExperienceInputs.type === "text" && (
+                    <TextField
+                        fullWidth
+                        label={ExperienceInputs.label}
+                        onChange={handleChange(ExperienceInputs.id)}
+                        value={states[ExperienceInputs.id]}
+                    />
+                )}
+                {ExperienceInputs.type === "select" && (
+                    <TextField
+                        select
+                        fullWidth
+                        label={ExperienceInputs.label}
+                        onChange={handleChange(ExperienceInputs.id)}
+                        value={states[ExperienceInputs.id]}
+                    >
+                        {ExperienceInputs.select.map((val, index) => (
+                            <MenuItem key={val + index} value={index} children={val} />
+                        ))}
+                    </TextField>
+                )}
+            </Grid>
+        ))
+    );
+}
+
+function FormEducationPart(props){
+    const {classes} = props;
+    const [states, setStates] = React.useState({
+        firstName: "",
+        lastName: "",
+    });
+
+    const handleChange = (prop) => (event) => {
+        setStates({ ...states, [prop]: event.target.value });
+    };
+
+    return(
+        Education.map((EducationInputs) => (
+            <Grid
+                item
+                key={EducationInputs.id}
+                xs={EducationInputs.columns}
+                className={classes.padding}
+            >
+                {EducationInputs.type === "text" && (
+                    <TextField
+                        fullWidth
+                        label={EducationInputs.label}
+                        onChange={handleChange(EducationInputs.id)}
+                        value={states[EducationInputs.id]}
+                    />
+                )}
+                {EducationInputs.type === "select" && (
+                    <TextField
+                        select
+                        fullWidth
+                        label={EducationInputs.label}
+                        onChange={handleChange(EducationInputs.id)}
+                        value={states[EducationInputs.id]}
+                    >
+                        {EducationInputs.select.map((val, index) => (
+                            <MenuItem key={val + index} value={index} children={val} />
+                        ))}
+                    </TextField>
+                )}
+            </Grid>
+        ))
+    )
+}
+
+function FormBasicPart(props){
     const {classes} = props;
     const [states, setStates] = React.useState({
         firstName: "",
@@ -66,7 +201,45 @@ function Background2(props){
     };
 
     return(
-        <Grid container className={classes.InputTextLayer}>
+        Basic.map((BasicInputs) => (
+                <Grid
+                    item
+                    key={BasicInputs.id}
+                    xs={BasicInputs.columns}
+                    className={classes.padding}
+                >
+                    {BasicInputs.type === "text" && (
+                        <TextField
+                            fullWidth
+                            label={BasicInputs.label}
+                            placeholder={BasicInputs.placeholder}
+                            onChange={handleChange(BasicInputs.id)}
+                            value={states[BasicInputs.id]}
+                        />
+                    )}
+                    {BasicInputs.type === "select" && (
+                        <TextField
+                            select
+                            fullWidth
+                            label={BasicInputs.label}
+                            onChange={handleChange(BasicInputs.id)}
+                            value={states[BasicInputs.id]}
+                        >
+                            {BasicInputs.select.map((val, index) => (
+                                <MenuItem key={val + index} value={index} children={val} />
+                            ))}
+                        </TextField>
+                    )}
+                </Grid>
+        ))
+    );
+}
+
+function Background2(props){
+    const {classes} = props;
+
+    function StyledBox(props){
+        return(
             <Grid item xs={12}>
                 <Box
                     className={classes.InputFieldTitle}
@@ -76,41 +249,23 @@ function Background2(props){
                     fontSize="64px"
                     lineHeight="75px"
                     color="#6984E2"
-                >
-                    Basic
-                </Box>
+                    {...props}/>
             </Grid>
+        );
+    }
+    return(
+        <Grid container className={classes.InputTextLayer}>
+            <StyledBox>Basic</StyledBox>
+            <FormBasicPart classes={classes}/>
 
-            {FormDetails.map((inputs) => (
-                <Grid
-                    item
-                    key={inputs.id}
-                    xs={inputs.columns}
-                    className={classes.padding}
-                >
-                    {inputs.type === "text" && (
-                        <TextField
-                            fullWidth
-                            label={inputs.label}
-                            onChange={handleChange(inputs.id)}
-                            value={states[inputs.id]}
-                        />
-                    )}
-                    {inputs.type === "select" && (
-                        <TextField
-                            select
-                            fullWidth
-                            label={inputs.label}
-                            onChange={handleChange(inputs.id)}
-                            value={states[inputs.id]}
-                        >
-                            {inputs.select.map((val, index) => (
-                                <MenuItem key={val + index} value={index} children={val} />
-                            ))}
-                        </TextField>
-                    )}
-                </Grid>
-            ))}
+            <StyledBox>Education</StyledBox>
+            <FormEducationPart classes={classes}/>
+
+            <StyledBox>Experience</StyledBox>
+            <FormExperiencePart classes={classes}/>
+
+            <StyledBox>Interests</StyledBox>
+            <FormInterestsPart classes={classes}/>
         </Grid>
     );
 }

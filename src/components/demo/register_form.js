@@ -1,6 +1,7 @@
-const form_details = [
+const Basic = [
     {
         "label": "First Name",
+        "placeholder":"First Name",
         "id": "firstName",
         "columns": 6,
         "type": "text",
@@ -8,6 +9,7 @@ const form_details = [
     },
     {
         "label": "Last Name",
+        "placeholder":"Last Name",
         "id": "lastName",
         "columns": 6,
         "type": "text",
@@ -15,6 +17,7 @@ const form_details = [
     },
     {
         "label": "Phone Number",
+        "placeholder":"Phone Number",
         "id": "phoneNumber",
         "columns": 4,
         "type": "text",
@@ -22,6 +25,7 @@ const form_details = [
     },
     {
         "label": "Email",
+        "placeholder":"Phone Number",
         "id": "email",
         "columns": 4,
         "type": "text",
@@ -29,6 +33,7 @@ const form_details = [
     },
     {
         "label": "Website",
+        "placeholder":"Website",
         "id": "website",
         "columns": 4,
         "type": "text",
@@ -36,6 +41,7 @@ const form_details = [
     },
     {
         "label": "Address",
+        "placeholder":"Address",
         "id": "address",
         "columns": 12,
         "type": "text",
@@ -55,6 +61,7 @@ const form_details = [
     },
     {
         "label": "Birthday",
+        "placeholder":"Birthday",
         "id": "birthday",
         "columns": 6,
         "type": "text",
@@ -62,4 +69,55 @@ const form_details = [
     },
 ];
 
-export default form_details
+const Education = [
+    {
+        "label": "First Name",
+        "id": "firstName",
+        "columns": 6,
+        "type": "text",
+        "select": null,
+    },
+    {
+        "label": "Last Name",
+        "id": "lastName",
+        "columns": 6,
+        "type": "text",
+        "select": null,
+    },
+];
+
+const Experience = [
+    {
+        "label": "First Name",
+        "id": "firstName",
+        "columns": 6,
+        "type": "text",
+        "select": null,
+    },
+    {
+        "label": "Last Name",
+        "id": "lastName",
+        "columns": 6,
+        "type": "text",
+        "select": null,
+    },
+];
+
+const Interests = [
+    {
+        "label": "First Name",
+        "id": "firstName",
+        "columns": 6,
+        "type": "text",
+        "select": null,
+    },
+    {
+        "label": "Last Name",
+        "id": "lastName",
+        "columns": 6,
+        "type": "text",
+        "select": null,
+    },
+];
+
+export { Basic, Education, Experience, Interests}
