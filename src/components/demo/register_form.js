@@ -1,4 +1,9 @@
-const Basic = [
+const form_Details = [
+    {
+        "type":"title",
+        "columns": 12,
+        "id":"Basic"
+    },
     {
         "label": "First Name",
         "placeholder":"First Name",
@@ -67,63 +72,50 @@ const Basic = [
         "type": "text",
         "select": null,
     },
-];
 
-const Education = [
     {
-        "label": "First Name",
-        "placeholder":"First Name",
-        "id": "firstName",
-        "columns": 6,
+        "type":"title",
+        "columns": 12,
+        "id":"Education"
+    },
+    {
+        "label": "Address",
+        "placeholder":"Address",
+        "id": "address",
+        "columns": 12,
         "type": "text",
         "select": null,
     },
-    {
-        "label": "Last Name",
-        "placeholder":"Last Name",
-        "id": "lastName",
-        "columns": 6,
-        "type": "text",
-        "select": null,
-    },
-];
 
-const Experience = [
     {
-        "label": "First Name",
-        "placeholder":"First Name",
-        "id": "firstName",
-        "columns": 6,
+        "type":"title",
+        "columns": 12,
+        "id":"Experience"
+    },
+    {
+        "label": "Address",
+        "placeholder":"Address",
+        "id": "address",
+        "columns": 12,
         "type": "text",
         "select": null,
     },
-    {
-        "label": "Last Name",
-        "placeholder":"Last Name",
-        "id": "lastName",
-        "columns": 6,
-        "type": "text",
-        "select": null,
-    },
-];
 
-const Interests = [
     {
-        "label": "First Name",
-        "placeholder":"First Name",
-        "id": "firstName",
-        "columns": 6,
-        "type": "text",
-        "select": null,
+        "type":"title",
+        "columns": 12,
+        "id":"Interests"
     },
     {
-        "label": "Last Name",
-        "placeholder":"Last Name",
-        "id": "lastName",
-        "columns": 6,
+        "label": "Address",
+        "placeholder":"Address",
+        "id": "address",
+        "columns": 12,
         "type": "text",
         "select": null,
     },
 ];
 
-export { Basic, Education, Experience, Interests}
+
+
+export default form_Details
