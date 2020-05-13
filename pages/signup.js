@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
     TitleLayer:{
         height:"555px",
-        width:"1600px",
+        width:"100%",
         background:"#6984E2"
     }, ContentMarginLeft:{
         marginTop:"9%",

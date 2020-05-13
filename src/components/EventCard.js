@@ -32,6 +32,22 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden"
   }
 }));
+function RemainingDates({ text }) {
+  return (
+      <Box style={{ maxWidth: "50%" }} fontFamily= "Roboto" align={"center"} color={"#6984E2"}>
+        <img src={"clock.svg"} />
+        {text}
+      </Box>
+  );
+}
+function Location({ text }){
+  return (
+      <Box variant="body2" style={{ maxWidth: "50%" }}>
+        <img src={"map.svg"} />
+        {text}
+      </Box>
+  );
+}
 
 function ChipText({ text }) {
   return (
@@ -44,6 +60,8 @@ function ChipText({ text }) {
 export default function (props) {
   const { data } = props;
   const classes = useStyles();
+  const d3 = (new Date(data.date_of_expire) - new Date(data.date_of_posting))/864000000;
+  const remainingDates = " " + d3.toString()+ " Days left";
 
   return (
     <Card className={classes.root}>
@@ -67,8 +85,8 @@ export default function (props) {
         </div>
 
         <div className={classes.spacearound}>
-          <ChipText text={data.date_of_expire} />
-          <ChipText text={data.location} />
+          <RemainingDates text={remainingDates}/>
+          <Location text={data.location} />
         </div>
       </CardContent>
     </Card>
