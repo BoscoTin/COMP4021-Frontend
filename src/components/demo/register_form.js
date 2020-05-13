@@ -2,7 +2,8 @@ const form_Details = [
     {
         "type":"title",
         "columns": 12,
-        "id":"Basic"
+        "id":"basic",
+        "title":"Basic"
     },
     {
         "label": "First Name",
@@ -76,7 +77,8 @@ const form_Details = [
     {
         "type":"title",
         "columns": 12,
-        "id":"Education"
+        "id":"education",
+        "title":"Education"
     },
     {
         "label": "Address",
@@ -90,7 +92,8 @@ const form_Details = [
     {
         "type":"title",
         "columns": 12,
-        "id":"Experience"
+        "id":"experience",
+        "title":"Experience"
     },
     {
         "label": "Address",
@@ -104,7 +107,8 @@ const form_Details = [
     {
         "type":"title",
         "columns": 12,
-        "id":"Interests"
+        "id":"interests",
+        "title":"Interests"
     },
     {
         "label": "Address",

@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     TitleLayer:{
         height:"555px",
         width:"1600px",
-        borderRadius:"1px",
         background:"#6984E2"
     }, ContentMarginLeft:{
         marginTop:"9%",
@@ -33,18 +32,12 @@ const useStyles = makeStyles((theme) => ({
 
     InputTextLayer:{
         marginTop:"-10%",
-        height:"2707px",
-        width:"1166px",
-        marginLeft:"15%",
-        marginRight:"15%",
+        marginBottom:"15%",
+        width:"70%",
         background:"#FFFFFF",
         borderRadius:"4px",
-        marginBottom:"15%",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.14), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)"
-    },InputFieldTitle:{
-        marginTop:"3.48%",
-        marginLeft:"6%"
-    },
+    }
 
 }));
 
@@ -70,7 +63,6 @@ function Form(props){
         return(
             <Grid item xs={12}>
                 <Box
-                    className={classes.InputFieldTitle}
                     fontFamily="Roboto"
                     fontStyle="normal"
                     fontWeight="normal"
@@ -82,38 +74,38 @@ function Form(props){
         );
     }
     return(
-        <Grid container className={classes.InputTextLayer}>
-            {form_Details.map((BasicInputs) => (
+        <Grid container className={classes.InputTextLayer} >
+            {form_Details.map((Inputs) => (
             <Grid
                 item
-                key={BasicInputs.id}
-                xs={BasicInputs.columns}
+                key={Inputs.id}
+                xs={Inputs.columns}
                 className={classes.padding}>
 
-                {BasicInputs.type === "title" && (
-                    <StyledBox>{BasicInputs.id}</StyledBox>
+                {Inputs.type === "title" && (
+                    <StyledBox>{Inputs.title}</StyledBox>
                 )}
 
-                {BasicInputs.type === "text" && (
+                {Inputs.type === "text" && (
                     <TextField
                         fullWidth
-                        floatingLabelText={BasicInputs.label}
+                        floatingLabelText={Inputs.label}
                         floatingLabelFixed={true}
-                        placeholder={BasicInputs.placeholder}
-                        onChange={handleChange(BasicInputs.id)}
-                        value={states[BasicInputs.id]}
+                        placeholder={Inputs.placeholder}
+                        onChange={handleChange(Inputs.id)}
+                        value={states[Inputs.id]}
                     />
                 )}
 
-                {BasicInputs.type === "select" && (
+                {Inputs.type === "select" && (
                     <TextField
                         select
                         fullWidth
-                        label={BasicInputs.label}
-                        onChange={handleChange(BasicInputs.id)}
-                        value={states[BasicInputs.id]}
+                        label={Inputs.label}
+                        onChange={handleChange(Inputs.id)}
+                        value={states[Inputs.id]}
                     >
-                        {BasicInputs.select.map((val, index) => (
+                        {Inputs.select.map((val, index) => (
                             <MenuItem key={val + index} value={index} children={val} />
                         ))}
                     </TextField>
@@ -178,7 +170,7 @@ export default function signupPage() {
     const classes = useStyles();
     return (
         <Grid>
-            <Grid container className={classes.root}>
+            <Grid container className={classes.root} justify="center">
                 <Heading classes={classes}/>
                 <Form classes={classes}/>
             </Grid>
