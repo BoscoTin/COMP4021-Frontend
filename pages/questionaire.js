@@ -34,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
   },
   lineh_130: {
     lineHeight: 1.3,
+  },font_roboto_size1:{
+    fontSize:"36px"
   },
 
   LeftLayer: {
