@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {Grid, Box,Typography} from "@material-ui/core";
+import {Grid, Box,Typography , InputLabel} from "@material-ui/core";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -16,7 +16,14 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
     },
     padding: {
-        padding: theme.spacing(10),
+        padding: theme.spacing(3),
+        marginLeft:"5%",
+    },
+    title_margin_top:{
+        marginTop:"5%"
+    },
+    text_field_margin:{
+        marginBottom:"5%"
     },
 
     TitleLayer:{
@@ -53,15 +60,27 @@ function Form(props){
         website: "",
         address: "",
         gender:'0',
-        birthday: ""
+        birthday: "",
+
+        countryOrDistinct:"",
+        school:"",
+        otherStudyField:"",
+
+        companyOrOrganizationName:"",
+        position:"",
+        description:"",
+
+        interests:"",
+
+        abilities:""
     });
     const handleChange = (prop) => (event) => {
         setStates({ ...states, [prop]: event.target.value });
     };
 
-    function StyledBox(props){
+    function StyledTitleBox(props){
         return(
-            <Grid item xs={12}>
+            <Grid item xs={12} >
                 <Box
                     fontFamily="Roboto"
                     fontStyle="normal"
@@ -69,6 +88,20 @@ function Form(props){
                     fontSize="64px"
                     lineHeight="75px"
                     color="#6984E2"
+                    {...props}/>
+            </Grid>
+        );
+    }
+    function StyledTextFieldLabelBox(props){
+        return(
+            <Grid item xs={12} >
+                <Box className={classes.text_field_margin}
+                    fontFamily="Roboto"
+                    fontStyle="normal"
+                    fontWeight="normal"
+                    fontSize="24px"
+                    lineHeight="28px"
+                    color="#000000"
                     {...props}/>
             </Grid>
         );
@@ -83,32 +116,42 @@ function Form(props){
                 className={classes.padding}>
 
                 {Inputs.type === "title" && (
-                    <StyledBox>{Inputs.title}</StyledBox>
+                    <StyledTitleBox className={classes.title_margin_top}>{Inputs.title}</StyledTitleBox>
                 )}
 
                 {Inputs.type === "text" && (
-                    <TextField
-                        fullWidth
-                        floatingLabelText={Inputs.label}
-                        floatingLabelFixed={true}
-                        placeholder={Inputs.placeholder}
-                        onChange={handleChange(Inputs.id)}
-                        value={states[Inputs.id]}
-                    />
+                    <Box>
+                        <StyledTextFieldLabelBox>
+                            {Inputs.label}
+                        </StyledTextFieldLabelBox>
+                        <TextField
+                            fullWidth
+                            floatingLabel={Inputs.label}
+                            floatingLabelFixed={true}
+                            placeholder={Inputs.placeholder}
+                            onChange={handleChange(Inputs.id)}
+                            value={states[Inputs.id]}
+                        />
+                    </Box>
                 )}
 
                 {Inputs.type === "select" && (
-                    <TextField
-                        select
-                        fullWidth
-                        label={Inputs.label}
-                        onChange={handleChange(Inputs.id)}
-                        value={states[Inputs.id]}
-                    >
-                        {Inputs.select.map((val, index) => (
-                            <MenuItem key={val + index} value={index} children={val} />
-                        ))}
-                    </TextField>
+                    <Box>
+                        <StyledTextFieldLabelBox>
+                            {Inputs.label}
+                        </StyledTextFieldLabelBox>
+                        <TextField
+                            select
+                            fullWidth
+                            placeholder={Inputs.label}
+                            onChange={handleChange(Inputs.id)}
+                            value={states[Inputs.id]}
+                        >
+                            {Inputs.select.map((val, index) => (
+                                <MenuItem key={val + index} value={index} children={val} />
+                            ))}
+                        </TextField>
+                    </Box>
                 )}
             </Grid>
             ))}
