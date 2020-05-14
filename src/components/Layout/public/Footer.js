@@ -64,6 +64,7 @@ export default function (props) {
           </div>
 
           <div className={classes.footOther}>
+            <br/>
             <Typography variant="h5">About</Typography>
             <br />
             <br />
@@ -85,6 +86,7 @@ export default function (props) {
           </div>
 
           <div className={classes.footOther}>
+            <br/>
             <Typography variant="h5">Help</Typography>
             <br />
             <br />
@@ -110,6 +112,7 @@ export default function (props) {
           </div>
 
           <div className={classes.footOther}>
+            <br/>
             <Typography variant="h5">Social Media</Typography>
             <br />
             <br />
