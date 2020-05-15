@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
     LoginLayoutCheckBox:{
         marginLeft:"10%",
-        marginRight:"10%",
+        marginRight:"50%",
         marginBottom:"5%",
     },icon: {
         borderRadius: 3,
