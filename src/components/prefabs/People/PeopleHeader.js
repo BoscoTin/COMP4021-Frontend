@@ -1,18 +1,19 @@
-import { CardHeader, Avatar, Badge } from "@material-ui/core";
+import { CardHeader, Avatar, Badge, CircularProgress } from "@material-ui/core";
 import { AccountCircleSharp } from "@material-ui/icons";
 
 export default function ({ avatar, displayname, from, isSelf, isBadge }) {
+
   return (
     <CardHeader
       avatar={
         isBadge ? (
           <Badge color="primary">
-            <Avatar src={avatar}>
+            <Avatar src={"/" + avatar}>
               <AccountCircleSharp />
             </Avatar>
           </Badge>
         ) : (
-          <Avatar src={avatar}>
+          <Avatar src={"/" + avatar}>
             <AccountCircleSharp />
           </Avatar>
         )

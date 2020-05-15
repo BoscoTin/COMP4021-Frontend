@@ -5,12 +5,12 @@ import { Grid, Box, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import PrivateLayout from "../src/components/Layout/private/PrivateLayout";
-import PeopleTagCard from "../src/components/prefabs/People/PeopleTagCard";
-import { StyledTabs, StyledTab } from "../src/components/Tabs"
+import PrivateLayout from "../../src/components/Layout/private/PrivateLayout";
+import PeopleTagCard from "../../src/components/prefabs/People/PeopleTagCard";
+import { StyledTabs, StyledTab } from "../../src/components/Tabs"
 
-import SelfDemo from "../src/components/demo/self";
-import RecommendsDemo from "../src/components/demo/recommendation";
+import SelfDemo from "../../src/components/demo/self";
+import RecommendsDemo from "../../src/components/demo/recommendation";
 import clsx from "clsx";
 
 /* 
