@@ -11,7 +11,8 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    height: "100vh",
+    width: "100vw"
   },
   toolbar: theme.mixins.toolbar,
   content: {
@@ -22,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: 0,
+    backgroundColor: "#FAFAFB",
+    overflow: "hidden"
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   appbar: {
-    backgroundColor: 'inherit',
+    backgroundColor: '#FFFFFF',
     boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -91,7 +94,7 @@ export default function (props) {
   }
 
   return (
-    <section className={classes.root}>
+    <div className={classes.root}>
       <Head>
         <title>{title}</title>
       </Head>
@@ -105,6 +108,6 @@ export default function (props) {
         <div className={classes.toolbar} />
         {children}
       </main>
-    </section>
+    </div>
   );
 }
