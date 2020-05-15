@@ -30,20 +30,23 @@ const useStyles = makeStyles((theme) => ({
   content: {
     height: "250px",
     overflow: "hidden"
+  },
+  flex_box:{
+    display: "flex",
+    width: "100%",
   }
 }));
 function RemainingDates({ text }) {
   return (
-      <Box style={{ maxWidth: "50%" }} fontFamily= "Roboto" align={"center"} color={"#6984E2"}>
-        <img src={"clock.svg"} />
+      <Box style={{ maxWidth: "50%",marginTop:"2.5%",marginLeft:"5%",marginRight:"25%" }}
+           fontFamily="Roboto"  color={"#6984E2"} >
         {text}
       </Box>
   );
 }
 function Location({ text }){
   return (
-      <Box variant="body2" style={{ maxWidth: "50%" }}>
-        <img src={"map.svg"} />
+      <Box variant="body2" style={{ maxWidth: "50%", marginLeft:"2%", marginTop:"1%"}} >
         {text}
       </Box>
   );
@@ -84,8 +87,10 @@ export default function (props) {
         </Typography>
         </div>
 
-        <div className={classes.spacearound}>
-          <RemainingDates text={remainingDates}/>
+        <div className={classes.flex_box}>
+          <img src={"clock.svg"}/>
+          <RemainingDates text={remainingDates} />
+          <img src={"map.svg"} sizes={"150%"}/>
           <Location text={data.location} />
         </div>
       </CardContent>

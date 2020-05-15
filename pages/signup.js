@@ -53,22 +53,12 @@ const useStyles = makeStyles((theme) => ({
 function Form(props){
     const {classes} = props;
     const [states, setStates] = React.useState({
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        email: "",
-        website: "",
-        address: "",
-        gender:'0',
-        birthday: "",
+        firstName: "", lastName: "", phoneNumber: "", email: "", website: "", address: "",
+        gender:'0', birthday: "",
 
-        countryOrDistinct:"",
-        school:"",
-        otherStudyField:"",
+        countryOrDistinct:"", school:"", otherStudyField:"",
 
-        companyOrOrganizationName:"",
-        position:"",
-        description:"",
+        companyOrOrganizationName:"", position:"", description:"",
 
         interests:"",
 
