@@ -1,12 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import { Grid, Tabs, Tab, Box, Typography } from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import PrivateLayout from "../src/components/Layout/private/PrivateLayout";
-import PeopleTagCard from "../src/components/PeopleTagCard";
+import PeopleTagCard from "../src/components/prefabs/People/PeopleTagCard";
+import { StyledTabs, StyledTab } from "../src/components/Tabs"
 
 import SelfDemo from "../src/components/demo/self";
 import RecommendsDemo from "../src/components/demo/recommendation";
@@ -63,36 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StyledTabs = withStyles({
-  root: {
-    borderBottom: "1px solid #F5F5F5",
-  },
-  indicator: {
-    backgroundColor: "#006EFF",
-  },
-})(Tabs);
 
-const StyledTab = withStyles((theme) => ({
-  root: {
-    textTransform: "none",
-    minWidth: 150,
-    fontWeight: theme.typography.fontWeightLight,
-    fontFamily: "Asap",
-    fontStyle: "normal",
-    "&:hover": {
-      color: "#40a9ff",
-      opacity: 1,
-    },
-    "&$selected": {
-      color: "#1890ff",
-      fontWeight: 500,
-    },
-    "&:focus": {
-      color: "#40a9ff",
-    },
-  },
-  selected: {},
-}))((props) => <Tab disableRipple {...props} />);
 
 function ProfileBlock({ classes }) {
   const [tab, settab] = React.useState(0);

@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import PublicLayout from "../src/components/Layout/public/PublicLayout";
 import Link from "../src/components/Link";
-import LatestCard from "../src/components/PeopleCard";
+import LatestCard from "../src/components/prefabs/People/IndexPagePeopleCard";
 import EventCard from "../src/components/EventCard";
 
 import EventsDemo from "../src/components/demo/events";

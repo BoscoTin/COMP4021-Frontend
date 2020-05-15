@@ -4,15 +4,12 @@ import clsx from "clsx";
 import {
   Card,
   Chip,
-  Avatar,
-  CardHeader,
   Divider,
   CardContent,
   InputBase,
 } from "@material-ui/core";
 
-import { AccountCircleSharp } from "@material-ui/icons";
-
+import CustomHeader from "./PeopleHeader"
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
@@ -82,22 +79,12 @@ export default function (props) {
         [classes.card_other]: !isSelf,
       })}
     >
-      <CardHeader
-        avatar={
-          <Avatar src={data.avatar}>
-            <AccountCircleSharp />
-          </Avatar>
-        }
-        title={data.displayname}
-        titleTypographyProps={{
-          variant: "h6",
-          color: isSelf ? "textPrimary" : "textSecondary",
-        }}
-        subheader={data.from}
-        subheaderTypographyProps={{
-          variant: "body2",
-          color: isSelf ? "primary" : "textSecondary",
-        }}
+      <CustomHeader 
+        avatar={data.avatar}
+        displayname={data.displayname}
+        from={data.from}
+        isSelf={isSelf}
+        isBadge={false}
       />
       {isSelf && <br />}
       {!isSelf && <Divider className={classes.expand_w} />}
