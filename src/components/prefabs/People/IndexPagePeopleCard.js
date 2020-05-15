@@ -2,13 +2,11 @@ import React from "react";
 
 import {
   Card,
-  CardHeader,
   CardContent,
-  Avatar,
   Typography,
 } from "@material-ui/core";
 
-import { AccountCircleSharp } from "@material-ui/icons";
+import CustomHeader from "./PeopleHeader"
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -28,12 +26,12 @@ export default function (props) {
 
   return (
     <Card className={classes.profileCard}>
-      <CardHeader
-        avatar={<Avatar src={data.owner.avatar}><AccountCircleSharp /></Avatar>}
-        title={data.owner.displayname}
-        titleTypographyProps={{ variant: "h6" }}
-        subheader={data.owner.from}
-        subheaderTypographyProps={{ variant: "body2", color: "primary" }}
+      <CustomHeader
+        avatar={data.owner.avatar}
+        displayname={data.owner.displayname}
+        from={data.owner.from}
+        isSelf={true}
+        isBadge={false}
       />
       <CardContent className={classes.profileContent}>
         <Typography variant="body2" align="justify">{data.content.message}</Typography>

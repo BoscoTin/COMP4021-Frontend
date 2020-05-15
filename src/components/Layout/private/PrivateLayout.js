@@ -2,77 +2,12 @@ import React from "react";
 import clsx from 'clsx';
 import Head from "next/head";
 
-import { makeStyles } from "@material-ui/core/styles";
+
 
 import AppBar from "./Appbar"
 import Drawer from "./Drawer"
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: 0,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: drawerWidth,
-  },
-  space: {
-    flexGrow: 1,
-  },
-
-  appbar: {
-    backgroundColor: 'inherit',
-    boxShadow: 'none',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appbaropen: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
-
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-}));
+import useStyles from "../../../styles/PrivateAppBar"
 
 export default function (props) {
   const { title, children } = props;
@@ -83,15 +18,13 @@ export default function (props) {
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true)
-    console.log(true)
   }
   const handleDrawerClose = () => {
     setDrawerOpen(false)
-    console.log(false)
   }
 
   return (
-    <section className={classes.root}>
+    <div className={classes.root}>
       <Head>
         <title>{title}</title>
       </Head>
@@ -105,6 +38,6 @@ export default function (props) {
         <div className={classes.toolbar} />
         {children}
       </main>
-    </section>
+    </div>
   );
 }
