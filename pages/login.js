@@ -14,7 +14,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
-    Root: {
+    root: {
         flexGrow: 1,
     },
     LoginLayout: {
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
     LoginLayoutCheckBox:{
         marginLeft:"10%",
-        marginRight:"10%",
+        marginRight:"50%",
         marginBottom:"5%",
     },icon: {
         borderRadius: 3,
@@ -275,7 +275,7 @@ function LoginLayout(props){
 function Background(props){
     const {classes} = props;
     return(
-        <Grid container className={classes.Root}>
+        <Grid container className={classes.root}>
             <Grid item xs={12}>
                 <Grid container justify="center">
                     <Grid item>

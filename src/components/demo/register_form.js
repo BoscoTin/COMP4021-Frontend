@@ -9,7 +9,7 @@ const form_Details = [
         "label": "First Name",
         "placeholder":"First Name",
         "id": "firstName",
-        "columns": 6,
+        "columns": 4,
         "type": "text",
         "select": null,
     },
@@ -17,7 +17,7 @@ const form_Details = [
         "label": "Last Name",
         "placeholder":"Last Name",
         "id": "lastName",
-        "columns": 6,
+        "columns": 4,
         "type": "text",
         "select": null,
     },
@@ -25,7 +25,7 @@ const form_Details = [
         "label": "Phone Number",
         "placeholder":"Phone Number",
         "id": "phoneNumber",
-        "columns": 4,
+        "columns": 3,
         "type": "text",
         "select": null,
     },
@@ -33,7 +33,7 @@ const form_Details = [
         "label": "Email",
         "placeholder":"Phone Number",
         "id": "email",
-        "columns": 4,
+        "columns": 3,
         "type": "text",
         "select": null,
     },
@@ -41,7 +41,7 @@ const form_Details = [
         "label": "Website",
         "placeholder":"Website",
         "id": "website",
-        "columns": 4,
+        "columns": 3,
         "type": "text",
         "select": null,
     },
@@ -49,14 +49,14 @@ const form_Details = [
         "label": "Address",
         "placeholder":"Address",
         "id": "address",
-        "columns": 12,
+        "columns": 8,
         "type": "text",
         "select": null,
     },
     {
         "label": "Gender",
         "id": "gender",
-        "columns": 6,
+        "columns": 4,
         "type": "select",
         "select": [
             "Male",
@@ -69,7 +69,7 @@ const form_Details = [
         "label": "Birthday",
         "placeholder":"Birthday",
         "id": "birthday",
-        "columns": 6,
+        "columns": 4,
         "type": "text",
         "select": null,
     },
@@ -81,13 +81,32 @@ const form_Details = [
         "title":"Education"
     },
     {
-        "label": "Address",
-        "placeholder":"Address",
+        "label": "Country or distinct",
+        "id": "countryOrDistinct",
+        "columns": 4,
+        "type": "select",
+        "select": [
+            "HK"
+        ],
+    },
+    {
+        "label": "School",
+        "id": "school",
+        "columns": 4,
+        "type": "select",
+        "select": [
+            "UST"
+        ],
+    },
+    {
+        "label": "Other Study Field",
+        "placeholder":"otherStudyField",
         "id": "address",
-        "columns": 12,
+        "columns": 8,
         "type": "text",
         "select": null,
     },
+
 
     {
         "type":"title",
@@ -96,13 +115,30 @@ const form_Details = [
         "title":"Experience"
     },
     {
-        "label": "Address",
-        "placeholder":"Address",
-        "id": "address",
-        "columns": 12,
+        "label": "Company/organization name",
+        "placeholder":"Company/organization name",
+        "id": "companyOrOrganizationName",
+        "columns": 4,
         "type": "text",
         "select": null,
     },
+    {
+        "label": "Position",
+        "placeholder":"Position",
+        "id": "position",
+        "columns": 4,
+        "type": "text",
+        "select": null,
+    },
+    {
+        "label": "Description (like your roles,projects...)",
+        "placeholder":"Description (like your roles,projects...)",
+        "id": "description",
+        "columns": 8,
+        "type": "text",
+        "select": null,
+    },
+
 
     {
         "type":"title",
@@ -111,12 +147,30 @@ const form_Details = [
         "title":"Interests"
     },
     {
-        "label": "Address",
-        "placeholder":"Address",
-        "id": "address",
+        "label": "Interests",
+        "id": "interests",
+        "columns": 8,
+        "type": "select",
+        "select": [
+            "Writing HTML code"
+        ],
+    },
+
+
+    {
+        "type":"title",
         "columns": 12,
-        "type": "text",
-        "select": null,
+        "id":"experience",
+        "title":"Abilities"
+    },
+    {
+        "label": "Abilities",
+        "id": "abilities",
+        "columns": 8,
+        "type": "select",
+        "select": [
+            "Master in JS"
+        ],
     },
 ];
 

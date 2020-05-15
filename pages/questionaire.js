@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import StyledRadio from "../src/components/StyledRadio";
 import Questions from "../src/components/demo/questions";
+import Link from "../src/components/Link";
 
 /* 
   please define css style here, using camel style name 
@@ -19,7 +20,7 @@ import Questions from "../src/components/demo/questions";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.light,
-    height: "100vh",
+    height: "120vh",
     width: "100vw",
     padding: "10%",
   },
@@ -29,27 +30,66 @@ const useStyles = makeStyles((theme) => ({
   expand_w: {
     width: "100%",
   },
-  font_roboto: {
+  font_roboto_style1: {
     fontFamily: "Roboto",
+    fontSize:"36px",
+  },
+  font_roboto_style2:{
+    fontFamily: "Roboto",
+    fontSize:"20px",
   },
   lineh_130: {
     lineHeight: 1.3,
+  },
+  box_marginTop:{
+    marginTop:"40%",
+  },
+  box_marginTop2:{
+    marginTop:"10%",
+  },
+  font_roboto_Box1:{
+    marginLeft:"12%",
+    marginRight:"12%"
+  },
+  font_roboto_Box2:{
+    marginLeft:"10%",
+    marginRight:"15%",
+  },
+  radio_group:{
+    marginLeft:"10%",
+    marginRight:"15%",
+    boxShadow: "0px 2px 4px rgba(96, 97, 112, 0.16), 0px 0px 1px rgba(40, 41, 61, 0.04)",
+    borderRadius: "6px"
+  },
+  button_location:{
+    marginLeft:"45%",
+  },
+  button_color:{
+    backgroundColor:"#6984E2"
+  },questions_marginButtom:{
+    marginBottom:"5%"
   },
 
   LeftLayer: {
     backgroundColor: theme.palette.primary.main,
     padding: theme.spacing(2),
+    borderRadius:"12px 0px 0px 12px"
   },
   RightLayer: {
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
+    borderRadius:"0px 12px 12px 0px"
   },
   ChoiceRoot: {
     display: "flex",
     justifyContent: "space-between",
+    marginTop:"2%",
+    marginRight:"3%"
   },
   PaginatorRoot: {
     justifyContent: "flex-end",
+    marginLeft:"10%",
+    marginTop:"5%"
   },
 }));
 
@@ -62,17 +102,41 @@ function Paginator({ classes, page, setPage }) {
           variant="contained"
           onClick={() => setPage(page - 1)}
         >
-          prev
+          PREV
         </Button>
       )}
+      {page === 1 && (
+          <Button/>
+      )}
+      {page > 0 && (
+          <Button
+              color="inherit"
+              href="/"
+              component={Link}
+              className={classes.button_location}
+          >
+            CANCEL
+          </Button>
+      )}
       {page !== Questions.length && (
-        <Button
-          color="inherit"
-          variant="contained"
-          onClick={() => setPage(page + 1)}
-        >
-          next
-        </Button>
+          <Button
+              color="inherit"
+              variant="contained"
+              onClick={() => setPage(page + 1)}
+              className={classes.button_color}
+          >
+            NEXT
+          </Button>
+      )}
+      {page === Questions.length && (
+          <Button
+              backgroundColor="#6984E2"
+              variant="contained"
+              href="/"
+              component={Link}
+              className={classes.button_color}>
+            NEXT
+          </Button>
       )}
     </div>
   );
@@ -83,14 +147,14 @@ function LeftLayer({ classes }) {
     <div
       className={clsx(classes.LeftLayer, classes.expand_h, classes.expand_w)}
     >
-      <Typography variant="h4">
-        <span className={clsx(classes.lineh_130, classes.font_roboto)}>
+      <Typography variant="h4" className={clsx(classes.font_roboto_Box1,classes.box_marginTop)}>
+        <span className={clsx(classes.lineh_130, classes.font_roboto_style1)}>
           <strong>Let Us Start With Your Personality Test</strong>
         </span>
       </Typography>
       <br />
-      <Typography variant="body1" color="textSecondary">
-        <span className={clsx(classes.lineh_130, classes.font_roboto)}>
+      <Typography variant="body1" color="textSecondary" className={classes.font_roboto_Box1}>
+        <span className={clsx(classes.lineh_130, classes.font_roboto_style2)}>
           Tell us more about your value, your style and your personality
         </span>
       </Typography>
@@ -140,18 +204,18 @@ class RightLayer extends React.Component {
       <div
         className={clsx(classes.RightLayer, classes.expand_h, classes.expand_w)}
       >
-        <Typography variant="body1" color="textPrimary">
-          <span className={clsx(classes.font_roboto)}>
+        <Typography variant="body1" color="textPrimary" className={classes.box_marginTop2}>
+          <span className={clsx(classes.font_roboto,classes.font_roboto_Box2)}>
             Question {page} of 6
           </span>
         </Typography>
-        <Typography variant="h4" color="textPrimary">
-          <span className={clsx(classes.lineh_130, classes.font_roboto)}>
+        <Typography variant="h6" color="textPrimary" className={classes.questions_marginButtom}>
+          <span className={clsx(classes.lineh_130, classes.font_roboto,classes.font_roboto_Box2 )}>
             <strong>{Questions[page - 1].question}</strong>
           </span>
         </Typography>
 
-        <RadioGroup value={choices[page - 1]} onChange={this.onListTileClick}>
+        <RadioGroup value={choices[page - 1]} onChange={this.onListTileClick} className={classes.radio_group}>
           {q_data.map((anss, index) => {
             return (
               <FormControlLabel
