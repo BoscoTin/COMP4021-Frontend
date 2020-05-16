@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import {Grid, Box, Typography, GridListTile} from "@material-ui/core";
+import {Grid, Box, Typography} from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,12 +13,7 @@ import SelfDemo from "../../src/components/demo/self";
 import RecommendsDemo from "../../src/components/demo/recommendation";
 import ConnectionDemo from "../../src/components/demo/connection_list";
 import clsx from "clsx";
-import GridList from "@material-ui/core/GridList";
-import CustomHeader from "../../src/components/prefabs/People/PeopleHeader";
-import {element} from "prop-types";
 import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
-import LPostsDemo from "../../src/components/demo/latestposts";
-import LatestCard from "../../src/components/prefabs/People/IndexPagePeopleCard";
 
 /* 
   please define css style here, using camel style name 
@@ -26,9 +21,13 @@ import LatestCard from "../../src/components/prefabs/People/IndexPagePeopleCard"
 */
 const useStyles = makeStyles((theme) => ({
   block: {
-    padding: theme.spacing(2),
-    minHeight: "50%",
-    maxHeight: "50%"
+    display: "block",
+    paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    minHeight: "50vh",
+    maxHeight: "50vh",
+    overflow: "hidden"
   },
   profile: {
     width: "100%",
@@ -39,18 +38,10 @@ const useStyles = makeStyles((theme) => ({
   profileDetails: {
     width: "65%",
   },
-  recommend: {
-    width: "65%",
-  },
-  connections: {
-    width: "35%",
-  },
-  connections_list: {
-    display:"flex",
-    flexWrap:"wrap",
+  overflow_list: {
     overflow: "scroll",
-    padding: theme.spacing(2),
-    height:"240px"
+    height: "100%",
+    paddingBottom: theme.spacing(4)
   },
   paper: {
     backgroundColor: "#FFFFFF",
@@ -111,7 +102,7 @@ function RecommendsBlock({ classes }) {
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">Potential Candidate</Typography>
         <br />
-        <Grid container spacing={1} className={clsx(classes.expand_w)}>
+        <Grid container spacing={1} className={clsx(classes.expand_w, classes.overflow_list)}>
           {RecommendsDemo.map((element, index) => (
             <Grid item xs={5} key={"Recommendppl" + index}>
               <PeopleTagCard isSelf={false} data={element} />
@@ -137,15 +128,16 @@ function ConnectionBlock({ classes }) {
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">Connections</Typography>
         <br />
-        <GridList  className={classes.connections_list} cols={1}>
-            {ConnectionDemo.map((element) =>(
+        <div className={classes.overflow_list}>
+            {ConnectionDemo.map((element, index) =>(
                 <PeopleHeader
+                    key={"connect"+index}
                     avatar={element.avatar}
                     displayname={element.displayname}
                     isSelf={true}
                 />
             ))}
-        </GridList>
+        </div>
       </div>
     </Grid>
   );

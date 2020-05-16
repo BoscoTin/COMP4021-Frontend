@@ -103,6 +103,7 @@ export default function (props) {
         <DrawerLabel text="Main" />
         {MainItems.map((item, index) => (
           <MenuItem
+            key={"MainMenu"+index}
             component={Link}
             href={"/" + item.href}
             className={classes.draweritem}
@@ -119,6 +120,7 @@ export default function (props) {
         <DrawerLabel text="User" />
         {UserItems.map((item, index) => (
           <MenuItem
+            key={"UserMenu"+index}
             component={Link}
             href={"/" + item.href}
             className={classes.draweritem}
