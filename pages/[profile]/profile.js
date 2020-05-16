@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import { Grid, Box, Typography } from "@material-ui/core";
+import {Grid, Box, Typography} from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -11,7 +11,9 @@ import { StyledTabs, StyledTab } from "../../src/components/Tabs"
 
 import SelfDemo from "../../src/components/demo/self";
 import RecommendsDemo from "../../src/components/demo/recommendation";
+import ConnectionDemo from "../../src/components/demo/connection_list";
 import clsx from "clsx";
+import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
 
 /* 
   please define css style here, using camel style name 
@@ -19,9 +21,13 @@ import clsx from "clsx";
 */
 const useStyles = makeStyles((theme) => ({
   block: {
-    padding: theme.spacing(2),
-    minHeight: "50%",
-    maxHeight: "50%"
+    display: "block",
+    paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    minHeight: "50vh",
+    maxHeight: "50vh",
+    overflow: "hidden"
   },
   profile: {
     width: "100%",
@@ -32,15 +38,10 @@ const useStyles = makeStyles((theme) => ({
   profileDetails: {
     width: "65%",
   },
-  recommend: {
-    width: "65%",
-  },
-  connections: {
-    width: "35%",
-  },
-  connections_list: {
+  overflow_list: {
     overflow: "scroll",
-    padding: theme.spacing(2),
+    height: "100%",
+    paddingBottom: theme.spacing(4)
   },
   paper: {
     backgroundColor: "#FFFFFF",
@@ -101,7 +102,7 @@ function RecommendsBlock({ classes }) {
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">Potential Candidate</Typography>
         <br />
-        <Grid container spacing={1} className={clsx(classes.expand_w)}>
+        <Grid container spacing={1} className={clsx(classes.expand_w, classes.overflow_list)}>
           {RecommendsDemo.map((element, index) => (
             <Grid item xs={5} key={"Recommendppl" + index}>
               <PeopleTagCard isSelf={false} data={element} />
@@ -127,8 +128,15 @@ function ConnectionBlock({ classes }) {
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">Connections</Typography>
         <br />
-        <div className={classes.connections_list}>
-          
+        <div className={classes.overflow_list}>
+            {ConnectionDemo.map((element, index) =>(
+                <PeopleHeader
+                    key={"connect"+index}
+                    avatar={element.avatar}
+                    displayname={element.displayname}
+                    isSelf={true}
+                />
+            ))}
         </div>
       </div>
     </Grid>
