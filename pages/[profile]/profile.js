@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import { Grid, Box, Typography } from "@material-ui/core";
+import {Grid, Box, Typography, GridListTile} from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -11,7 +11,14 @@ import { StyledTabs, StyledTab } from "../../src/components/Tabs"
 
 import SelfDemo from "../../src/components/demo/self";
 import RecommendsDemo from "../../src/components/demo/recommendation";
+import ConnectionDemo from "../../src/components/demo/connection_list";
 import clsx from "clsx";
+import GridList from "@material-ui/core/GridList";
+import CustomHeader from "../../src/components/prefabs/People/PeopleHeader";
+import {element} from "prop-types";
+import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
+import LPostsDemo from "../../src/components/demo/latestposts";
+import LatestCard from "../../src/components/prefabs/People/IndexPagePeopleCard";
 
 /* 
   please define css style here, using camel style name 
@@ -39,8 +46,11 @@ const useStyles = makeStyles((theme) => ({
     width: "35%",
   },
   connections_list: {
+    display:"flex",
+    flexWrap:"wrap",
     overflow: "scroll",
     padding: theme.spacing(2),
+    height:"240px"
   },
   paper: {
     backgroundColor: "#FFFFFF",
@@ -127,9 +137,15 @@ function ConnectionBlock({ classes }) {
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">Connections</Typography>
         <br />
-        <div className={classes.connections_list}>
-          
-        </div>
+        <GridList  className={classes.connections_list} cols={1}>
+            {ConnectionDemo.map((element) =>(
+                <PeopleHeader
+                    avatar={element.avatar}
+                    displayname={element.displayname}
+                    isSelf={true}
+                />
+            ))}
+        </GridList>
       </div>
     </Grid>
   );
