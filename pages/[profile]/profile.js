@@ -7,11 +7,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import PrivateLayout from "../../src/components/Layout/private/PrivateLayout";
 import PeopleTagCard from "../../src/components/prefabs/People/PeopleTagCard";
-import { StyledTabs, StyledTab } from "../../src/components/Tabs"
+import { StyledTabs, StyledTab, InfoTabPanel } from "../../src/components/Tabs"
 
 import SelfDemo from "../../src/components/demo/self";
 import RecommendsDemo from "../../src/components/demo/recommendation";
 import ConnectionDemo from "../../src/components/demo/connection_list";
+import InfoDemo from "../../src/components/demo/infoDemo";
 import clsx from "clsx";
 import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
 
@@ -68,10 +69,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 function ProfileBlock({ classes }) {
-  const [tab, settab] = React.useState(0);
+  const [value, setValue] = React.useState(0);
 
   function handleTabPageChange(event, newValue) {
-    settab(newValue);
+    setValue(newValue);
   }
 
   return (
@@ -83,13 +84,16 @@ function ProfileBlock({ classes }) {
             <PeopleTagCard isSelf={true} data={SelfDemo} />
           </Grid>
           <Grid item xs={8}>
-            <StyledTabs value={tab} onChange={handleTabPageChange} centered>
-              <StyledTab label="Basic" />
-              <StyledTab label="Education" />
-              <StyledTab label="Experience" />
-              <StyledTab label="Interests" />
-            </StyledTabs>
-          </Grid>
+              <StyledTabs value={value} onChange={handleTabPageChange} centered>
+                <StyledTab label="Basic" />
+                <StyledTab label="Education" />
+                <StyledTab label="Experience" />
+                <StyledTab label="Interests" />
+              </StyledTabs>
+              {InfoDemo.map((info, index) => (
+                <InfoTabPanel value={value} index={index} data={info}/>
+              ))}
+            </Grid>
         </Grid>
       </div>
     </Grid>
