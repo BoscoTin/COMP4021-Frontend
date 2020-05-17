@@ -3,11 +3,12 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import {
-  Grid,
-  Typography,
-  Button,
-  RadioGroup,
-  FormControlLabel,
+    Grid,
+    Typography,
+    Button,
+    RadioGroup,
+    FormControlLabel,
+    Box
 } from "@material-ui/core";
 import StyledRadio from "../src/components/StyledRadio";
 import Questions from "../src/components/demo/questions";
@@ -66,7 +67,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button_color:{
     backgroundColor:"#6984E2"
-  },questions_marginButtom:{
+  },
+  questions_marginButtom:{
     marginBottom:"5%"
   },
 
@@ -84,7 +86,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     marginTop:"2%",
-    marginRight:"3%"
+    marginRight:"3%",
+    marginBottom:"2%"
   },
   PaginatorRoot: {
     justifyContent: "flex-end",
@@ -110,32 +113,37 @@ function Paginator({ classes, page, setPage }) {
       )}
       {page > 0 && (
           <Button
-              color="inherit"
+
               href="/"
               component={Link}
               className={classes.button_location}
           >
-            CANCEL
+            <Box color={"#979797"}>
+              CANCEL
+            </Box>
           </Button>
       )}
       {page !== Questions.length && (
           <Button
-              color="inherit"
+              color={"#FFFFFF"}
               variant="contained"
               onClick={() => setPage(page + 1)}
               className={classes.button_color}
           >
-            NEXT
+            <Box color={"#FFFFFF"}>
+              NEXT
+            </Box>
           </Button>
       )}
       {page === Questions.length && (
           <Button
-              backgroundColor="#6984E2"
               variant="contained"
               href="/"
               component={Link}
               className={classes.button_color}>
-            NEXT
+            <Box color={"#FFFFFF"}>
+              NEXT
+            </Box>
           </Button>
       )}
     </div>
@@ -206,7 +214,7 @@ class RightLayer extends React.Component {
       >
         <Typography variant="body1" color="textPrimary" className={classes.box_marginTop2}>
           <span className={clsx(classes.font_roboto,classes.font_roboto_Box2)}>
-            Question {page} of 6
+            {page} of 6
           </span>
         </Typography>
         <Typography variant="h6" color="textPrimary" className={classes.questions_marginButtom}>
