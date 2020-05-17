@@ -241,12 +241,13 @@ export default function Index() {
         for complete implementation of layout
       */}
       <TopLayer classes={classes} />
-
       <AIBlock classes={classes} />
-      <a name={"explore"}>
+      <a name={"events"}>
         <Explore classes={classes} />
       </a>
-      <LatestPosts classes={classes} />
+      <a name={"explore"}>
+        <LatestPosts classes={classes} />
+      </a>
     </PublicLayout>
   );
 }
