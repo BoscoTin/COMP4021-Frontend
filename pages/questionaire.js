@@ -84,7 +84,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     marginTop:"2%",
-    marginRight:"3%"
+    marginRight:"3%",
+    marginBottom:"2%"
   },
   PaginatorRoot: {
     justifyContent: "flex-end",

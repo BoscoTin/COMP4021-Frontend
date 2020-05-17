@@ -12,7 +12,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    width: "85%",
+    borderRadius:"20px",
+    boxShadow: "0px 2px 4px rgba(96, 97, 112, 0.16), 0px 0px 1px rgba(40, 41, 61, 0.04)"
   },
   spacearound: {
     display: "flex",
@@ -38,15 +40,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 function RemainingDates({ text }) {
   return (
-      <Box style={{ maxWidth: "50%",marginTop:"2.5%",marginLeft:"5%",marginRight:"25%" }}
-           fontFamily="Roboto"  color={"#6984E2"} >
+      <Box style={{ maxWidth: "50%",marginTop:"1.5%",marginLeft:"3%",marginRight:"20%" }}
+           fontFamily="Roboto"  color={"#6984E2"} fontSize={"12px"}>
         {text}
       </Box>
   );
 }
 function Location({ text }){
   return (
-      <Box variant="body2" style={{ maxWidth: "50%", marginLeft:"2%", marginTop:"1%"}} >
+      <Box style={{ maxWidth: "50%", marginLeft:"2%", marginTop:"1%"}}
+           fontFamily="Roboto" color={"#5D6F88"} fontSize={"9px"} >
         {text}
       </Box>
   );

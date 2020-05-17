@@ -29,7 +29,7 @@ export default function (props) {
   return (
     <AppBar className={classes.appbar}>
       <Toolbar>
-        <IconButton component={Link} href="/">
+        <IconButton component={Link} href="/" style={{marginLeft:"10%"}}>
           <AppLogo fontSize="large"/>
         </IconButton>
 
@@ -41,7 +41,7 @@ export default function (props) {
 
         {/* here loop the buttons with the array */}
         {barButtons.map((e, index) => (
-          <Button key={e.url} component={Link} href={e.url}>
+          <Button key={e.url} component={Link} href={e.url} style={{marginRight:"2%"}}>
             <Typography variant="button">
               {pathname === e.url ? (
                 <strong>{e.show.en_us}</strong>
@@ -53,10 +53,11 @@ export default function (props) {
         ))}
 
         <Button className={classes.loginButton}
-          component={Link}
-          href="login"
-          variant="contained"
-          endIcon={<ArrowForward className={classes.loginArrow}/>}
+                component={Link}
+                href="login"
+                variant="contained"
+                endIcon={<ArrowForward className={classes.loginArrow}/>}
+                style={{marginRight:"8%"}}
         >
           Sign In
         </Button>

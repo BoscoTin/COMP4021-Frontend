@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         background:"#6984E2"
     }, ContentMarginLeft:{
         marginTop:"9%",
-        marginLeft:"15%",
+        marginLeft:"12%",
     },TextWidth:{
         width:"44%"
     },
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     InputTextLayer:{
         marginTop:"-10%",
         marginBottom:"15%",
-        width:"70%",
+        width:"76%",
         background:"#FFFFFF",
         borderRadius:"4px",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.14), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)"
@@ -194,7 +194,7 @@ function Heading(props){
                     profile
                 </Box>
             </Box>
-            <img src={"register_1.svg"} height={"90%"} width={"25%"}/>
+            <img src={"register_1.svg"} height={"90%"} width={"30%"}/>
         </Box>
     );
 }

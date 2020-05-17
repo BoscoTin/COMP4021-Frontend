@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Box ,Grid, Typography, IconButton,Button } from "@material-ui/core";
-import { Facebook, Twitter, Instagram } from "@material-ui/icons";
+import {Facebook, Twitter, Instagram, ArrowForward} from "@material-ui/icons";
 
 import Link from "../../Link";
 import clsx from "clsx";
@@ -27,9 +27,9 @@ export default function (props) {
             </Button>
             <Button className={clsx(classes.footButton,classes.footButtonMargin2,classes.footButtonStyle2)}
                     href="/signup"
-                    component={Link}>
-
-                Get Start<img src={"arrow.svg"} className={classes.footArrow}/>
+                    component={Link}
+                    endIcon={<ArrowForward className={classes.loginArrow}/>}>
+                Get Start
             </Button>
             <br/>
             <Typography color={"#4B5D68"}>

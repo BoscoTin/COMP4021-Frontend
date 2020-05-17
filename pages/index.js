@@ -19,6 +19,7 @@ import {
 
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
+import Box from "@material-ui/core/Box";
 
 /* 
   please define css style here, using camel style name 
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
   gitem: {
     padding: theme.spacing(5),
+    marginLeft:"5%"
   },
   startButton: {
     backgroundColor: theme.palette.primary.main,
@@ -56,6 +58,33 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
     },
+    marginBottom:"5%",
+    width: "35%",
+    height: "60px"
+  },
+  latest_post:{
+    marginLeft:"9%",
+    marginRight:"9%",
+    width:"82%"
+  },
+  explore:{
+    marginLeft:"7%",
+    marginRight:"9%",
+    width:"93%",
+    borderRadius:"50px"
+  },
+  AI_block:{
+    marginLeft:"11%",
+    marginRight:"9%",
+    width:"80%",
+  },
+  AI_block_pic:{
+    marginTop:"4%"
+  },
+  Top_Layer:{
+    marginLeft:"6%",
+    marginBottom:"5%",
+    width:"95%"
   },
 
   gridList: {
@@ -63,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "nowrap",
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)",
+
   },
 }));
 
@@ -72,18 +102,19 @@ function TopLayer(props) {
   return (
     <Grid
       container
-      className={classes.responsive_padding}
+      className={clsx(classes.responsive_padding,classes.Top_Layer)}
       alignItems="flex-end"
     >
-      <Grid item xs={12} md={4}>
-        <Typography variant="h3" color="textPrimary">
+      <Grid item xs={12} md={5}>
+        <Box fontFamily={"Asap"} color="textPrimary" fontSize={"80px"} fontWeight={"bold"}>
           Build your dream team now.
-        </Typography>
+        </Box>
         <br />
-        <Typography variant="body1" align="justify">
+        <Box fontFamily={"Asap"} color="textPrimary" fontSize={"18px"} align="justify"
+             style={{maxWidth:"75%",marginBottom:"5%"}}>
           We are here for you to find your partner to build the team you need
           for your startup.
-        </Typography>
+        </Box>
         <br />
         <Button
           className={classes.startButton}
@@ -91,13 +122,17 @@ function TopLayer(props) {
           component={Link}
           variant="contained"
         >
-          <Typography variant="button" color="textSecondary">
+          <Box fontFamily={" Asap"}
+               fontWeight={"bold"}
+               fontSize={"18px"}
+               line-height={"160%"}
+               color="#FFFFFF">
             Start now
-          </Typography>
+          </Box>
         </Button>
       </Grid>
 
-      <Grid item xs={12} md={8}>
+      <Grid item xs={12} md={7}>
         <img className={classes.fullwidth} src="padding_1.svg" />
       </Grid>
     </Grid>
@@ -111,19 +146,20 @@ function AIBlock(props) {
     <Grid
       container
       className={clsx(
-        classes.responsive_padding,
-        classes.round_block,
-        classes.second_transparent_bg
+          classes.responsive_padding,
+          classes.round_block,
+          classes.second_transparent_bg,
+          classes.AI_block
       )}
     >
-      <Grid item xs={12} md={5}>
+      <Grid item xs={12} md={5} className={classes.AI_block_pic}>
         <img className={classes.fullwidth} src="padding_2.svg" />
       </Grid>
 
-      <Grid item xs={12} md={7} className={classes.gitem}>
-        <Typography variant="h4" color="textPrimary">
+      <Grid item xs={12} md={6} className={classes.gitem}>
+        <Box fontFamily={"Helvetica"} color="textPrimary" fontWeight={"bold"} fontSize={"40px"}>
           Let our AI help you finding your potential partner.
-        </Typography>
+        </Box>
         <br />
         <Typography variant="body1" align="justify">
           The team is the key to make your fresh company strong and stable, use
@@ -138,20 +174,23 @@ function Explore(props) {
   const { classes } = props;
 
   return (
-    <Grid container spacing={4} className={clsx(classes.responsive_padding)}>
+    <Grid container spacing={4}
+          className={clsx(classes.responsive_padding, classes.explore)}>
       <Grid item xs={12}>
-        <Typography variant="h4" align="center">
+        <Box style={{marginRight:"6%"}} align="center"
+             fontFamlty={"Helvetica"} fontSize={"40px"} fontWeight={"bold"}>
           <strong>Events</strong>
-        </Typography>
+        </Box>
         <br />
-        <Typography variant="body1" align="center">
+        <Box align="center" style={{maxWidth:"52%",marginLeft:"21%"}}
+             fontFamily={"Avenir"} fontSize={"18px"} fontWeight={"500"} color={"#4B5D68"}>
           Explore the events nearby for more opportunities and challenges for
           you and your team
-        </Typography>
+        </Box>
       </Grid>
 
       {EventsDemo.map((event) => (
-        <Grid item key={event.id} xs={12} md={6}>
+        <Grid item key={event.id} xs={12} md={6} style={{marginBottom:"5%"}}>
           <EventCard data={event} />
         </Grid>
       ))}
@@ -165,23 +204,25 @@ function LatestPosts(props) {
   return (
     <div
       className={clsx(
-        classes.round_block,
-        classes.responsive_padding,
-        classes.first_bg
+          classes.round_block,
+          classes.responsive_padding,
+          classes.first_bg,
+          classes.latest_post
       )}
     >
-      <Typography variant="h4" color="textSecondary">
+      <Typography variant="h4" color="textSecondary"
+                  style={{marginTop:"5%", marginBottom:"5%", marginLeft:"3%"}}>
         <strong>Latest Post</strong>
       </Typography>
       <br />
       <GridList
         className={classes.gridList}
         spacing={20}
-        cols={1.75}
+        cols={2.5}
         cellHeight="auto"
       >
         {LPostsDemo.map((post) => (
-          <GridListTile key={post.id}>
+          <GridListTile key={post.id} style={{marginLeft:"3%",marginRight:"-3%",marginBottom:"3%"}}>
             <LatestCard data={post} />
           </GridListTile>
         ))}
