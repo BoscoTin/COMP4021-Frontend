@@ -14,12 +14,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "85%",
     borderRadius:"20px",
-    boxShadow: "0px 2px 4px rgba(96, 97, 112, 0.16), 0px 0px 1px rgba(40, 41, 61, 0.04)"
+    boxShadow: "0px 2px 4px rgba(96, 97, 112, 0.16), 0px 0px 1px rgba(40, 41, 61, 0.04)",
+    justifyContent:"space-between"
   },
   spacearound: {
     display: "flex",
     justifyContent: "space-between",
     width: "100%",
+    marginBottom:"3%"
   },
   media: {
     height: "125px",
@@ -31,11 +33,15 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     height: "250px",
-    overflow: "hidden"
+    overflow: "hidden",
+    marginTop:"3%"
   },
   flex_box:{
     display: "flex",
     width: "100%",
+    marginLeft:"3%",
+    marginTop:"-2%",
+    marginBottom:"2%",
   }
 }));
 function RemainingDates({ text }) {
@@ -89,14 +95,13 @@ export default function (props) {
             {data.description}
         </Typography>
         </div>
-
-        <div className={classes.flex_box}>
-          <img src={"clock.svg"}/>
-          <RemainingDates text={remainingDates} />
-          <img src={"map.svg"} sizes={"150%"}/>
-          <Location text={data.location} />
-        </div>
       </CardContent>
+      <div className={classes.flex_box}>
+        <img src={"clock.svg"}/>
+        <RemainingDates text={remainingDates} />
+        <img src={"map.svg"} sizes={"150%"}/>
+        <Location text={data.location} />
+      </div>
     </Card>
   );
 }
