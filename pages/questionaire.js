@@ -63,7 +63,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "6px"
   },
   button_location:{
-    marginLeft:"45%",
+    marginLeft:"43%",
+    marginRight:"5%"
   },
   button_color:{
     backgroundColor:"#6984E2"
