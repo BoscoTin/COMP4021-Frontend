@@ -242,8 +242,12 @@ export default function Index() {
       */}
       <TopLayer classes={classes} />
       <AIBlock classes={classes} />
-      <Explore classes={classes} />
-      <LatestPosts classes={classes} />
+      <a name={"events"}>
+        <Explore classes={classes} />
+      </a>
+      <a name={"explore"}>
+        <LatestPosts classes={classes} />
+      </a>
     </PublicLayout>
   );
 }
