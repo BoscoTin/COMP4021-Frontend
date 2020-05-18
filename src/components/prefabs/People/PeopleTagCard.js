@@ -7,7 +7,7 @@ import CustomHeader from "./PeopleHeader";
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add_self_tag, del_self_tag } from "../../../redux/actions/SelfTagDemo"
 
 const useStyles = makeStyles((theme) => ({
@@ -71,6 +71,7 @@ export default function (props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [text, setText] = React.useState();
+  const ReduxTagLength = useSelector(state => state.self.num_tags)
 
   const handleEnterKey = (e) => {
     if (e.keyCode == 13) {
