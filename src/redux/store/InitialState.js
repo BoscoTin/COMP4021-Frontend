@@ -4,6 +4,7 @@ const initial = {
     displayname: "Sammy Lawson",
     from: "Creative Director, Amazon",
     tags: ["Marketing", "Finance", "Management Strategy"],
+    num_tags: 3
   },
 };
 

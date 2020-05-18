@@ -35,11 +35,23 @@ const tags = (state = [], action) => {
   }
 };
 
+const num_tags = (state = 0, action) => {
+  switch (action.type) {
+    case ADD_SELF_TAG:
+      return state + 1;
+    case DELETE_SELF_TAG:
+      return state - 1;
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   avatar,
   displayname,
   from,
   tags,
+  num_tags
 });
 
 export default reducer;
