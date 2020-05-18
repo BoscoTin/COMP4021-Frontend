@@ -15,9 +15,9 @@ export function begin_login() {
   };
 }
 
-export function load_login(id, email, password) {
+export function load_login(email, password) {
   return runAPI("/auth/signin", "POST", success_login, fail_login, {
-    id,
+    id: 777,
     email,
     password,
   });
@@ -41,8 +41,11 @@ export function begin_signup() {
   return { type: BEGIN_SIGNUP };
 }
 
-export function load_signup(data) {
-  return runAPI("/auth/signup", "POST", success_signup, fail_signup, data);
+export function load_signup(states) {
+  return runAPI("/auth/signup", "POST", success_signup, fail_signup, {
+    ...states,
+    id: 777
+  });
 }
 
 function success_signup(payload) {
