@@ -73,6 +73,14 @@ const form_Details = [
         "type": "text",
         "select": null,
     },
+    {
+        "label": "Password",
+        "placeholder":"Password",
+        "id": "password",
+        "columns": 4,
+        "type": "password",
+        "select": null,
+    },
 
     {
         "type":"title",

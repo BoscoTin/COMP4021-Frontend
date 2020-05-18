@@ -6,6 +6,10 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import form_Details from "../src/components/demo/register_form";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import {Visibility, VisibilityOff} from "@material-ui/icons";
+
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -53,9 +57,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Form(props){
     const {classes} = props;
+
     const [states, setStates] = React.useState({
         firstName: "", lastName: "", phoneNumber: "", email: "", website: "", address: "",
-        gender:'0', birthday: "",
+        gender:'0', birthday: "",password:"",showPassword: false,
 
         countryOrDistinct:"", school:"", otherStudyField:"",
 
@@ -67,6 +72,14 @@ function Form(props){
     });
     const handleChange = (prop) => (event) => {
         setStates({ ...states, [prop]: event.target.value });
+    };
+
+    const handleClickShowPassword = () => {
+        setStates({ ...states, showPassword: !states.showPassword });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
     };
 
     function StyledTitleBox(props){
@@ -142,6 +155,33 @@ function Form(props){
                                 <MenuItem key={val + index} value={index} children={val} />
                             ))}
                         </TextField>
+                    </Box>
+                )}
+
+                {Inputs.type === "password" && (
+                    <Box>
+                        <StyledTextFieldLabelBox>
+                            {Inputs.label}
+                        </StyledTextFieldLabelBox>
+                        <TextField
+                            fullWidth
+                            type={states.showPassword ? 'text' : 'password'}
+                            value={states.password}
+                            onChange={handleChange('password')}
+                            InputProps={{
+                                endAdornment:(
+                                <InputAdornment position="start">
+                                <IconButton
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                >
+                                {states.showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                                </InputAdornment>
+                                )
+                            }}
+
+                        />
                     </Box>
                 )}
             </Grid>
