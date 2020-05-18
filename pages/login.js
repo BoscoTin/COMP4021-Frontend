@@ -257,12 +257,17 @@ function LoginLayout(props){
             />
 
             <RememberMeCheckBox classes={classes}/>
-
             <Button className={classes.LoginLayoutButton}
-                href="/signup"
+                href="/user/profile"
                 component={Link}
                 variant="contained">
-                <Typography variant="button">LOGIN</Typography>
+                <Box fontFamily={"asap"}
+                     fontStyle={"italic"}
+                     fontWeight={"bold"}
+                     fontSize={"18px"}
+                     color={"#FFFFFF"}>
+                    Sign In
+                </Box>
             </Button>
 
 
