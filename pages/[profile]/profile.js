@@ -16,6 +16,8 @@ import InfoDemo from "../../src/components/demo/infoDemo";
 import clsx from "clsx";
 import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
 
+import { useSelector } from "react-redux";
+
 /* 
   please define css style here, using camel style name 
   use vscode with extension intellisense would greatly help
@@ -70,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileBlock({ classes }) {
   const [value, setValue] = React.useState(0);
+  const ReduxSelf = useSelector(state => state.self)
 
   function handleTabPageChange(event, newValue) {
     setValue(newValue);
@@ -81,7 +84,7 @@ function ProfileBlock({ classes }) {
         <Typography variant="h5">User Profile</Typography>
         <Grid container className={clsx(classes.expand_w)}>
           <Grid item xs={4}>
-            <PeopleTagCard isSelf={true} data={SelfDemo} />
+            <PeopleTagCard isSelf={true} data={ReduxSelf} />
           </Grid>
           <Grid item xs={8}>
               <StyledTabs value={value} onChange={handleTabPageChange} centered>

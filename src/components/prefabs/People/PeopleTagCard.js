@@ -1,17 +1,14 @@
 import React from "react";
 import clsx from "clsx";
 
-import {
-  Card,
-  Chip,
-  Divider,
-  CardContent,
-  InputBase,
-} from "@material-ui/core";
+import { Card, Chip, Divider, CardContent, TextField } from "@material-ui/core";
 
-import CustomHeader from "./PeopleHeader"
+import CustomHeader from "./PeopleHeader";
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
+
+import { useDispatch } from "react-redux";
+import { add_self_tag, del_self_tag } from "../../../redux/actions/SelfTagDemo"
 
 const useStyles = makeStyles((theme) => ({
   expand_h: {
@@ -41,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "3px",
   },
   textfield_word: {
-    paddingLeft: "16px"
+    paddingLeft: "16px",
   },
   bg_white: {
     backgroundColor: "#FFFFFF",
@@ -51,7 +48,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomChip({ classes, isSelf, text }) {
+function CustomChip({ classes, isSelf, text, index }) {
+  const dispatch = useDispatch();
+
   return (
     <Chip
       className={clsx({
@@ -62,7 +61,7 @@ function CustomChip({ classes, isSelf, text }) {
         root: classes.chip_base,
       }}
       label={text}
-      onDelete={() => {}}
+      onDelete={() => { dispatch( del_self_tag(index) ) }}
     />
   );
 }
@@ -70,6 +69,22 @@ function CustomChip({ classes, isSelf, text }) {
 export default function (props) {
   const { isSelf, data } = props;
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [text, setText] = React.useState();
+
+  const handleEnterKey = (e) => {
+    if (e.keyCode == 13) {
+      e.preventDefault()
+      if (data.tags.length < 5){
+        dispatch( add_self_tag(text) )
+      }
+      setText("")
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+  };
 
   return (
     <Card
@@ -79,7 +94,7 @@ export default function (props) {
         [classes.card_other]: !isSelf,
       })}
     >
-      <CustomHeader 
+      <CustomHeader
         avatar={data.avatar}
         displayname={data.displayname}
         from={data.from}
@@ -89,23 +104,27 @@ export default function (props) {
       {isSelf && <br />}
       {!isSelf && <Divider className={classes.expand_w} />}
       <CardContent>
-        {data.tags.map((tag) => (
+        {data.tags.map((tag, index) => (
           <CustomChip
             key={data.displayname + tag}
             classes={classes}
             text={tag}
             isSelf={isSelf}
+            index={index}
           />
         ))}
 
         {isSelf && (
-          <InputBase
+          <TextField
+            value={text}
             fullWidth
             placeholder="Add a skill"
-            classes={{
-              root: classes.textfield,
-              input: classes.textfield_word
+            className={classes.textfield}
+            InputProps={{
+              className: classes.textfield_word,
             }}
+            onChange={handleInputChange}
+            onKeyDown={handleEnterKey}
           />
         )}
       </CardContent>
