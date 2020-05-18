@@ -72,6 +72,12 @@ const useStyles = makeStyles((theme) => ({
   questions_marginButtom:{
     marginBottom:"5%"
   },
+  font_roboto:{
+    fontFamily:"Roboto",
+  },
+  font_roboto_color:{
+    color:"#858585"
+  },
 
   LeftLayer: {
     backgroundColor: theme.palette.primary.main,
@@ -114,7 +120,6 @@ function Paginator({ classes, page, setPage }) {
       )}
       {page > 0 && (
           <Button
-
               href="/"
               component={Link}
               className={classes.button_location}
@@ -139,7 +144,7 @@ function Paginator({ classes, page, setPage }) {
       {page === Questions.length && (
           <Button
               variant="contained"
-              href="/"
+              href="/login"
               component={Link}
               className={classes.button_color}>
             <Box color={"#FFFFFF"}>
@@ -213,8 +218,8 @@ class RightLayer extends React.Component {
       <div
         className={clsx(classes.RightLayer, classes.expand_h, classes.expand_w)}
       >
-        <Typography variant="body1" color="textPrimary" className={classes.box_marginTop2}>
-          <span className={clsx(classes.font_roboto,classes.font_roboto_Box2)}>
+        <Typography variant="body1" color={"#000"} className={classes.box_marginTop2} >
+          <span className={clsx(classes.font_roboto,classes.font_roboto_color,classes.font_roboto_Box2)} >
             {page} of 6
           </span>
         </Typography>
