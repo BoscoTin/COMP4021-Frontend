@@ -27,12 +27,13 @@ const useStyles = makeStyles((theme) => ({
     },
 
     TitleLayer:{
-        height:"555px",
         width:"100%",
         background:"#6984E2"
-    }, ContentMarginLeft:{
+    },
+    ContentMargin:{
         marginTop:"9%",
         marginLeft:"12%",
+        marginBottom:"10%"
     },TextWidth:{
         width:"44%"
     },
@@ -167,8 +168,8 @@ function Heading(props){
     }
 
     return(
-        <Box className={classes.TitleLayer} display={"flex"} flexDirecion={"row"}>
-            <Box className={clsx(classes.ContentMarginLeft,classes.TextWidth)}>
+        <Box className={classes.TitleLayer} display={"flex"} flexDirecion={"space-between"}>
+            <Box className={clsx(classes.ContentMargin,classes.TextWidth)}>
                 <StyledBox display={"inline"}>
                     Please provide a
                 </StyledBox>
