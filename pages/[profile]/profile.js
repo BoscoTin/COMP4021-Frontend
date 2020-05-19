@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   tabpanel: {
-    paddingTop: theme.spacing(1),
+    paddingTop: theme.spacing(2),
   },
 }));
 
