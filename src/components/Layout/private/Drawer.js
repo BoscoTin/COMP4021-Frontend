@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   MenuItem,
   Box,
+  Hidden,
 } from "@material-ui/core";
 import {
   Close,
@@ -18,6 +19,8 @@ import {
   TrendingUp,
   ExitToApp,
 } from "@material-ui/icons";
+
+import { useTheme } from '@material-ui/core/styles';
 
 import PeopleHeader from "../../prefabs/People/PeopleHeader";
 import Link from "../../Link";
@@ -72,25 +75,12 @@ const DrawerLabel = ({ text }) => (
 );
 
 export default function (props) {
-  const { classes, handleDrawerClose, open } = props;
+  const { classes, handleDrawerToggle, open } = props;
+  const theme = useTheme();
 
-  return (
-    <Drawer
-      className={classes.drawer}
-      variant="persistent"
-      anchor="left"
-      open={open}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <div className={classes.drawerHeader}>
-        <IconButton onClick={handleDrawerClose}>
-          <Close />
-        </IconButton>
-      </div>
-      <div className={classes.drawerContent}>
-        <Divider className={classes.expand_w} />
+  const drawer = (
+    <div>
+      <div className={classes.toolbar} />
         <PeopleHeader
           avatar={SelfDemo.avatar}
           displayname={SelfDemo.displayname}
@@ -98,7 +88,6 @@ export default function (props) {
           isSelf={true}
           isBadge={true}
         />
-        <Divider className={classes.expand_w} />
 
         <DrawerLabel text="Main" />
         {MainItems.map((item, index) => (
@@ -143,7 +132,28 @@ export default function (props) {
             Logout
           </Box>
         </MenuItem>
-      </div>
-    </Drawer>
+    </div>
+  )
+
+  return (
+    <nav className={classes.drawer} aria-label="drawer">
+      <Hidden smUp implementation="css">
+        <Drawer
+          variant="temporary"
+          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+          open={open}
+          onClose={handleDrawerToggle}
+          classes={{ paper: classes.drawerPaper }}
+          ModalProps={{ keepMounted: true }}
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
+      <Hidden xsDown implementation="css">
+        <Drawer classes={{paper: classes.drawerPaper}} variant="permanent" open > 
+          {drawer}
+        </Drawer>
+      </Hidden>
+    </nav>
   );
 }
