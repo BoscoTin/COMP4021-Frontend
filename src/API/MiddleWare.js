@@ -4,7 +4,6 @@ import API_DOMAIN from "./hostname"
 /* Action type */
 import { API as TYPE_API } from "./Action"
 
-
 const apiMiddleware = ({dispatch}) => next => action => {
     next(action);
 
@@ -17,7 +16,7 @@ const apiMiddleware = ({dispatch}) => next => action => {
         onSuccess,
         onFailure
     } = action.payload;
-    const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : data;
+    const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";
 
     /* Define instance for AJAX request */
     const instance = axios.create();
