@@ -1,25 +1,18 @@
-# Next.js example
+# COMP 4021 Project
 
-## How to use
+Topic: Entrepreneur matching platform
 
-Download the example [or clone the repo](https://github.com/mui-org/material-ui):
+# Install Instruction
 
-```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs
-cd nextjs
-```
+To run the frontend server, you should havd Node.js and npm installed in your machine. Open your terminal and run
 
-Install it and run:
+```git clone https://github.com/BoscoTin/COMP4021-Frontend.git```
 
-```sh
-npm install
-npm run dev
-```
+```cd COMP4021-frontend```
 
-or:
+```npm install```
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs)
-
-## The idea behind the example
-
-[Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
+# Scripts
+dev ```next```
+build ```next build```
+start ```next start```
