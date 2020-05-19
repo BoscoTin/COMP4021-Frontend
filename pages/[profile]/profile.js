@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { Grid, Box, Typography, CircularProgress } from "@material-ui/core";
@@ -9,15 +9,13 @@ import PrivateLayout from "../../src/components/Layout/private/PrivateLayout";
 import PeopleTagCard from "../../src/components/prefabs/People/PeopleTagCard";
 import { StyledTabs, StyledTab, InfoTabPanel } from "../../src/components/Tabs";
 
-// import SelfDemo from "../../src/components/demo/self";
 import RecommendsDemo from "../../src/components/demo/recommendation";
 import ConnectionDemo from "../../src/components/demo/connection_list";
-import InfoDemo from "../../src/components/demo/infoDemo";
 import clsx from "clsx";
 import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
 
 import { useSelector, useDispatch } from "react-redux";
-import { begin_find_user, find_user } from "../../src/redux/actions/User"
+import { begin_find_user, find_user } from "../../src/redux/actions/User";
 
 /* 
   please define css style here, using camel style name 
@@ -128,8 +126,7 @@ function RecommendsBlock({ classes }) {
         >
           {RecommendsDemo.map((element, index) => (
             <Grid item md={5} xs={12} key={"Recommendppl" + index}>
-              Preparing
-              {/* <PeopleTagCard isSelf={false} data={element} /> */}
+              <PeopleTagCard isSelf={false} data={element} />
             </Grid>
           ))}
           <Grid item md={2} xs={12}>
@@ -171,17 +168,17 @@ export default function ProfilePage() {
   const classes = useStyles();
   const router = useRouter();
   const { profile } = router.query;
-  const dispatch = useDispatch()
-  const find_status = useSelector(state => state.user.status)
+  const dispatch = useDispatch();
+  const find_status = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    dispatch( begin_find_user() )
-    dispatch( find_user(profile) )
-  }, [router.asPath])
+    dispatch(begin_find_user());
+    dispatch(find_user(profile));
+  }, [router.asPath]);
 
   // replace true with authentication later
   if (find_status !== "loading") {
-    if (find_status === "success"){
+    if (find_status === "success") {
       /* Please write your profile page inside layout */
       return (
         <PrivateLayout title={profile}>
@@ -192,21 +189,24 @@ export default function ProfilePage() {
           </Grid>
         </PrivateLayout>
       );
-    }
-    else {
+    } else {
       return (
-        <Grid container alignItems="center" className={classes.expand_w, classes.expand_h}>
+        <Grid
+          container
+          alignItems="center"
+          className={(classes.expand_w, classes.expand_h)}
+        >
           <Grid item xs={12}>
             <Typography variant="h4">
               Please refresh or see if you have input the correct path.
             </Typography>
           </Grid>
         </Grid>
-      )
+      );
     }
   } else {
     return (
       <CircularProgress className={clsx(classes.expand_w, classes.expand_h)} />
-    )
+    );
   }
 }

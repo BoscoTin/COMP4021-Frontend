@@ -39,8 +39,12 @@ const status = (state = "", action) => {
 
 const message = (state = "", action) => {
   switch (action.type) {
+    case SIGNUP_FAIL:
+      return "SIGN UP ERROR, please try again."
+    case AUTH_SIGNUP_FAIL:
+      return "SIGN UP ERROR, change your email or check if any blanked column exist!"
     default:
-      return state;
+      return "";
   }
 };
 
@@ -59,6 +63,12 @@ const details = (state = {}, action) => {
   switch (action.type) {
     case FIND_USER_SUCCESS:
       return action.payload.result
+    case ADD_SELF_TAG_SUCCESS:
+      var newstate = {
+        ...state,
+        tags: action.tags
+      }
+      return newstate
     default:
       return state
   }

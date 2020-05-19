@@ -26,7 +26,7 @@ export function update_tag(email, tags) {
   return runAPI(
     path,
     "PUT",
-    success_update_user_tags,
+    success_update_user_tags(tags),
     fail_update_user_tags,
     {
       tags: tags,
@@ -35,8 +35,8 @@ export function update_tag(email, tags) {
   );
 }
 
-function success_update_user_tags(payload){
-  return { type: ADD_SELF_TAG_SUCCESS, payload }
+function success_update_user_tags(tags){
+  return (payload) => { return { type: ADD_SELF_TAG_SUCCESS, payload, tags } }
 }
 
 function fail_update_user_tags(payload){
