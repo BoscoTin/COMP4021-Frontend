@@ -16,12 +16,9 @@ export default function (props) {
   // set state here
   const [ drawerOpen, setDrawerOpen ] = React.useState(false)
 
-  const handleDrawerOpen = () => {
-    setDrawerOpen(true)
-  }
-  const handleDrawerClose = () => {
-    setDrawerOpen(false)
-  }
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   return (
     <div className={classes.root}>
@@ -29,12 +26,10 @@ export default function (props) {
         <title>{title}</title>
       </Head>
 
-      <AppBar classes={classes} open={drawerOpen} handleDrawerOpen={handleDrawerOpen}/>
-      <Drawer classes={classes} open={drawerOpen} handleDrawerClose={handleDrawerClose}/>
+      <AppBar classes={classes} handleDrawerToggle={handleDrawerToggle}/>
+      <Drawer classes={classes} open={drawerOpen} handleDrawerToggle={handleDrawerToggle}/>
 
-      <main className={clsx(classes.content, {
-        [classes.contentShift]: drawerOpen
-      })}>
+      <main>
         <div className={classes.toolbar} />
         {children}
       </main>
