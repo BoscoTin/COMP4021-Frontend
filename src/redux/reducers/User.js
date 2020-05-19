@@ -63,6 +63,12 @@ const details = (state = {}, action) => {
   switch (action.type) {
     case FIND_USER_SUCCESS:
       return action.payload.result
+    case ADD_SELF_TAG_SUCCESS:
+      var newstate = {
+        ...state,
+        tags: action.tags
+      }
+      return newstate
     default:
       return state
   }

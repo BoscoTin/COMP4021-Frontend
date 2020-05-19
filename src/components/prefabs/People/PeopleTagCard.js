@@ -1,14 +1,21 @@
 import React from "react";
 import clsx from "clsx";
 
-import { Card, Chip, Divider, CardContent, TextField } from "@material-ui/core";
+import {
+  Card,
+  Chip,
+  Divider,
+  CardContent,
+  TextField,
+  CircularProgress,
+} from "@material-ui/core";
 
 import CustomHeader from "./PeopleHeader";
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
 import { useDispatch, useSelector } from "react-redux";
-import { begin_update, update_tag } from "../../../redux/actions/User"
+import { begin_update, update_tag } from "../../../redux/actions/User";
 
 const useStyles = makeStyles((theme) => ({
   expand_h: {
@@ -64,23 +71,21 @@ function CustomChip({ classes, isSelf, text, index, handleDelete }) {
   );
 }
 
-export default function (props) {
-  const { isSelf, data, email } = props;
+function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const edit_status = useSelector(state => state.user.edit_status)
   const [text, setText] = React.useState();
-  
+
   const handleEnterKey = (e) => {
     if (e.keyCode == 13) {
-      e.preventDefault()
-      if (data.tags.length < 5){
-        var newtags = data.tags
-        newtags.push(text)
-        dispatch( begin_update() )
-        dispatch( update_tag(email, newtags) )
+      e.preventDefault();
+      if (tags.length < 5) {
+        var newtags = tags;
+        newtags.push(text);
+        dispatch(begin_update());
+        dispatch(update_tag(email, newtags));
       }
-      setText("")
+      setText("");
     }
   };
 
@@ -89,61 +94,78 @@ export default function (props) {
   };
 
   const handleDelete = (index) => {
-    var newtags = data.tags
-    newtags.splice(index, 1)
-    dispatch( begin_update() )
-    dispatch( update_tag(email, newtags) )
-  }
+    var newtags = tags;
+    newtags.splice(index, 1);
+    dispatch(begin_update());
+    dispatch(update_tag(email, newtags));
+  };
+  return (
+    <Card
+      className={clsx(classes.card_base, {
+        [classes.card_self]: isSelf,
+        [classes.bg_main]: !isSelf,
+        [classes.card_other]: !isSelf,
+      })}
+    >
+      <CustomHeader
+        avatar={""}
+        displayname={displayname}
+        from={from}
+        isSelf={isSelf}
+        isBadge={false}
+      />
+      {!isSelf && <Divider className={classes.expand_w} />}
+      <CardContent>
+        {tags.map((tag, index) => (
+          <CustomChip
+            key={displayname + tag}
+            classes={classes}
+            text={tag}
+            isSelf={isSelf}
+            index={index}
+            handleDelete={handleDelete}
+          />
+        ))}
 
-  if (data !== null){
-    const displayname = data.first_name + data.last_name
-    const from = data.company_organization
+        {isSelf && (
+          <TextField
+            value={text}
+            fullWidth
+            placeholder="Add a skill"
+            className={classes.textfield}
+            InputProps={{
+              className: classes.textfield_word,
+            }}
+            onChange={handleInputChange}
+            onKeyDown={handleEnterKey}
+          />
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
-    return (
-      <Card
-        className={clsx(classes.card_base, {
-          [classes.card_self]: isSelf,
-          [classes.bg_main]: !isSelf,
-          [classes.card_other]: !isSelf,
-        })}
-      >
-        <CustomHeader
-          avatar={data.avatar}
+export default function (props) {
+  const { isSelf, data, email, id } = props;
+
+  if (isSelf) {
+    if (data !== null) {
+      const displayname = data.first_name + data.last_name;
+      const from = data.company_organization;
+
+      return (
+        <OldCardGeneralized
+          isSelf={isSelf}
           displayname={displayname}
           from={from}
-          isSelf={isSelf}
-          isBadge={false}
+          tags={data.tags}
+          email={email}
         />
-        {!isSelf && <Divider className={classes.expand_w} />}
-        <CardContent>
-          {data.tags.map((tag, index) => (
-            <CustomChip
-              key={data.id + tag}
-              classes={classes}
-              text={tag}
-              isSelf={isSelf}
-              index={index}
-              handleDelete={handleDelete}
-            />
-          ))}
-
-          {isSelf && (
-            <TextField
-              value={text}
-              fullWidth
-              placeholder="Add a skill"
-              className={classes.textfield}
-              InputProps={{
-                className: classes.textfield_word,
-              }}
-              onChange={handleInputChange}
-              onKeyDown={handleEnterKey}
-            />
-          )}
-        </CardContent>
-      </Card>
-    );
+      );
+    } else {
+      return <CircularProgress />;
+    }
   } else {
-    return <div />
+
   }
 }
