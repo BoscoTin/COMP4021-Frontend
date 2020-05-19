@@ -89,7 +89,7 @@ const form_Details = [
     },
     {
         "label": "Country or distinct",
-        "id": "countryOrDistinct",
+        "id": "country_distinct",
         "columns": 4,
         "type": "select",
         "select": [
@@ -107,7 +107,7 @@ const form_Details = [
     },
     {
         "label": "Other Study Field",
-        "id": "otherStudyField",
+        "id": "study_field",
         "columns": 8,
         "type": "text",
         "select": null,
@@ -122,7 +122,7 @@ const form_Details = [
     },
     {
         "label": "Company/organization name",
-        "id": "company",
+        "id": "company_organization",
         "columns": 4,
         "type": "text",
         "select": null,
@@ -153,9 +153,14 @@ const form_Details = [
         "label": "Interests",
         "id": "interests",
         "columns": 8,
-        "type": "select",
+        "type": "multiselect",
         "select": [
-            "Writing HTML code"
+            "Sports",
+            "Cooking",
+            "Write code",
+            "Drawing",
+            "Sleeping",
+            "Freeride"
         ],
     },
 

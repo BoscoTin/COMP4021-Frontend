@@ -1,13 +1,21 @@
 import React, { useEffect } from "react";
-import Router from "next/router"
+import Router from "next/router";
 import clsx from "clsx";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Box, TextField, MenuItem, IconButton, InputAdornment, Button } from "@material-ui/core";
+import {
+  Grid,
+  Box,
+  TextField,
+  MenuItem,
+  IconButton,
+  InputAdornment,
+  Button,
+} from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
-import { useDispatch, useSelector } from "react-redux"
-import { begin_signup, load_signup } from "../src/redux/actions/User"
+import { useDispatch, useSelector } from "react-redux";
+import { begin_signup, load_signup } from "../src/redux/actions/User";
 
 import form_Details from "../src/components/demo/register_form";
 
@@ -144,9 +152,9 @@ function Heading(props) {
 function Form(props) {
   const { classes } = props;
   const dispatch = useDispatch();
-  const status = useSelector(state => state.user.status)
-  const message = useSelector(state => state.user.message)
-  const email = useSelector(state => state.user.email)
+  const status = useSelector((state) => state.user.status);
+  const message = useSelector((state) => state.user.message);
+  const email = useSelector((state) => state.user.email);
 
   const [states, setStates] = React.useState({
     first_name: "",
@@ -159,13 +167,13 @@ function Form(props) {
     date_of_birth: "",
     password: "",
     showPassword: false,
-    countryOrDistinct: "",
+    country_distinct: "",
     school: "",
-    otherStudyField: "",
-    company: "",
+    study_field: "",
+    company_organization: "",
     position: "",
     description: "",
-    interests: "",
+    interests: [],
     abilities: "",
   });
   const handleChange = (prop) => (event) => {
@@ -181,16 +189,16 @@ function Form(props) {
   };
 
   const handleSubmit = () => {
-    console.log(states)
-    dispatch( begin_signup() )
-    dispatch( load_signup({...states}) )
-  }
+    console.log(states);
+    dispatch(begin_signup());
+    dispatch(load_signup({ ...states }));
+  };
 
   useEffect(() => {
     if (status === "success") {
-      Router.push(`/${email}/profile`)
+      Router.push(`/${email}/profile`);
     }
-  })
+  });
 
   return (
     <Grid container className={classes.InputTextLayer}>
@@ -230,7 +238,35 @@ function Form(props) {
                 value={states[Inputs.id]}
               >
                 {Inputs.select.map((val, index) => (
-                  <MenuItem key={Inputs.id + val + index} value={val} children={val} />
+                  <MenuItem
+                    key={Inputs.id + val + index}
+                    value={val}
+                    children={val}
+                  />
+                ))}
+              </TextField>
+            </Box>
+          )}
+
+          {Inputs.type === "multiselect" && (
+            <Box>
+              <StyledTextFieldLabelBox>{Inputs.label}</StyledTextFieldLabelBox>
+              <TextField
+                select
+                fullWidth
+                placeholder={Inputs.label}
+                SelectProps={{
+                  multiple: Inputs.type === "multiselect",
+                  value: states[Inputs.id],
+                  onChange: handleChange(Inputs.id)
+                }}
+              >
+                {Inputs.select.map((val, index) => (
+                  <MenuItem
+                    key={Inputs.id + val + index}
+                    value={val}
+                    children={val}
+                  />
                 ))}
               </TextField>
             </Box>
@@ -269,10 +305,7 @@ function Form(props) {
 
       {/* Submit button */}
       <Grid item xs={12} className={classes.padding}>
-        <Button 
-          variant="contained"
-          onClick={handleSubmit}
-        >
+        <Button variant="contained" onClick={handleSubmit}>
           Submit
         </Button>
       </Grid>
