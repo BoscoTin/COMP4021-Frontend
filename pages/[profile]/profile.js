@@ -9,10 +9,8 @@ import PrivateLayout from "../../src/components/Layout/private/PrivateLayout";
 import PeopleTagCard from "../../src/components/prefabs/People/PeopleTagCard";
 import { StyledTabs, StyledTab, InfoTabPanel } from "../../src/components/Tabs";
 
-// import SelfDemo from "../../src/components/demo/self";
 import RecommendsDemo from "../../src/components/demo/recommendation";
 import ConnectionDemo from "../../src/components/demo/connection_list";
-import InfoDemo from "../../src/components/demo/infoDemo";
 import clsx from "clsx";
 import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
 
@@ -116,54 +114,33 @@ function ProfileBlock({ classes, email }) {
 }
 
 function RecommendsBlock({ classes }) {
-  const selfuser = useSelector((state) => state.user.details);
-  const [users, setDetails] = React.useState({});
-
-  useEffect(() => {
-    if (selfuser !== null) {
-      var path =
-        "https://bigas-recommendation-engine.herokuapp.com/" + selfuser.id;
-      fetch(path)
-        .then((response) => response.json())
-        .then((data) => setDetails(data.result))
-        .catch((error) => setDetails({}));
-    }
-  }, [selfuser]);
-
-  if (selfuser === null || Object.keys(selfuser).length === 0) {
-    return <CircularProgress />;
-  } else {
-    return (
-      <Grid item md={8} xs={12} className={clsx(classes.block)}>
-        <div
-          className={clsx(classes.expand_h, classes.expand_w, classes.paper)}
+  return (
+    <Grid item md={8} xs={12} className={clsx(classes.block)}>
+      <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
+        <Typography variant="h5">Potential Candidate</Typography>
+        <br />
+        <Grid
+          container
+          spacing={1}
+          className={clsx(classes.expand_w, classes.overflow_list)}
         >
-          <Typography variant="h5">Potential Candidate</Typography>
-          <br />
-          <Grid
-            container
-            spacing={1}
-            className={clsx(classes.expand_w, classes.overflow_list)}
-          >
-            {RecommendsDemo.map((element, index) => (
-              <Grid item md={5} xs={12} key={"Recommendppl" + index}>
-                Preparing
-                {/* <PeopleTagCard isSelf={false} data={element} /> */}
-              </Grid>
-            ))}
-            <Grid item md={2} xs={12}>
-              <Box
-                className={clsx(classes.v_align, classes.expand_h)}
-                variant={"h6"}
-              >
-                Learn more
-              </Box>
+          {RecommendsDemo.map((element, index) => (
+            <Grid item md={5} xs={12} key={"Recommendppl" + index}>
+              <PeopleTagCard isSelf={false} data={element} />
             </Grid>
+          ))}
+          <Grid item md={2} xs={12}>
+            <Box
+              className={clsx(classes.v_align, classes.expand_h)}
+              variant={"h6"}
+            >
+              Learn more
+            </Box>
           </Grid>
-        </div>
-      </Grid>
-    );
-  }
+        </Grid>
+      </div>
+    </Grid>
+  );
 }
 
 function ConnectionBlock({ classes }) {

@@ -15,7 +15,7 @@ import CustomHeader from "./PeopleHeader";
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
-import hostname from "../../../API/hostname"
+import hostname from "../../../API/hostname";
 
 import { useDispatch, useSelector } from "react-redux";
 import { begin_update, update_tag } from "../../../redux/actions/User";
@@ -151,19 +151,8 @@ function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
 export default function (props) {
   const { isSelf, data, email, user_id } = props;
 
-  const [loadstate, setload] = React.useState(true)
-  const [userDetails, setDetails] = React.useState({})
-
-  useEffect(() => {
-    if (!isSelf) {
-      var path = hostname + "/user/findByEmail?id=" + user_id
-      fetch(path)
-        .then(response => response.json())
-        .then(data => setDetails(data.result))
-        .catch(error => setDetails({}))
-    }
-    setload(false)
-  }, [loadstate])
+  const [loadstate, setload] = React.useState(true);
+  const [userDetails, setDetails] = React.useState({});
 
   if (isSelf) {
     if (data !== null) {
@@ -183,26 +172,14 @@ export default function (props) {
       return <CircularProgress />;
     }
   } else {
-    if (loadstate) {
-      return <CircularProgress />
-    } else {
-      if (userDetails !== null){
-        const displayname = userDetails.first_name + " " + userDetails.last_name;
-        const from = userDetails.company_organization;
-
-        return (
-          <OldCardGeneralized
-            isSelf={isSelf}
-            displayname={displayname}
-            from={from}
-            tags={userDetails.tags}
-            email={email}
-          />
-        );
-      }
-      else {
-        return <Typography variant="body2">Load Fail</Typography>
-      }
-    }
+    return (
+      <OldCardGeneralized
+        isSelf={isSelf}
+        displayname={data.displayname}
+        from={data.from}
+        tags={data.tags}
+        email={email}
+      />
+    );
   }
 }
