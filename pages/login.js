@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Box, Typography, Button } from "@material-ui/core";
+import {
+  Grid,
+  Box,
+  Button,
+  IconButton,
+  OutlinedInput,
+  FormControl,
+  FormControlLabel,
+  InputAdornment,
+} from "@material-ui/core";
 import Link from "../src/components/Link";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import Checkbox from "@material-ui/core/Checkbox";
 import clsx from "clsx";
 
-import Router from "next/router"
-import { useSelector, useDispatch } from "react-redux"
-import { begin_login, load_login } from "../src/redux/actions/User"
+import Router from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { begin_login, load_login } from "../src/redux/actions/User";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,6 +92,11 @@ const useStyles = makeStyles((theme) => ({
     "input:hover ~ &": {
       backgroundColor: "#106ba3",
     },
+  },
+
+  errorMsg: {
+    textAlign: "center",
+    color: theme.palette.error.main
   },
 
   LoginLayoutButton: {
@@ -187,9 +196,10 @@ function LoginLayout(props) {
   const { classes } = props;
 
   /* Redux - connect with API */
-  const status = useSelector(state => state.user.status)
-  const message = useSelector(state => state.user.message)
-  const dispatch = useDispatch()
+  const status = useSelector((state) => state.user.status);
+  const message = useSelector((state) => state.user.message);
+  const email = useSelector((state) => state.user.email);
+  const dispatch = useDispatch();
 
   const [values, setValues] = React.useState({
     id: "",
@@ -210,9 +220,9 @@ function LoginLayout(props) {
   };
 
   const handleLogin = () => {
-    dispatch( begin_login() )
-    dispatch( load_login(values.id, values.password) )
-  }
+    dispatch(begin_login());
+    dispatch(load_login(values.id, values.password));
+  };
 
   function StyleBox(props) {
     const classes = useStyles();
@@ -232,9 +242,9 @@ function LoginLayout(props) {
 
   useEffect(() => {
     if (status === "success") {
-      Router.push(`/${states.id}/profile`)
+      Router.push(`/${email}/profile`);
     }
-  })
+  });
 
   return (
     <Box
@@ -306,6 +316,12 @@ function LoginLayout(props) {
           Sign In
         </Box>
       </Button>
+
+      {status === "fail" &&
+        <div className={classes.errorMsg}>
+          Login error!
+        </div>
+      }
 
       <ForgotPassword classes={classes} />
       <SignUp classes={classes} />

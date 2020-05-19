@@ -5,8 +5,9 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   BEGIN_SIGNUP,
+  AUTH_SIGNUP_FAIL,
   SIGNUP_SUCCESS,
-  SIGNUP_FAIL,
+  SIGNUP_FAIL
 } from "../types/User";
 
 export function begin_login() {
@@ -17,7 +18,7 @@ export function begin_login() {
 
 export function load_login(email, password) {
   return runAPI("/auth/signin", "POST", success_login, fail_login, {
-    id: 777,
+    groupid: 777,
     email,
     password,
   });
@@ -42,14 +43,25 @@ export function begin_signup() {
 }
 
 export function load_signup(states) {
-  return runAPI("/auth/signup", "POST", success_signup, fail_signup, {
-    ...states,
-    id: 777
+  return runAPI("/auth/signup", "POST", success_auth_signup(states), fail_auth_signup, {
+    groupid: 777,
+    ...states
   });
 }
 
-function success_signup(payload) {
-  return { type: SIGNUP_SUCCESS, payload };
+function success_auth_signup(states) {
+  return (payload) => runAPI("/user/create", "POST", success_signup, fail_signup, {
+    groupid: 777,
+    ...states
+  })
+}
+
+function success_signup(payload){
+  return { type: SIGNUP_SUCCESS, payload }
+}
+
+function fail_auth_signup(payload){
+  return { type: AUTH_SIGNUP_FAIL, payload }
 }
 
 function fail_signup(payload) {

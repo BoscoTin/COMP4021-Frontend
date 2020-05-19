@@ -131,7 +131,6 @@ function Paginator({ classes, page, setPage }) {
       )}
       {page !== Questions.length && (
           <Button
-              color={"#FFFFFF"}
               variant="contained"
               onClick={() => setPage(page + 1)}
               className={classes.button_color}

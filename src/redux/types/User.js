@@ -5,4 +5,4 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const BEGIN_SIGNUP = "BEGIN_SIGNUP";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
-
+export const AUTH_SIGNUP_FAIL = "AUTH_SIGNUP_FAIL";

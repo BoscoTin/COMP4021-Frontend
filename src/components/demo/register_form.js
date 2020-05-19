@@ -8,7 +8,7 @@ const form_Details = [
     {
         "label": "First Name",
         "placeholder":"First Name",
-        "id": "firstName",
+        "id": "first_name",
         "columns": 4,
         "type": "text",
         "select": null,
@@ -16,7 +16,7 @@ const form_Details = [
     {
         "label": "Last Name",
         "placeholder":"Last Name",
-        "id": "lastName",
+        "id": "last_name",
         "columns": 4,
         "type": "text",
         "select": null,
@@ -24,7 +24,7 @@ const form_Details = [
     {
         "label": "Phone Number",
         "placeholder":"Phone Number",
-        "id": "phoneNumber",
+        "id": "phone_number",
         "columns": 3,
         "type": "text",
         "select": null,
@@ -68,14 +68,13 @@ const form_Details = [
     {
         "label": "Birthday",
         "placeholder":"Birthday",
-        "id": "birthday",
+        "id": "date_of_birth",
         "columns": 4,
         "type": "text",
         "select": null,
     },
     {
         "label": "Password",
-        "placeholder":"Password",
         "id": "password",
         "columns": 4,
         "type": "password",
@@ -108,8 +107,7 @@ const form_Details = [
     },
     {
         "label": "Other Study Field",
-        "placeholder":"otherStudyField",
-        "id": "address",
+        "id": "otherStudyField",
         "columns": 8,
         "type": "text",
         "select": null,
@@ -124,15 +122,13 @@ const form_Details = [
     },
     {
         "label": "Company/organization name",
-        "placeholder":"Company/organization name",
-        "id": "companyOrOrganizationName",
+        "id": "company",
         "columns": 4,
         "type": "text",
         "select": null,
     },
     {
         "label": "Position",
-        "placeholder":"Position",
         "id": "position",
         "columns": 4,
         "type": "text",
@@ -140,7 +136,6 @@ const form_Details = [
     },
     {
         "label": "Description (like your roles,projects...)",
-        "placeholder":"Description (like your roles,projects...)",
         "id": "description",
         "columns": 8,
         "type": "text",
@@ -151,7 +146,7 @@ const form_Details = [
     {
         "type":"title",
         "columns": 12,
-        "id":"interests",
+        "id": "titleInterest",
         "title":"Interests"
     },
     {
@@ -168,7 +163,7 @@ const form_Details = [
     {
         "type":"title",
         "columns": 12,
-        "id":"experience",
+        "id": "titleAbil",
         "title":"Abilities"
     },
     {

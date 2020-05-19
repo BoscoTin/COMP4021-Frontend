@@ -4,7 +4,6 @@ import API_DOMAIN from "./hostname"
 /* Action type */
 import { API as TYPE_API } from "./Action"
 
-
 const apiMiddleware = ({dispatch}) => next => action => {
     next(action);
 
