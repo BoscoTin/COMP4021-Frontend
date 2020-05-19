@@ -10,8 +10,12 @@ import {
   AUTH_SIGNUP_FAIL,
   BEGIN_FIND_USER,
   FIND_USER_FAIL,
-  FIND_USER_SUCCESS
+  FIND_USER_SUCCESS,
+  BEGIN_ADD_SELF_TAG,
+  ADD_SELF_TAG_SUCCESS,
+  ADD_SELF_TAG_FAIL
 } from "../types/User";
+import { ADD_SELF_TAG } from "../types/SelfTagDemo";
 
 const status = (state = "", action) => {
   switch (action.type) {
@@ -21,12 +25,12 @@ const status = (state = "", action) => {
       return "loading";
     case LOGIN_SUCCESS:
     case SIGNUP_SUCCESS:
-    case FIND_USER_FAIL:
+    case FIND_USER_SUCCESS:
       return "success";
     case LOGIN_FAIL:
     case AUTH_SIGNUP_FAIL:
     case SIGNUP_FAIL:
-    case FIND_USER_SUCCESS:
+    case FIND_USER_FAIL:
       return "fail";
     default:
       return state;
@@ -60,11 +64,25 @@ const details = (state = {}, action) => {
   }
 }
 
+const edit_state = (state = "", action) => {
+  switch (action.type) {
+    case BEGIN_ADD_SELF_TAG:
+      return "loading"
+    case ADD_SELF_TAG_SUCCESS:
+      return "success"
+    case ADD_SELF_TAG_FAIL:
+      return "fail"
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   status,
   message,
   email,
-  details
+  details,
+  edit_state
 });
 
 export default reducer;

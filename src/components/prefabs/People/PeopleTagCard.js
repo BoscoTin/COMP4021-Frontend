@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
 import { useDispatch, useSelector } from "react-redux";
-import { add_self_tag, del_self_tag } from "../../../redux/actions/SelfTagDemo"
+import { begin_update, update_tag } from "../../../redux/actions/User"
 
 const useStyles = makeStyles((theme) => ({
   expand_h: {
@@ -48,9 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomChip({ classes, isSelf, text, index }) {
-  const dispatch = useDispatch();
-
+function CustomChip({ classes, isSelf, text, index, handleDelete }) {
   return (
     <Chip
       className={clsx({
@@ -61,23 +59,26 @@ function CustomChip({ classes, isSelf, text, index }) {
         root: classes.chip_base,
       }}
       label={text}
-      onDelete={() => { dispatch( del_self_tag(index) ) }}
+      onDelete={() => handleDelete(index)}
     />
   );
 }
 
 export default function (props) {
-  const { isSelf, data } = props;
+  const { isSelf, data, email } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
+  const edit_status = useSelector(state => state.user.edit_status)
   const [text, setText] = React.useState();
-  const ReduxTagLength = useSelector(state => state.self.num_tags)
-
+  
   const handleEnterKey = (e) => {
     if (e.keyCode == 13) {
       e.preventDefault()
       if (data.tags.length < 5){
-        dispatch( add_self_tag(text) )
+        var newtags = data.tags
+        newtags.push(text)
+        dispatch( begin_update() )
+        dispatch( update_tag(email, newtags) )
       }
       setText("")
     }
@@ -87,47 +88,62 @@ export default function (props) {
     setText(e.target.value);
   };
 
-  return (
-    <Card
-      className={clsx(classes.card_base, {
-        [classes.card_self]: isSelf,
-        [classes.bg_main]: !isSelf,
-        [classes.card_other]: !isSelf,
-      })}
-    >
-      <CustomHeader
-        avatar={data.avatar}
-        displayname={data.displayname}
-        from={data.from}
-        isSelf={isSelf}
-        isBadge={false}
-      />
-      {!isSelf && <Divider className={classes.expand_w} />}
-      <CardContent>
-        {data.tags.map((tag, index) => (
-          <CustomChip
-            key={data.displayname + tag}
-            classes={classes}
-            text={tag}
-            isSelf={isSelf}
-            index={index}
-          />
-        ))}
+  const handleDelete = (index) => {
+    var newtags = data.tags
+    newtags.splice(index, 1)
+    dispatch( begin_update() )
+    dispatch( update_tag(email, newtags) )
+  }
 
-        {isSelf && (
-          <TextField
-            value={text}
-            fullWidth
-            placeholder="Add a skill"
-            className={classes.textfield}
-            InputProps={{
-              className: classes.textfield_word,
-            }}
-            onChange={handleInputChange}
-            onKeyDown={handleEnterKey}
-          />
-        )}
-      </CardContent>
-    </Card>
-  );
+  if (data !== null){
+    const displayname = data.first_name + data.last_name
+    const from = data.company_organization
+
+    return (
+      <Card
+        className={clsx(classes.card_base, {
+          [classes.card_self]: isSelf,
+          [classes.bg_main]: !isSelf,
+          [classes.card_other]: !isSelf,
+        })}
+      >
+        <CustomHeader
+          avatar={data.avatar}
+          displayname={displayname}
+          from={from}
+          isSelf={isSelf}
+          isBadge={false}
+        />
+        {!isSelf && <Divider className={classes.expand_w} />}
+        <CardContent>
+          {data.tags.map((tag, index) => (
+            <CustomChip
+              key={data.id + tag}
+              classes={classes}
+              text={tag}
+              isSelf={isSelf}
+              index={index}
+              handleDelete={handleDelete}
+            />
+          ))}
+
+          {isSelf && (
+            <TextField
+              value={text}
+              fullWidth
+              placeholder="Add a skill"
+              className={classes.textfield}
+              InputProps={{
+                className: classes.textfield_word,
+              }}
+              onChange={handleInputChange}
+              onKeyDown={handleEnterKey}
+            />
+          )}
+        </CardContent>
+      </Card>
+    );
+  } else {
+    return <div />
+  }
 }

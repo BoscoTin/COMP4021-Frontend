@@ -1,7 +1,7 @@
-import React from "react";
+import React , { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { Grid, Box, Typography } from "@material-ui/core";
+import { Grid, Box, Typography, CircularProgress } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -16,7 +16,8 @@ import InfoDemo from "../../src/components/demo/infoDemo";
 import clsx from "clsx";
 import PeopleHeader from "../../src/components/prefabs/People/PeopleHeader";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { begin_find_user, find_user } from "../../src/redux/actions/User"
 
 /* 
   please define css style here, using camel style name 
@@ -73,9 +74,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProfileBlock({ classes }) {
+function ProfileBlock({ classes, email }) {
   const [value, setValue] = React.useState(0);
-  const ReduxSelf = useSelector((state) => state.self);
+  const selfuser = useSelector((state) => state.user.details);
 
   function handleTabPageChange(event, newValue) {
     setValue(newValue);
@@ -90,7 +91,7 @@ function ProfileBlock({ classes }) {
           className={clsx(classes.expand_w, classes.overflow_list)}
         >
           <Grid item md={4} xs={12}>
-            <PeopleTagCard isSelf={true} data={ReduxSelf} />
+            <PeopleTagCard isSelf={true} email={email} data={selfuser} />
           </Grid>
           <Grid item md={8} xs={12}>
             <StyledTabs value={value} onChange={handleTabPageChange} centered>
@@ -127,7 +128,8 @@ function RecommendsBlock({ classes }) {
         >
           {RecommendsDemo.map((element, index) => (
             <Grid item md={5} xs={12} key={"Recommendppl" + index}>
-              <PeopleTagCard isSelf={false} data={element} />
+              Preparing
+              {/* <PeopleTagCard isSelf={false} data={element} /> */}
             </Grid>
           ))}
           <Grid item md={2} xs={12}>
@@ -169,20 +171,42 @@ export default function ProfilePage() {
   const classes = useStyles();
   const router = useRouter();
   const { profile } = router.query;
+  const dispatch = useDispatch()
+  const find_status = useSelector(state => state.user.status)
+
+  useEffect(() => {
+    dispatch( begin_find_user() )
+    dispatch( find_user(profile) )
+  }, [router.asPath])
 
   // replace true with authentication later
-  if (true) {
-    /* Please write your profile page inside layout */
-    return (
-      <PrivateLayout title={profile}>
-        <Grid container className={clsx(classes.expand_h, classes.expand_w)}>
-          <ProfileBlock classes={classes} />
-          <RecommendsBlock classes={classes} />
-          <ConnectionBlock classes={classes} />
+  if (find_status !== "loading") {
+    if (find_status === "success"){
+      /* Please write your profile page inside layout */
+      return (
+        <PrivateLayout title={profile}>
+          <Grid container className={clsx(classes.expand_h, classes.expand_w)}>
+            <ProfileBlock classes={classes} email={profile} />
+            <RecommendsBlock classes={classes} />
+            <ConnectionBlock classes={classes} />
+          </Grid>
+        </PrivateLayout>
+      );
+    }
+    else {
+      return (
+        <Grid container alignItems="center" className={classes.expand_w, classes.expand_h}>
+          <Grid item xs={12}>
+            <Typography variant="h4">
+              Please refresh or see if you have input the correct path.
+            </Typography>
+          </Grid>
         </Grid>
-      </PrivateLayout>
-    );
+      )
+    }
   } else {
-    router.replace(userid, "404", { shallow: true });
+    return (
+      <CircularProgress className={clsx(classes.expand_w, classes.expand_h)} />
+    )
   }
 }

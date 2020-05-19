@@ -11,15 +11,46 @@ import {
   BEGIN_FIND_USER,
   FIND_USER_SUCCESS,
   FIND_USER_FAIL,
+  BEGIN_ADD_SELF_TAG,
+  ADD_SELF_TAG_SUCCESS,
+  ADD_SELF_TAG_FAIL,
 } from "../types/User";
+
+
+export function begin_update() {
+  return { type: BEGIN_ADD_SELF_TAG }
+}
+
+export function update_tag(email, tags) {
+  var path = "/user/update?email=" + email
+  return runAPI(
+    path,
+    "PUT",
+    success_update_user_tags,
+    fail_update_user_tags,
+    {
+      tags: tags,
+      email: email
+    }
+  );
+}
+
+function success_update_user_tags(payload){
+  return { type: ADD_SELF_TAG_SUCCESS, payload }
+}
+
+function fail_update_user_tags(payload){
+  return { type: ADD_SELF_TAG_FAIL, payload}
+}
 
 export function begin_find_user() {
   return { type: BEGIN_FIND_USER };
 }
 
 export function find_user(email) {
+  var path = "/user/findByEmail?email=" + email
   return runAPI(
-    `/user/findByEmail?email=${email}`,
+    path,
     "GET",
     success_find_user,
     fail_find_user
