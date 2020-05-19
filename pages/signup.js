@@ -130,7 +130,7 @@ function Heading(props) {
           fontStyle="normal"
           fontWeight="normal"
           fontSize="150px"
-          lineHeight="56px"
+          lineHeight="110px"
           color={"#FFFFFF"}
         >
           Bit

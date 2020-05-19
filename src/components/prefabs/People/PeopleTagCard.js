@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   textfield: {
-    border: "1px solid #EAEAEA",
     boxSizing: "border-box",
     borderRadius: "3px",
   },
@@ -82,7 +81,12 @@ function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
   const handleEnterKey = (e) => {
     if (e.keyCode == 13) {
       e.preventDefault();
-      if (tags.length < 5) {
+      if (tags === null){
+        var newtags = [];
+        newtags.push(text);
+        dispatch(begin_update());
+        dispatch(update_tag(email, newtags));
+      } else if (tags.length < 5) {
         var newtags = tags;
         newtags.push(text);
         dispatch(begin_update());

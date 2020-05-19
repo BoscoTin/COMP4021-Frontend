@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     width: "85%",
     borderRadius:"20px",
     boxShadow: "0px 2px 4px rgba(96, 97, 112, 0.16), 0px 0px 1px rgba(40, 41, 61, 0.04)",
-    justifyContent:"space-between"
+    justifyContent: "space-between",
   },
   spacearound: {
     display: "flex",
@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1)
   },
   content: {
-    height: "250px",
     overflow: "hidden",
+    height: "300px",
     marginTop:"3%"
   },
   flex_box:{

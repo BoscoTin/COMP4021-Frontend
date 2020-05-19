@@ -15,8 +15,7 @@ export default function (props) {
   return (
     <AppBar className={classes.appBar} position="fixed">
       <Toolbar>
-        <IconButton 
-          color='inherit' 
+        <IconButton
           aria-label='control drawer open'
           edge="start" 
           onClick={handleDrawerToggle} 
@@ -25,7 +24,7 @@ export default function (props) {
           <MenuRounded />
         </IconButton>
 
-        <Typography variant="h4" color="textPrimary" noWrap style={{paddingLeft: '0.5%'}}>
+        <Typography variant="h4" color="textPrimary" style={{paddingLeft: '0.5%'}}>
           Profile
         </Typography>
 
