@@ -45,32 +45,30 @@ export default function (props) {
         Start your exploring your potential teammates with our assistance
       </Typography>
 
-      <div className={classes.footer}>
-        <br />
-        <div className={classes.footInfo}>
-          <Box display={"inline"}>
-            <img src={"Bigas.svg"} />
-          </Box>
-          <Typography variant="h5" display={"inline"}>
-            {" "}
-            Bigas
-          </Typography>
+
+        <div className={classes.footer} >
           <br />
-          <br />
-          <Typography variant="body2">HKUST No.1</Typography>
-          <Typography variant="body2">Clear Water Bay, PRBW 29281</Typography>
-          <br />
-          <Typography variant="body2">info@warehouse.project</Typography>
-          <Typography variant="body2">1-232-3434 (Main)</Typography>
-          <br />
-          <br />
-          <Typography variant="body2">
-            © Datawarehouse™, 2020. All rights reserved.
-          </Typography>
-          <Typography variant="body2">
-            Company Registration Number: 21479524.
-          </Typography>
-        </div>
+          <div className={classes.footInfo}>
+            <Box display={"inline"}>
+              <img src={"Bigas.svg"} />
+            </Box>
+            <Typography variant="h5" display={"inline"}> Bigas</Typography>
+            <br />
+            <br />
+            <Typography variant="body2">HKUST No.1</Typography>
+            <Typography variant="body2">Clear Water Bay, PRBW 29281</Typography>
+            <br />
+            <Typography variant="body2">info@bigas.project</Typography>
+            <Typography variant="body2">12345678 (Main)</Typography>
+            <br />
+            <br />
+            <Typography variant="body2">
+              © Bigas™, 2020. All rights reserved.
+            </Typography>
+            <Typography variant="body2">
+              Company Registration Number: 12345678.
+            </Typography>
+          </div>
 
         <div className={classes.footOther}>
           <br />
