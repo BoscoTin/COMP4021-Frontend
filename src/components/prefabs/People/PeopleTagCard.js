@@ -119,7 +119,7 @@ function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
       />
       {!isSelf && <Divider className={classes.expand_w} />}
       <CardContent>
-        {tags.map((tag, index) => (
+        {tags !== null && tags.map((tag, index) => (
           <CustomChip
             key={displayname + tag}
             classes={classes}
