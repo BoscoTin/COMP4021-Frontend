@@ -9,6 +9,8 @@ import PrivateLayout from "../../src/components/Layout/private/PrivateLayout";
 import PeopleTagCard from "../../src/components/prefabs/People/PeopleTagCard";
 import { StyledTabs, StyledTab, InfoTabPanel } from "../../src/components/Tabs";
 
+import InfoDemo from "../../src/components/demo/infoDemo"
+import SelfDemo from "../../src/components/demo/self"
 import RecommendsDemo from "../../src/components/demo/recommendation";
 import ConnectionDemo from "../../src/components/demo/connection_list";
 import clsx from "clsx";
@@ -74,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileBlock({ classes, email }) {
   const [value, setValue] = React.useState(0);
-  const selfuser = useSelector((state) => state.user.details);
+  // const selfuser = useSelector((state) => state.user.details);
 
   function handleTabPageChange(event, newValue) {
     setValue(newValue);
@@ -89,7 +91,7 @@ function ProfileBlock({ classes, email }) {
           className={clsx(classes.expand_w, classes.overflow_list)}
         >
           <Grid item md={4} xs={12}>
-            <PeopleTagCard isSelf={true} email={email} data={selfuser} />
+            <PeopleTagCard isSelf={true} email={email} data={SelfDemo} />
           </Grid>
           <Grid item md={8} xs={12}>
             <StyledTabs value={value} onChange={handleTabPageChange} centered>
@@ -104,7 +106,7 @@ function ProfileBlock({ classes, email }) {
               alignItems={"center"}
               className={clsx(classes.expand_w, classes.tabpanel)}
             >
-              <InfoTabPanel value={value} data={selfuser} />
+              <InfoTabPanel value={value} data={InfoDemo} />
             </Grid>
           </Grid>
         </Grid>
@@ -168,18 +170,18 @@ export default function ProfilePage() {
   const classes = useStyles();
   const router = useRouter();
   const { profile } = router.query;
-  const dispatch = useDispatch();
-  const find_status = useSelector((state) => state.user.status);
+  // const dispatch = useDispatch();
+  // const find_status = useSelector((state) => state.user.status);
 
-  useEffect(() => {
-    dispatch(begin_find_user());
-    dispatch(find_user(profile));
-  }, [router.asPath]);
+  // useEffect(() => {
+  //   dispatch(begin_find_user());
+  //   dispatch(find_user(profile));
+  // }, [router.asPath]);
 
-  // replace true with authentication later
-  if (find_status !== "loading") {
-    if (find_status === "success") {
-      /* Please write your profile page inside layout */
+  // // replace true with authentication later
+  // if (find_status !== "loading") {
+  //   if (find_status === "success") {
+  //     /* Please write your profile page inside layout */
       return (
         <PrivateLayout title={profile}>
           <Grid container className={clsx(classes.expand_h, classes.expand_w)}>
@@ -189,24 +191,24 @@ export default function ProfilePage() {
           </Grid>
         </PrivateLayout>
       );
-    } else {
-      return (
-        <Grid
-          container
-          alignItems="center"
-          className={(classes.expand_w, classes.expand_h)}
-        >
-          <Grid item xs={12}>
-            <Typography variant="h4">
-              Please refresh or see if you have input the correct path.
-            </Typography>
-          </Grid>
-        </Grid>
-      );
-    }
-  } else {
-    return (
-      <CircularProgress className={clsx(classes.expand_w, classes.expand_h)} />
-    );
-  }
+  //   } else {
+  //     return (
+  //       <Grid
+  //         container
+  //         alignItems="center"
+  //         className={(classes.expand_w, classes.expand_h)}
+  //       >
+  //         <Grid item xs={12}>
+  //           <Typography variant="h4">
+  //             Please refresh or see if you have input the correct path.
+  //           </Typography>
+  //         </Grid>
+  //       </Grid>
+  //     );
+  //   }
+  // } else {
+  //   return (
+  //     <CircularProgress className={clsx(classes.expand_w, classes.expand_h)} />
+  //   );
+  // }
 }

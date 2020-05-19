@@ -240,11 +240,11 @@ function LoginLayout(props) {
     );
   }
 
-  useEffect(() => {
-    if (status === "loginsuccess") {
-      Router.push(`/${email}/profile`);
-    }
-  });
+  // useEffect(() => {
+  //   if (status === "loginsuccess") {
+  //     Router.push(`/${email}/profile`);
+  //   }
+  // });
 
   return (
     <Box
@@ -304,7 +304,9 @@ function LoginLayout(props) {
       <Button
         className={classes.LoginLayoutButton}
         variant="contained"
-        onClick={handleLogin}
+        component={Link}
+        href="/demo/profile"
+        //onClick={handleLogin}
       >
         <Box
           fontFamily={"asap"}

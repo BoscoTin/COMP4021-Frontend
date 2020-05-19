@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { begin_signup, load_signup } from "../src/redux/actions/User";
 
 import form_Details from "../src/components/demo/register_form";
+import Link from "../src/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,8 +63,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   error_msg: {
-    color: theme.palette.error.main
-  }
+    color: theme.palette.error.main,
+  },
 }));
 
 function StyledTitleBox(props) {
@@ -191,14 +192,14 @@ function Form(props) {
     event.preventDefault();
   };
 
-  const handleSubmit = () => {
-    dispatch(begin_signup());
-    dispatch(load_signup({ ...states }));
-  };
+  // const handleSubmit = () => {
+  //   dispatch(begin_signup());
+  //   dispatch(load_signup({ ...states }));
+  // };
 
   useEffect(() => {
     if (status === "success") {
-      Router.push(`/login`)
+      Router.push(`/login`);
     }
   });
 
@@ -260,7 +261,7 @@ function Form(props) {
                 SelectProps={{
                   multiple: Inputs.type === "multiselect",
                   value: states[Inputs.id],
-                  onChange: handleChange(Inputs.id)
+                  onChange: handleChange(Inputs.id),
                 }}
               >
                 {Inputs.select.map((val, index) => (
@@ -311,7 +312,12 @@ function Form(props) {
 
       {/* Submit button */}
       <Grid item xs={12} className={classes.padding}>
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button
+          variant="contained"
+          component={Link}
+          href="/login"
+          //onClick={handleSubmit}
+        >
           Submit
         </Button>
       </Grid>

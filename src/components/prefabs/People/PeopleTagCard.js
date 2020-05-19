@@ -15,10 +15,13 @@ import CustomHeader from "./PeopleHeader";
 import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
-import hostname from "../../../API/hostname";
+// import hostname from "../../../API/hostname";
 
 import { useDispatch, useSelector } from "react-redux";
-import { begin_update, update_tag } from "../../../redux/actions/User";
+// import { begin_update, update_tag } from "../../../redux/actions/User";
+
+import { add_self_tag, del_self_tag } from "../../../redux/actions/SelfTagDemo"
+
 
 const useStyles = makeStyles((theme) => ({
   expand_h: {
@@ -58,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CustomChip({ classes, isSelf, text, index, handleDelete }) {
+  const dispatch = useDispatch();
+  const demoDelete =  (index) => dispatch( del_self_tag(index) )
   return (
     <Chip
       className={clsx({
@@ -68,7 +73,7 @@ function CustomChip({ classes, isSelf, text, index, handleDelete }) {
         root: classes.chip_base,
       }}
       label={text}
-      onDelete={() => handleDelete(index)}
+      onDelete={() => demoDelete(index)}
     />
   );
 }
@@ -78,19 +83,23 @@ function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
   const dispatch = useDispatch();
   const [text, setText] = React.useState();
 
+  const selftags = useSelector(state => state.self.tags)
+
   const handleEnterKey = (e) => {
     if (e.keyCode == 13) {
       e.preventDefault();
-      if (tags === null){
-        var newtags = [];
-        newtags.push(text);
-        dispatch(begin_update());
-        dispatch(update_tag(email, newtags));
-      } else if (tags.length < 5) {
-        var newtags = tags;
-        newtags.push(text);
-        dispatch(begin_update());
-        dispatch(update_tag(email, newtags));
+      // if (tags === null){
+      //   var newtags = [];
+      //   newtags.push(text);
+      //   dispatch(begin_update());
+      //   dispatch(update_tag(email, newtags));
+      // } else 
+      if (selftags.length < 5) {
+      //   var newtags = tags;
+      //   newtags.push(text);
+      //   dispatch(begin_update());
+      //   dispatch(update_tag(email, newtags));
+        dispatch( add_self_tag(text) )
       }
       setText("");
     }
@@ -101,10 +110,10 @@ function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
   };
 
   const handleDelete = (index) => {
-    var newtags = tags;
-    newtags.splice(index, 1);
-    dispatch(begin_update());
-    dispatch(update_tag(email, newtags));
+    // var newtags = tags;
+    // newtags.splice(index, 1);
+    // dispatch(begin_update());
+    // dispatch(update_tag(email, newtags));
   };
   return (
     <Card
@@ -123,7 +132,18 @@ function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
       />
       {!isSelf && <Divider className={classes.expand_w} />}
       <CardContent>
-        {tags !== null && tags.map((tag, index) => (
+        {!isSelf && tags !== null && tags.map((tag, index) => (
+          <CustomChip
+            key={displayname + tag}
+            classes={classes}
+            text={tag}
+            isSelf={isSelf}
+            index={index}
+            handleDelete={handleDelete}
+          />
+        ))}
+
+        {isSelf && selftags.map((tag, index) => (
           <CustomChip
             key={displayname + tag}
             classes={classes}
@@ -155,27 +175,27 @@ function OldCardGeneralized({ isSelf, displayname, from, tags, email }) {
 export default function (props) {
   const { isSelf, data, email, user_id } = props;
 
-  const [loadstate, setload] = React.useState(true);
-  const [userDetails, setDetails] = React.useState({});
+  // const [loadstate, setload] = React.useState(true);
+  // const [userDetails, setDetails] = React.useState({});
 
-  if (isSelf) {
-    if (data !== null) {
-      const displayname = data.first_name + " " + data.last_name;
-      const from = data.company_organization;
+  // if (isSelf) {
+  //   if (data !== null) {
+  //     const displayname = data.first_name + " " + data.last_name;
+  //     const from = data.company_organization;
 
-      return (
-        <OldCardGeneralized
-          isSelf={isSelf}
-          displayname={displayname}
-          from={from}
-          tags={data.tags}
-          email={email}
-        />
-      );
-    } else {
-      return <CircularProgress />;
-    }
-  } else {
+  //     return (
+  //       <OldCardGeneralized
+  //         isSelf={isSelf}
+  //         displayname={displayname}
+  //         from={from}
+  //         tags={data.tags}
+  //         email={email}
+  //       />
+  //     );
+  //   } else {
+  //     return <CircularProgress />;
+  //   }
+  // } else {
     return (
       <OldCardGeneralized
         isSelf={isSelf}
@@ -185,5 +205,5 @@ export default function (props) {
         email={email}
       />
     );
-  }
+  //}
 }
