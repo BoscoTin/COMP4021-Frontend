@@ -127,7 +127,7 @@ function TopLayer(props) {
         <br />
         <Button
           className={classes.startButton}
-          href="/signup"
+          href="/questionaire"
           component={Link}
           variant="contained"
         >

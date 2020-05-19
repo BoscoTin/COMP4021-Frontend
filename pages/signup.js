@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { begin_signup, load_signup } from "../src/redux/actions/User"
 
 import form_Details from "../src/components/demo/register_form";
+import Link from "../src/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -188,7 +189,7 @@ function Form(props) {
 
   useEffect(() => {
     if (status === "success") {
-      Router.push(`/${email}/profile`)
+      Router.push(`/login`)
     }
   })
 
