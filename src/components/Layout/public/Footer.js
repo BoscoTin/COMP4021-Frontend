@@ -51,15 +51,15 @@ export default function (props) {
             <Typography variant="body2">HKUST No.1</Typography>
             <Typography variant="body2">Clear Water Bay, PRBW 29281</Typography>
             <br />
-            <Typography variant="body2">info@warehouse.project</Typography>
-            <Typography variant="body2">1-232-3434 (Main)</Typography>
+            <Typography variant="body2">info@bigas.project</Typography>
+            <Typography variant="body2">12345678 (Main)</Typography>
             <br />
             <br />
             <Typography variant="body2">
-              © Datawarehouse™, 2020. All rights reserved.
+              © Bigas™, 2020. All rights reserved.
             </Typography>
             <Typography variant="body2">
-              Company Registration Number: 21479524.
+              Company Registration Number: 12345678.
             </Typography>
           </div>
 
