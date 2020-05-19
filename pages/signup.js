@@ -189,7 +189,7 @@ function Form(props) {
 
   useEffect(() => {
     if (status === "success") {
-      Router.push(`/${email}/profile`)
+      Router.push(`/login`)
     }
   })
 
@@ -273,8 +273,6 @@ function Form(props) {
         <Button 
           variant="contained"
           onClick={handleSubmit}
-          component={Link}
-          href={"/login"}
         >
           Submit
         </Button>
