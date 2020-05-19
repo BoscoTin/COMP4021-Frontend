@@ -39,8 +39,12 @@ const status = (state = "", action) => {
 
 const message = (state = "", action) => {
   switch (action.type) {
+    case SIGNUP_FAIL:
+      return "SIGN UP ERROR, please try again."
+    case AUTH_SIGNUP_FAIL:
+      return "SIGN UP ERROR, change your email or check if any blanked column exist!"
     default:
-      return state;
+      return "";
   }
 };
 

@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { begin_signup, load_signup } from "../src/redux/actions/User";
 
 import form_Details from "../src/components/demo/register_form";
-import Link from "../src/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow:
       "0px 2px 4px rgba(0, 0, 0, 0.14), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)",
   },
+
+  error_msg: {
+    color: theme.palette.error.main
+  }
 }));
 
 function StyledTitleBox(props) {
@@ -155,7 +158,6 @@ function Form(props) {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.user.status);
   const message = useSelector((state) => state.user.message);
-  const email = useSelector((state) => state.user.email);
 
   const [states, setStates] = React.useState({
     first_name: "",
@@ -190,7 +192,6 @@ function Form(props) {
   };
 
   const handleSubmit = () => {
-    console.log(states);
     dispatch(begin_signup());
     dispatch(load_signup({ ...states }));
   };
@@ -303,6 +304,10 @@ function Form(props) {
           )}
         </Grid>
       ))}
+
+      <Grid item xs={12} className={clsx(classes.padding, classes.error_msg)}>
+        {message}
+      </Grid>
 
       {/* Submit button */}
       <Grid item xs={12} className={classes.padding}>
