@@ -11,17 +11,13 @@ import {
 } from "@material-ui/icons";
 
 export default function (props) {
-  const { classes, open, handleDrawerOpen } = props;
+  const { classes, handleDrawerToggle } = props;
   return (
-    <AppBar
-      className={clsx(classes.appbar, {
-        [classes.appbaropen]: open,
-      })}
-    >
+    <AppBar position="fixed" className={classes.appbar} >
       <Toolbar>
         <IconButton
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.hide)}
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
         >
           <MenuRounded />
         </IconButton>
