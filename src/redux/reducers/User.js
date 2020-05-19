@@ -24,6 +24,7 @@ const status = (state = "", action) => {
     case BEGIN_FIND_USER:
       return "loading";
     case LOGIN_SUCCESS:
+      return "loginsuccess"
     case SIGNUP_SUCCESS:
     case FIND_USER_SUCCESS:
       return "success";
@@ -52,8 +53,6 @@ const email = (state = "", action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return action.payload.email
-    case SIGNUP_SUCCESS:
-      return action.payload.result.email
     default:
       return state
   }

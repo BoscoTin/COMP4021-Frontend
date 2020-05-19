@@ -16,13 +16,12 @@ import {
   ADD_SELF_TAG_FAIL,
 } from "../types/User";
 
-
 export function begin_update() {
-  return { type: BEGIN_ADD_SELF_TAG }
+  return { type: BEGIN_ADD_SELF_TAG };
 }
 
 export function update_tag(email, tags) {
-  var path = "/user/update?email=" + email
+  var path = "/user/update?email=" + email;
   return runAPI(
     path,
     "PUT",
@@ -30,17 +29,19 @@ export function update_tag(email, tags) {
     fail_update_user_tags,
     {
       tags: tags,
-      email: email
+      email: email,
     }
   );
 }
 
-function success_update_user_tags(tags){
-  return (payload) => { return { type: ADD_SELF_TAG_SUCCESS, payload, tags } }
+function success_update_user_tags(tags) {
+  return (payload) => {
+    return { type: ADD_SELF_TAG_SUCCESS, payload, tags };
+  };
 }
 
-function fail_update_user_tags(payload){
-  return { type: ADD_SELF_TAG_FAIL, payload}
+function fail_update_user_tags(payload) {
+  return { type: ADD_SELF_TAG_FAIL, payload };
 }
 
 export function begin_find_user() {
@@ -48,13 +49,8 @@ export function begin_find_user() {
 }
 
 export function find_user(email) {
-  var path = "/user/findByEmail?email=" + email
-  return runAPI(
-    path,
-    "GET",
-    success_find_user,
-    fail_find_user
-  );
+  var path = "/user/findByEmail?email=" + email;
+  return runAPI(path, "GET", success_find_user, fail_find_user);
 }
 
 function success_find_user(payload) {
@@ -88,25 +84,19 @@ export function begin_signup() {
   return { type: BEGIN_SIGNUP };
 }
 
-export function load_signup(states) {
-  return runAPI(
-    "/auth/signup",
-    "POST",
-    success_auth_signup(states),
-    fail_auth_signup,
-    {
-      "email": states.email,
-      "password": states.password
-    }
-  );
+export function load_auth_signup(states) {
+  return (payload) =>
+    runAPI("/auth/signup", "POST", success_signup, fail_auth_signup, {
+      email: states.email,
+      password: states.password,
+    });
 }
 
-function success_auth_signup(states) {
-  return (payload) =>
-    runAPI("/user/create", "POST", success_signup, fail_signup, {
-      groupid: 777,
-      ...states,
-    });
+export function load_signup(states) {
+  return runAPI("/user/create", "POST", load_auth_signup(states), fail_signup, {
+    groupid: 777,
+    ...states,
+  });
 }
 
 function success_signup(payload) {

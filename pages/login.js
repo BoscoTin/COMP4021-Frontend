@@ -241,7 +241,7 @@ function LoginLayout(props) {
   }
 
   useEffect(() => {
-    if (status === "success") {
+    if (status === "loginsuccess") {
       Router.push(`/${email}/profile`);
     }
   });
