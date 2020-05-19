@@ -143,7 +143,7 @@ function Paginator({ classes, page, setPage }) {
       {page === Questions.length && (
           <Button
               variant="contained"
-              href="/login"
+              href="/signup"
               component={Link}
               className={classes.button_color}>
             <Box color={"#FFFFFF"}>

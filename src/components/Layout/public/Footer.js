@@ -38,7 +38,7 @@ export default function (props) {
               classes.footButtonMargin2,
               classes.footButtonStyle2
             )}
-            href="/signup"
+            href="/questionaire"
             component={Link}
             endIcon={<ArrowForward className={classes.loginArrow} />}
           >

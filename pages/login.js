@@ -149,7 +149,7 @@ function SignUp(props) {
   const { classes } = props;
   return (
     <Box className={classes.LoginLayoutSignUpBox}>
-      <Button href="/signup" component={Link}>
+      <Button href="/questionaire" component={Link}>
         <ForgotPasswordAndSignUpTextBox>
           Don't have a account yet?
         </ForgotPasswordAndSignUpTextBox>
