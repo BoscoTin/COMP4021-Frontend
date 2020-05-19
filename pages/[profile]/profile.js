@@ -106,7 +106,7 @@ function ProfileBlock({ classes, email }) {
               alignItems={"center"}
               className={clsx(classes.expand_w, classes.tabpanel)}
             >
-              <InfoTabPanel value={value} data={InfoDemo} />
+              <InfoTabPanel value={value} data={selfuser} />
             </Grid>
           </Grid>
         </Grid>
