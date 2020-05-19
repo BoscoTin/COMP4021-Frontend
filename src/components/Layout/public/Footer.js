@@ -17,36 +17,36 @@ export default function (props) {
 
   return (
     <div>
-      <div className={classes.footTitle}>
-        <Typography variant="h5">Try For Free!</Typography>
-        <div className={classes.space} />
-        <Button
-          className={clsx(classes.footButton, classes.footButtonStyle1)}
-          href="/about"
-          component={Link}
-        >
-          <Box color={"#FFFFFF"}>About Us</Box>
-        </Button>
-        <Button
-          className={clsx(
-            classes.footButton,
-            classes.footButtonMargin2,
-            classes.footButtonStyle2
-          )}
-          href="/signup"
-          component={Link}
-          endIcon={<ArrowForward className={classes.loginArrow} />}
-        >
-          Get Start
-        </Button>
-      </div>
+        <div className={classes.footTitle}>
+          <Box>
+            <Typography variant="h5">Try For Free!</Typography>
+            <Typography color="primary" >
+              Start your exploring your potential teammates with our assistance
+            </Typography>
+          </Box>
+          <div className={classes.space} />
+          <Button
+            className={clsx(classes.footButton, classes.footButtonStyle1)}
+            href="/about"
+            component={Link}
+          >
+            <Box color={"#FFFFFF"}>About Us</Box>
+          </Button>
+          <Button
+            className={clsx(
+              classes.footButton,
+              classes.footButtonMargin2,
+              classes.footButtonStyle2
+            )}
+            href="/signup"
+            component={Link}
+            endIcon={<ArrowForward className={classes.loginArrow} />}
+          >
+            Get Start
+          </Button>
+        </div>
 
-      <Typography color="primary" className={classes.footTitle}>
-        Start your exploring your potential teammates with our assistance
-      </Typography>
-
-
-        <div className={classes.footer} >
+      <div className={classes.footer} >
           <br />
           <div className={classes.footInfo}>
             <Box display={"inline"}>
@@ -70,27 +70,27 @@ export default function (props) {
             </Typography>
           </div>
 
-        <div className={classes.footOther}>
-          <br />
-          <Typography variant="h5">About</Typography>
-          <br />
-          <br />
-          <Typography variant="body2" component={Link} href="/about">
-            About us
-          </Typography>
-          <br />
-          <Typography variant="body2" component={Link} href="">
-            Events
-          </Typography>
-          <br />
-          <Typography variant="body2" component={Link} href="">
-            Explore
-          </Typography>
-          <br />
-          <Typography variant="body2" component={Link} href="">
-            Contact us
-          </Typography>
-        </div>
+          <div className={classes.footOther}>
+            <br />
+            <Typography variant="h5">About</Typography>
+            <br />
+            <br />
+            <Typography variant="body2" component={Link} href="/about">
+              About us
+            </Typography>
+            <br />
+            <Typography variant="body2" component={Link} href="/#events">
+              Events
+            </Typography>
+            <br />
+            <Typography variant="body2" component={Link} href="/#explore">
+              Explore
+            </Typography>
+            <br />
+            <Typography variant="body2" component={Link} href="">
+              Contact us
+            </Typography>
+          </div>
 
         <div className={classes.footOther}>
           <br />
@@ -134,6 +134,7 @@ export default function (props) {
           </Grid>
         </div>
       </div>
+
     </div>
   );
 }

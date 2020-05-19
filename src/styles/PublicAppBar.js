@@ -90,9 +90,6 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "center",
   },
 
-  space: {
-    flexGrow: 1
-  }
 }));
 
 export default useStyles;
