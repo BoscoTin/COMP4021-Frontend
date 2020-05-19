@@ -25,11 +25,16 @@ const apiMiddleware = ({dispatch}) => next => action => {
 
     instance
         .request({url, method, [dataOrParams]: data})
-        .then( ({ data }) => {
-            dispatch(onSuccess(data));
+        .then( (response) => {
+            var data = response.data;
+            if (data.success){
+                dispatch(onSuccess(data));
+            } else {
+                dispatch(onFailure(data))
+            }
         })
         .catch( (error) => {
-            dispatch(onFailure(data));
+            dispatch(onFailure(error));
         } )
 }
 
