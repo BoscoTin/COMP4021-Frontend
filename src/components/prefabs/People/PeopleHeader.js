@@ -18,9 +18,9 @@ export default function ({ avatar, displayname, from, isSelf, isBadge }) {
           </Avatar>
         )
       }
-      title={displayname}
+      title={from === undefined? <strong>{displayname}</strong> : displayname}
       titleTypographyProps={{
-        variant: "h6",
+        variant: from === undefined? "body1" : "h6",
         color: isSelf ? "textPrimary" : "textSecondary",
       }}
       subheader={from}

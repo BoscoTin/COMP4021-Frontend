@@ -1,22 +1,15 @@
-import {Tabs, Tab, Typography} from "@material-ui/core"
-import {withStyles} from "@material-ui/core/styles"
-import {PropTypes} from 'prop-types';
-import Box from '@material-ui/core/Box';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableRow from '@material-ui/core/TableRow';
+import { Tabs, Tab, Typography, Grid } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 const StyledTabs = withStyles({
-    root: {
-      borderBottom: "1px solid #F5F5F5",
-    },
-    indicator: {
-      backgroundColor: "#006EFF",
-    },
-  })(Tabs);
-  
+  root: {
+    borderBottom: "1px solid #F5F5F5",
+  },
+  indicator: {
+    backgroundColor: "#006EFF",
+  },
+})(Tabs);
+
 const StyledTab = withStyles((theme) => ({
   root: {
     textTransform: "none",
@@ -39,121 +32,120 @@ const StyledTab = withStyles((theme) => ({
   selected: {},
 }))((props) => <Tab disableRipple {...props} />);
 
-const StyledTableContainer = withStyles({
-  border: 'none'
-})(TableContainer);
-
-const StyledTableCell = withStyles({
-  root: {
-    border: 'none'
-  }
-})(TableCell);
-
 function InfoTabPanel(props) {
-  const { data, value, index, ...other } = props;
-
-  let table;
-  if (data.category == "Basic") {
-    table = <StyledTableContainer> 
-      <Table>
-        <TableBody>
-          <TableRow>
-            <StyledTableCell align="left"> Phone Number </StyledTableCell>
-            <StyledTableCell align="left"> {data.phoneNumber} </StyledTableCell>
-            <StyledTableCell align="left"> Gender </StyledTableCell>
-            <StyledTableCell align="left"> {data.gender} </StyledTableCell>
-          </TableRow>
-          <TableRow>
-            <StyledTableCell align="left"> Address </StyledTableCell>
-            <StyledTableCell align="left"> {data.address} </StyledTableCell>
-            <StyledTableCell align="left"> Birthday </StyledTableCell>
-            <StyledTableCell align="left"> {data.birthday} </StyledTableCell>
-          </TableRow>
-          <TableRow>
-            <StyledTableCell align="left"> Email </StyledTableCell>
-            <StyledTableCell align="left"> {data.email} </StyledTableCell>
-            <StyledTableCell align="left" />
-            <StyledTableCell align="left"/>
-          </TableRow>
-          <TableRow>
-            <StyledTableCell align="left"> Website </StyledTableCell>
-            <StyledTableCell align="left"> {data.website} </StyledTableCell>
-            <StyledTableCell align="left" />
-            <StyledTableCell align="left"/>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </StyledTableContainer>
-  } 
-  else if (data.category == "Education") {
-    table = <StyledTableContainer>
-      <Table>
-      <TableRow>
-        <StyledTableCell align="left"> Location </StyledTableCell>
-        <StyledTableCell align="left"> {data.location} </StyledTableCell>
-        <StyledTableCell align="left" />
-        <StyledTableCell align="left"/>
-      </TableRow>
-      <TableRow>
-        <StyledTableCell align="left"> School </StyledTableCell>
-        <StyledTableCell align="left"> {data.school} </StyledTableCell>
-        <StyledTableCell align="left" />
-        <StyledTableCell align="left"/>
-      </TableRow>
-      <TableRow>
-        <StyledTableCell align="left"> Study Field </StyledTableCell>
-        <StyledTableCell align="left"> {data.studyField} </StyledTableCell>
-        <StyledTableCell align="left" />
-        <StyledTableCell align="left"/>
-      </TableRow>
-      </Table>
-    </StyledTableContainer>
-  }
-  else if (data.category == "Experience") {
-    table = <StyledTableContainer>
-      <Table>
-      <TableRow>
-        <StyledTableCell align="left"> Company or organization </StyledTableCell>
-        <StyledTableCell align="left"> {data.organization} </StyledTableCell>
-        <StyledTableCell align="left" />
-        <StyledTableCell align="left"/>
-      </TableRow>
-      <TableRow>
-        <StyledTableCell align="left"> Position </StyledTableCell>
-        <StyledTableCell align="left"> {data.position} </StyledTableCell>
-        <StyledTableCell align="left" />
-        <StyledTableCell align="left"/>
-      </TableRow>
-      <TableRow>
-        <StyledTableCell align="left"> Description </StyledTableCell>
-        <StyledTableCell align="left"> {data.description} </StyledTableCell>
-        <StyledTableCell align="left" />
-        <StyledTableCell align="left"/>
-      </TableRow>
-      </Table>
-    </StyledTableContainer>
-  }
-  else if (data.category == "Interest") {
-    table = <Typography> {data.interests.toString()} </Typography>
-  }
-  else {
-    table = <Typography> other </Typography>
-  }
+  const { data, value } = props;
 
   return (
-    <div role="tabpanel" hidden={value != index} id={`tabpanel-${index}`} {...other} >
-      {value === index && ( <Box p={3}> 
-        {table}
-      </Box>)}
-    </div>
-  )
+    <React.Fragment>
+      {value === 0 && (
+        <React.Fragment>
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Phone number</Typography>
+          </Grid>
+          <Grid item md={4} xs={8}>
+            <Typography variant="body1">{data[value].phoneNumber}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Gender</Typography>
+          </Grid>
+          <Grid item md={4} xs={8}>
+            <Typography variant="body1">{data[value].gender}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Address</Typography>
+          </Grid>
+          <Grid item md={4} xs={8}>
+            <Typography variant="body1">{data[value].address}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Birthday</Typography>
+          </Grid>
+          <Grid item md={4} xs={8}>
+            <Typography variant="body1">{data[value].birthday}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Email</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].email}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Website</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].website}</Typography>
+          </Grid>
+        </React.Fragment>
+      )}
+
+      {value === 1 && 
+        <React.Fragment>
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Location</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].location}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">School</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].school}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Study Field</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].studyField}</Typography>
+          </Grid>
+        </React.Fragment>
+      }
+
+      {value === 2 && 
+        <React.Fragment>
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Company or Organization</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].organization}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Position</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].position}</Typography>
+          </Grid>
+
+          <Grid item md={2} xs={4}>
+            <Typography variant="body1">Description</Typography>
+          </Grid>
+          <Grid item md={10} xs={8}>
+            <Typography variant="body1">{data[value].description}</Typography>
+          </Grid>
+        </React.Fragment>
+      }
+
+      {value === 3 && 
+        <React.Fragment>
+          {data[value].interests.map( (interest, index) =>
+            <Grid item md={3} xs={4} key={interest + index}>
+              <Typography variant="body1">
+                {interest}
+              </Typography>
+            </Grid>
+          )}
+        </React.Fragment>
+      }
+    </React.Fragment>
+  );
 }
 
-InfoTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-
-export {StyledTab, StyledTabs, InfoTabPanel}
+export { StyledTab, StyledTabs, InfoTabPanel };

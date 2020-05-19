@@ -102,7 +102,6 @@ export default function (props) {
         isSelf={isSelf}
         isBadge={false}
       />
-      {isSelf && <br />}
       {!isSelf && <Divider className={classes.expand_w} />}
       <CardContent>
         {data.tags.map((tag, index) => (

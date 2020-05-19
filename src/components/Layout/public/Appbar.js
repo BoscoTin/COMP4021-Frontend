@@ -16,8 +16,8 @@ import AppLogo from "../../SVGs/app_logo";
 
 const barButtons = [
   { url: "/", show: { en_us: "Main" } },
-  { url: "#events", show: { en_us: "Events" } },
-  { url: "#explore", show: { en_us: "Explore" } },
+  { url: "/#events", show: { en_us: "Events" } },
+  { url: "/#explore", show: { en_us: "Explore" } },
   { url: "about", show: { en_us: "About us" } },
 ];
 
