@@ -79,11 +79,11 @@ export default function (props) {
               About us
             </Typography>
             <br />
-            <Typography variant="body2" component={Link} href="#events">
+            <Typography variant="body2" component={Link} href="/#events">
               Events
             </Typography>
             <br />
-            <Typography variant="body2" component={Link} href="#explore">
+            <Typography variant="body2" component={Link} href="/#explore">
               Explore
             </Typography>
             <br />
