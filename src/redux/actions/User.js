@@ -40,7 +40,6 @@ export function begin_login() {
 
 export function load_login(email, password) {
   return runAPI("/auth/signin", "POST", success_login, fail_login, {
-    groupid: 777,
     email,
     password,
   });
@@ -65,8 +64,8 @@ export function load_signup(states) {
     success_auth_signup(states),
     fail_auth_signup,
     {
-      groupid: 777,
-      ...states,
+      "email": states.email,
+      "password": states.password
     }
   );
 }
