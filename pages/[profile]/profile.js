@@ -1,15 +1,15 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import {Grid, Box, Typography} from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import PrivateLayout from "../../src/components/Layout/private/PrivateLayout";
 import PeopleTagCard from "../../src/components/prefabs/People/PeopleTagCard";
-import { StyledTabs, StyledTab, InfoTabPanel } from "../../src/components/Tabs"
+import { StyledTabs, StyledTab, InfoTabPanel } from "../../src/components/Tabs";
 
-import SelfDemo from "../../src/components/demo/self";
+// import SelfDemo from "../../src/components/demo/self";
 import RecommendsDemo from "../../src/components/demo/recommendation";
 import ConnectionDemo from "../../src/components/demo/connection_list";
 import InfoDemo from "../../src/components/demo/infoDemo";
@@ -28,9 +28,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    minHeight: "50vh",
-    maxHeight: "50vh",
-    overflow: "hidden"
+    [theme.breakpoints.up("md")]: {
+      minHeight: "50vh",
+      maxHeight: "50vh",
+      overflow: "hidden",
+    },
   },
   profile: {
     width: "100%",
@@ -44,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   overflow_list: {
     overflow: "scroll",
     height: "100%",
-    paddingBottom: theme.spacing(4)
+    paddingBottom: theme.spacing(4),
   },
   paper: {
     backgroundColor: "#FFFFFF",
@@ -66,13 +68,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  tabpanel: {
+    paddingTop: theme.spacing(1),
+  },
 }));
-
-
 
 function ProfileBlock({ classes }) {
   const [value, setValue] = React.useState(0);
-  const ReduxSelf = useSelector(state => state.self)
+  const ReduxSelf = useSelector((state) => state.self);
 
   function handleTabPageChange(event, newValue) {
     setValue(newValue);
@@ -82,21 +85,29 @@ function ProfileBlock({ classes }) {
     <Grid item xs={12} className={clsx(classes.block)}>
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">User Profile</Typography>
-        <Grid container className={clsx(classes.expand_w)}>
-          <Grid item xs={4}>
+        <Grid
+          container
+          className={clsx(classes.expand_w, classes.overflow_list)}
+        >
+          <Grid item md={4} xs={12}>
             <PeopleTagCard isSelf={true} data={ReduxSelf} />
           </Grid>
-          <Grid item xs={8}>
-              <StyledTabs value={value} onChange={handleTabPageChange} centered>
-                <StyledTab label="Basic" />
-                <StyledTab label="Education" />
-                <StyledTab label="Experience" />
-                <StyledTab label="Interests" />
-              </StyledTabs>
-              {InfoDemo.map((info, index) => (
-                <InfoTabPanel value={value} index={index} data={info}/>
-              ))}
+          <Grid item md={8} xs={12}>
+            <StyledTabs value={value} onChange={handleTabPageChange} centered>
+              <StyledTab label="Basic" />
+              <StyledTab label="Education" />
+              <StyledTab label="Experience" />
+              <StyledTab label="Interests" />
+            </StyledTabs>
+            <Grid
+              container
+              spacing={1}
+              alignItems={"center"}
+              className={clsx(classes.expand_w, classes.tabpanel)}
+            >
+              <InfoTabPanel value={value} data={InfoDemo} />
             </Grid>
+          </Grid>
         </Grid>
       </div>
     </Grid>
@@ -105,17 +116,21 @@ function ProfileBlock({ classes }) {
 
 function RecommendsBlock({ classes }) {
   return (
-    <Grid item xs={8} className={clsx(classes.block)}>
+    <Grid item md={8} xs={12} className={clsx(classes.block)}>
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">Potential Candidate</Typography>
         <br />
-        <Grid container spacing={1} className={clsx(classes.expand_w, classes.overflow_list)}>
+        <Grid
+          container
+          spacing={1}
+          className={clsx(classes.expand_w, classes.overflow_list)}
+        >
           {RecommendsDemo.map((element, index) => (
-            <Grid item xs={5} key={"Recommendppl" + index}>
+            <Grid item md={5} xs={12} key={"Recommendppl" + index}>
               <PeopleTagCard isSelf={false} data={element} />
             </Grid>
           ))}
-          <Grid item xs={2}>
+          <Grid item md={2} xs={12}>
             <Box
               className={clsx(classes.v_align, classes.expand_h)}
               variant={"h6"}
@@ -131,19 +146,19 @@ function RecommendsBlock({ classes }) {
 
 function ConnectionBlock({ classes }) {
   return (
-    <Grid item xs={4} className={clsx(classes.block)}>
+    <Grid item md={4} xs={12} className={clsx(classes.block)}>
       <div className={clsx(classes.expand_h, classes.expand_w, classes.paper)}>
         <Typography variant="h5">Connections</Typography>
         <br />
         <div className={classes.overflow_list}>
-            {ConnectionDemo.map((element, index) =>(
-                <PeopleHeader
-                    key={"connect"+index}
-                    avatar={element.avatar}
-                    displayname={element.displayname}
-                    isSelf={true}
-                />
-            ))}
+          {ConnectionDemo.map((element, index) => (
+            <PeopleHeader
+              key={"connect" + index}
+              avatar={element.avatar}
+              displayname={element.displayname}
+              isSelf={true}
+            />
+          ))}
         </div>
       </div>
     </Grid>
